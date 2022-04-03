@@ -1,4 +1,4 @@
-package mz.co.cantinho.ceu.controlo.transportes.controlotransportescantinhodoceu.domain;
+package mz.co.cantinho.ceu.controlo.transportes.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

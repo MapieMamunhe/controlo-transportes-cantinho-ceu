@@ -1,4 +1,4 @@
-package mz.co.cantinho.ceu.controlo.transportes.controlotransportescantinhodoceu.domain;
+package mz.co.cantinho.ceu.controlo.transportes.domain;
 
 import java.time.LocalDate;
 
@@ -13,24 +13,24 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "rotagrupo")
-public class RotaGrupo extends EntidadeAbstrata<Long> {
+@Table(name = "rotacrianca")
+public class RotaCrianca extends EntidadeAbstrata<Long>{
 
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_alocacao", nullable = false)
 	private LocalDate dataAlocacao;
 	
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "data_fim", nullable = false)
+	@Column(name = "data_fim")
 	private LocalDate dataFim;
 	
 	@ManyToOne
-	@JoinColumn(name = "grupo_id")
-	private Grupo grupo;
-	
-	@ManyToOne()
 	@JoinColumn(name = "rota_id")
 	private Rota rota;
+	
+	@ManyToOne
+	@JoinColumn(name = "crianca_id")
+	private Crianca crianca;
 
 	public LocalDate getDataAlocacao() {
 		return dataAlocacao;
@@ -48,20 +48,20 @@ public class RotaGrupo extends EntidadeAbstrata<Long> {
 		this.dataFim = dataFim;
 	}
 
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
-
 	public Rota getRota() {
 		return rota;
 	}
 
 	public void setRota(Rota rota) {
 		this.rota = rota;
+	}
+
+	public Crianca getCrianca() {
+		return crianca;
+	}
+
+	public void setCrianca(Crianca crianca) {
+		this.crianca = crianca;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package mz.co.cantinho.ceu.controlo.transportes.controlotransportescantinhodoceu;
+package mz.co.cantinho.ceu.controlo.transportes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
