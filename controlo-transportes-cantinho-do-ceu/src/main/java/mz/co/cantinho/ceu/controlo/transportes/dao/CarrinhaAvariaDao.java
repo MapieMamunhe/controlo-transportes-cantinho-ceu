@@ -10,5 +10,6 @@ public interface CarrinhaAvariaDao {
 	void update(CarrinhaAvaria carrinhaAvaria);
 	void delete(Long id);
 	List<CarrinhaAvaria> findAll();
+	CarrinhaAvaria findById(Long id);
 	
 }

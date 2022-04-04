@@ -10,5 +10,6 @@ public interface EncarregadoDao {
 	void update(Encarregado encarregado);
 	void delete(Long id);
 	List<Encarregado> findAll();
+	Encarregado findById(Long id);
 	
 }

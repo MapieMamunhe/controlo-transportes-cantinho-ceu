@@ -10,5 +10,6 @@ public interface EducadoraDao {
 	void update(Educadora educadora);
 	void delete(Long id);
 	List<Educadora> findAll();
+	Educadora findById(Long id);
 	
 }

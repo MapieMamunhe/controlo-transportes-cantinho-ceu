@@ -10,5 +10,6 @@ public interface ZonaDao {
 	void update(Zona zona);
 	void delete(Long id);
 	List<Zona> findAll();
+	Zona findById(Long id);
 	
 }

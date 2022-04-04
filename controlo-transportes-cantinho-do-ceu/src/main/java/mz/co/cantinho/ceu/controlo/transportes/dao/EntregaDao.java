@@ -10,5 +10,6 @@ public interface EntregaDao {
 	void update(Entrega entrega);
 	void delete(Long id);
 	List<Entrega> findAll();
+	Entrega findById(Long id);
 	
 }

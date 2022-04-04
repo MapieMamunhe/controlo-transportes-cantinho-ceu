@@ -10,5 +10,6 @@ public interface GrupoDao {
 	void update(Grupo grupo);
 	void delete(Long id);
 	List<Grupo> findAll();
+	Grupo findById(Long id);
 	
 }

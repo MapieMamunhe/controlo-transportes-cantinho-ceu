@@ -10,4 +10,5 @@ public interface MotoristaDao {
 	void update(Motorista funcionario);
 	void delete(Long id);
 	List<Motorista> findAll();
+	Motorista findById(Long id);
 }

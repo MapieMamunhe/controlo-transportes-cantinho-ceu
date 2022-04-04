@@ -10,5 +10,6 @@ public interface AvariaDao {
 	void update(Avaria avaria);
 	void delete(Long id);
 	List<Avaria> findAll();
+	Avaria findById(Long id);
 	
 }

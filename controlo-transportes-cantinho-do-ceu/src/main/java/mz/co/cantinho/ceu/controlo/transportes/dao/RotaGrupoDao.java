@@ -10,5 +10,6 @@ public interface RotaGrupoDao {
 	void update(RotaGrupo rotaGrupo);
 	void delete(Long id);
 	List<RotaGrupo> findAll();
+	RotaGrupo findById(Long id);
 	
 }

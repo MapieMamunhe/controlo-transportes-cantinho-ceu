@@ -10,5 +10,6 @@ public interface RotaDao {
 	void update(Rota rota);
 	void delete(Long id);
 	List<Rota> findAll();
+	Rota findById(Long id);
 	
 }

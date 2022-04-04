@@ -10,5 +10,6 @@ public interface ViagemDao {
 	void update(Viagem viagem);
 	void delete(Long id);
 	List<Viagem> findAll();
+	Viagem findById(Long id);
 	
 }

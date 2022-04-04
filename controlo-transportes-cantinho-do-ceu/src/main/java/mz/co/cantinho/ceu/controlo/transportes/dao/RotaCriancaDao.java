@@ -10,5 +10,6 @@ public interface RotaCriancaDao {
 	void update(RotaCrianca rotaCrianca);
 	void delete(Long id);
 	List<RotaCrianca> findAll();
+	RotaCrianca findById(Long id);
 	
 }

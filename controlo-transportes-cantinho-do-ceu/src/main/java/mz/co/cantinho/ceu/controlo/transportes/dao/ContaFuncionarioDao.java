@@ -10,5 +10,6 @@ public interface ContaFuncionarioDao {
 	void update(ContaFuncionario contaFuncionario);
 	void delete(Long id);
 	List<ContaFuncionario> findAll();
+	ContaFuncionario findById(Long id);
 	
 }

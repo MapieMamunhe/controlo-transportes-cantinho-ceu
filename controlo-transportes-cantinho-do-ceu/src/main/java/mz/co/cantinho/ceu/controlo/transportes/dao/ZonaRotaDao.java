@@ -10,5 +10,6 @@ public interface ZonaRotaDao {
 	void update(ZonaRota zonaRota);
 	void delete(Long id);
 	List<ZonaRota> findAll();
+	ZonaRota findById(Long id);
 	
 }

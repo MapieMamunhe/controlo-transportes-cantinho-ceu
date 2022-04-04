@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import mz.co.cantinho.ceu.controlo.transportes.dao.FuncionarioDao;
-import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
+import mz.co.cantinho.ceu.controlo.transportes.dao.CarrinhaAvariaDao;
+import mz.co.cantinho.ceu.controlo.transportes.domain.CarrinhaAvaria;
 
 @Service
 @Transactional(readOnly = false)
-public class FuncionarioServiceImpl implements FuncionarioService {
+public class CarrinhaAvariaServiceImpl implements CarrinhaAvariaService {
 
 	@Autowired
-	private FuncionarioDao dao;
-
+	private CarrinhaAvariaDao dao;
+	
 	@Override
-	public void gravar(Funcionario Funcionario) {
-		dao.save(Funcionario);
+	public void gravar(CarrinhaAvaria carrinhaAvaria) {
+		dao.save(carrinhaAvaria);
 		
 	}
 
 	@Override
-	public void actualizar(Funcionario Funcionario) {
-		dao.update(Funcionario);
+	public void actualizar(CarrinhaAvaria carrinhaAvaria) {
+		dao.update(carrinhaAvaria);
 		
 	}
 
@@ -36,15 +36,14 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Funcionario buscarPorId(Long id) {
+	public CarrinhaAvaria buscarPorId(Long id) {
 		return dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Funcionario> buscarTodos() {
+	public List<CarrinhaAvaria> buscarTodos() {
 		return dao.findAll();
 	}
-
 
 }

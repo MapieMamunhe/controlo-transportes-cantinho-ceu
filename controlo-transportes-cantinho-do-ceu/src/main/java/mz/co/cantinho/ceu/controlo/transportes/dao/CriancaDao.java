@@ -10,5 +10,6 @@ public interface CriancaDao {
 	void update(Crianca crianca);
 	void delete(Long id);
 	List<Crianca> findAll();
+	Crianca findById(Long id);
 	
 }
