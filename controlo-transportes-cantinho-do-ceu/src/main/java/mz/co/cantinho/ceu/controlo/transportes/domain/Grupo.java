@@ -21,7 +21,7 @@ public class Grupo extends EntidadeAbstrata<Long>{
 	LocalDate dataFormacao;
 	
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	@Column(name = "data_formacao")
+	@Column(name = "data_fim")
 	LocalDate dataFim;
 	
 	@ManyToOne

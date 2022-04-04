@@ -11,9 +11,10 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "carrinhaavaria")
-public class CarrinhaAvaria {
+public class CarrinhaAvaria extends EntidadeAbstrata<Long>{
 
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(name = "data_avaria", nullable = false)
