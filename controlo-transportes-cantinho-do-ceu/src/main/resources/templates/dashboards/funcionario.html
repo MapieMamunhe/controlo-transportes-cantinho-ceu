@@ -7,6 +7,8 @@
     <title>Dashboard-Funcionario</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../static/css/dashboard.css" />
     <!-- <link rel="stylesheet" href="/webjars/bootstrap/bootstrap.min.css" /> -->
   </head>
   <body>
@@ -35,8 +37,14 @@
                 <li>
                   <figure>
                     <img src="" alt="" />
-                    <figcaption>Cadastros</figcaption>
-                    <ul>
+                    <figcaption
+                      class="btn"
+                      data-toggle="collapse"
+                      data-target="#lista"
+                    >
+                      Cadastros
+                    </figcaption>
+                    <ul id="lista" class="collapse">
                       <li>Carinhas</li>
                       <li>Motoristas</li>
                       <li>Rotas</li>
@@ -143,5 +151,7 @@
         2022
       </footer>
     </main>
+    <script src="../../static/js/jquery.slim.min.js"></script>
+    <script src="../../static/js/bootstrap.bundle.js"></script>
   </body>
 </html>
