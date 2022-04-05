@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import mz.co.cantinho.ceu.controlo.transportes.dao.FuncionarioDao;
-import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
+import mz.co.cantinho.ceu.controlo.transportes.dao.RotaCriancaDao;
+import mz.co.cantinho.ceu.controlo.transportes.domain.RotaCrianca;
 
 @Service
 @Transactional(readOnly = false)
-public class FuncionarioServiceImpl implements FuncionarioService {
+public class RotaCriancaServiceImpl implements RotaCriancaService {
 
 	@Autowired
-	private FuncionarioDao dao;
-
+	private RotaCriancaDao dao;
+	
 	@Override
-	public void gravar(Funcionario Funcionario) {
-		dao.save(Funcionario);
+	public void gravar(RotaCrianca rotaCrianca) {
+		dao.save(rotaCrianca);
 		
 	}
 
 	@Override
-	public void actualizar(Funcionario Funcionario) {
-		dao.update(Funcionario);
+	public void actualizar(RotaCrianca rotaCrianca) {
+		dao.update(rotaCrianca);
 		
 	}
 
@@ -36,15 +36,14 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Funcionario buscarPorId(Long id) {
+	public RotaCrianca buscarPorId(Long id) {
 		return dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Funcionario> buscarTodos() {
+	public List<RotaCrianca> buscarTodos() {
 		return dao.findAll();
 	}
-
 
 }
