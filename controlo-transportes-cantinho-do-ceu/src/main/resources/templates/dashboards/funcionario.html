@@ -20,10 +20,14 @@
           <div>
             <section id="logo">
               <figure>
-                <img src="" alt="Logo do cantinho do ceu" />
-                <hr />
+                <img
+                  id="logo-cantinho"
+                  src="../../static/img/cantinho-do-ceu-logo.jpg"
+                  alt="Logo do cantinho do ceu"
+                />
                 <figcaption>Cantinho do ceu</figcaption>
               </figure>
+              <hr />
             </section>
             <!--Botoes do menu -->
             <section>
@@ -31,37 +35,70 @@
                 <li>
                   <figure>
                     <img src="" alt="" />
-                    <figcaption>Dasboard</figcaption>
+                    <figcaption
+                      class="btn dropdown-toggle"
+                      data-toggle="collapse"
+                      data-target="TOADD"
+                    >
+                      Dasboard
+                    </figcaption>
                   </figure>
                 </li>
                 <li>
                   <figure>
-                    <img src="" alt="" />
                     <figcaption
-                      class="btn"
+                      class="btn dropdown-toggle"
                       data-toggle="collapse"
-                      data-target="#lista"
+                      data-target="#lista-cadastro"
                     >
+                      <img
+                        src="../../static/img/plus-circle.svg"
+                        alt="plus-icon"
+                      />
                       Cadastros
                     </figcaption>
-                    <ul id="lista" class="collapse">
-                      <li>Carinhas</li>
-                      <li>Motoristas</li>
-                      <li>Rotas</li>
-                      <li>Secretarias</li>
+                    <ul id="lista-cadastro" class="collapse">
+                      <li>
+                        <input type="radio" name="cadastro" id="carinha" />
+                        <label for="carinha">Carinhas</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="cadastro" id="motorista" />
+                        <label for="motorista">Motoristas</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="cadastro" id="rotas" />
+                        <label for="rotas">Rotas</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="cadastro" id="secretarias" />
+                        <label for="secretarias">Secretarias</label>
+                      </li>
                     </ul>
                   </figure>
                 </li>
                 <li>
                   <figure>
                     <img src="" alt="" />
-                    <figcaption>Listar</figcaption>
+                    <figcaption
+                      class="btn dropdown-toggle"
+                      data-toggle="collapse"
+                      data-target="TOADD"
+                    >
+                      Listar
+                    </figcaption>
                   </figure>
                 </li>
                 <li>
                   <figure>
                     <img src="" alt="" />
-                    <figcaption>Alocacoes</figcaption>
+                    <figcaption
+                      class="btn dropdown-toggle"
+                      data-toggle="collapse"
+                      data-target="TOADD"
+                    >
+                      Alocacoes
+                    </figcaption>
                   </figure>
                 </li>
               </ul>
@@ -151,6 +188,8 @@
         2022
       </footer>
     </main>
+    <script src="/js/jquery.slim.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
     <script src="../../static/js/jquery.slim.min.js"></script>
     <script src="../../static/js/bootstrap.bundle.js"></script>
   </body>
