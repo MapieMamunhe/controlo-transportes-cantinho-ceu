@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DashboardController {
    @GetMapping("/funcionario")
    public String funcionario(){
-       return ("/dashboards/funcionario");
+       return ("/dashboards/dashboard");
    } 
    
 }
