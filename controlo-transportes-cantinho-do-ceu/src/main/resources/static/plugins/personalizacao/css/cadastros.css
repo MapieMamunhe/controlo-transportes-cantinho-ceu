@@ -1,0 +1,13 @@
+.form-label {
+    color: #808080;
+    font-weight: 500 !important;
+}
+
+.active {
+    background-color: #F1EBEB !important;
+    color: #42C0FA !important;
+}
+
+.btn-cadastro:hover {
+    color: #fff;
+}
