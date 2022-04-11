@@ -21,11 +21,11 @@ public class CarrinhaMotorista extends EntidadeAbstrata<Long>{
 	private LocalDate dataAlocacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "motorista")
+	@JoinColumn(name = "motorista_funcionario_id")
 	private Motorista motorista;
 	
 	@ManyToOne
-	@JoinColumn(name = "carrinha")
+	@JoinColumn(name = "carrinha_id")
 	private Carrinha carrinha;
 
 	public LocalDate getDataAlocacao() {

@@ -35,15 +35,23 @@ public class MotoristaServiceimpl implements MotoristaService {
 	}
 
 	@Override
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public Motorista buscarPorId(Long id) {
 		return dao.findById(id);
 	}
 
 	@Override
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public List<Motorista> buscarTodos() {
 		return dao.findAll();
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Motorista> buscarPorNrDocumento(String nrDocumento) {
+		return dao.findByDocument(nrDocumento);
+	}
+	
+	
 
 }

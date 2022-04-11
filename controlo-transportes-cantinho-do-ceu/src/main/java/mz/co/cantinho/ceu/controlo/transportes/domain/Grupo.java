@@ -25,7 +25,7 @@ public class Grupo extends EntidadeAbstrata<Long>{
 	LocalDate dataFim;
 	
 	@ManyToOne
-	@JoinColumn(name = "mototrista_funcionario_id")
+	@JoinColumn(name = "motorista_funcionario_id")
 	private Motorista motorista;
 	
 	@ManyToOne

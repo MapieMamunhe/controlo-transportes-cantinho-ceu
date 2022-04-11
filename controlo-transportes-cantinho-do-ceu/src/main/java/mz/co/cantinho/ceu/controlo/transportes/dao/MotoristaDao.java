@@ -11,4 +11,5 @@ public interface MotoristaDao {
 	void delete(Long id);
 	List<Motorista> findAll();
 	Motorista findById(Long id);
+	List<Motorista> findByDocument(String nrDocumento);
 }

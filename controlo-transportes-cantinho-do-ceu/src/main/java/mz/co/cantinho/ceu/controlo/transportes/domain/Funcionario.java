@@ -6,10 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "funcionario")
-public abstract class Funcionario extends EntidadeAbstrata<Long>{
+public class Funcionario extends EntidadeAbstrata<Long>{
 
 	@Column(nullable = false, length = 200)
 	private String nome;
@@ -17,14 +20,21 @@ public abstract class Funcionario extends EntidadeAbstrata<Long>{
 	@Column(nullable = false, length = 45)
 	private String apelido;
 	
+	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "data_nascimento", nullable = false)
 	private LocalDate dataNascimento;
 	
 	@Column(nullable = false, length = 1)
 	private String sexo;
 	
-	//@Column(nullable = false)
-	//private Documento documento;
+	/*@Column(nullable = false)
+	private String documento;*/
+	
+	@Column(name = "tipo_documento", nullable = false)
+	private String tipoDocumento;
+	
+	@Column(name = "nr_documento", nullable = false)
+	private String nrDocumento;
 	
 	@Column(nullable = false, length = 16)
 	private String telefone;
@@ -64,6 +74,24 @@ public abstract class Funcionario extends EntidadeAbstrata<Long>{
 
 	public String getSexo() {
 		return sexo;
+	}
+
+	
+	
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getNrDocumento() {
+		return nrDocumento;
+	}
+
+	public void setNrDocumento(String nrDocumento) {
+		this.nrDocumento = nrDocumento;
 	}
 
 	public void setSexo(String sexo) {

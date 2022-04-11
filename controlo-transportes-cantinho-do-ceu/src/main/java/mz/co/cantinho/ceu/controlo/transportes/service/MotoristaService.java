@@ -11,5 +11,6 @@ public interface MotoristaService {
 	void remover(Long id);
 	Motorista buscarPorId(Long id);
 	List<Motorista> buscarTodos();
+	List<Motorista> buscarPorNrDocumento(String nrDocumento);
 	
 }

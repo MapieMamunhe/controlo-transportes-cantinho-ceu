@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import mz.co.cantinho.ceu.controlo.transportes.dao.EducadoraDao;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Educadora;
+import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 
 @Service
 @Transactional(readOnly = false)
@@ -17,8 +18,8 @@ public class EducadoraServiceImpl implements EducadoraService{
 	private EducadoraDao dao;
 	
 	@Override
-	public void gravar(Educadora educadora) {
-		dao.save(educadora);
+	public void gravar(Funcionario funcionario) {
+		dao.save(funcionario);
 	}
 
 	@Override
