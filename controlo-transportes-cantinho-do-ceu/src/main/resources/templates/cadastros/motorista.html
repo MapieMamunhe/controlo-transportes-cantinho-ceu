@@ -103,7 +103,7 @@
                                 <li class="nav-item ">
                                     <a th:href="@{/funcionarios/secretaria/novo}" class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
-                                        <p>Secretarias</p>
+                                        <p>Educadoras</p>
                                     </a>
                                 </li>
 
@@ -147,21 +147,23 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-7 col-sm-12">
                                         <label for="nome" class="form-label">Nome</label>
-                                        <input type="text" class="form-control" name="nome" placeholder="Digite o nome" th:field="*{nome}">
+                                        <input type="text" class="form-control" name="nome" placeholder="Digite o nome" required=""
+                                        th:field="*{nome}">
                                     </div>
                                     <div class="form-group col-md-5 col-sm-12">
                                         <label for="apelido" class="form-label">Apelido</label>
-                                        <input type="text" class="form-control" name="apelido" placeholder="Digite o apelido" th:field="*{apelido}">
+                                        <input type="text" class="form-control" name="apelido" placeholder="Digite o apelido" required=""
+                                        th:field="*{apelido}">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="data-nasc" class="form-label">Data de nascimento</label>
-                                        <input type="date" class="form-control" name="data-nasc" th:field="*{dataNascimento}">
+                                        <input type="date" class="form-control" name="data-nasc" required="" th:field="*{dataNascimento}">
                                     </div>
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="sexo" class="form-label">Sexo</label>
-                                        <select name="sexo" class="form-control" th:field="*{sexo}">
+                                        <select name="sexo" class="form-control" required="" th:field="*{sexo}">
                                               <option selected value="0">Selecione...</option>
                                               <option value="M">Masculino</option>
                                               <option value="F">Feminino</option>
@@ -169,7 +171,7 @@
                                     </div>
                                     <div class="form-group col-md-3 col-sm-12">
                                         <label for="doc-tipo" class="form-label">Tipo de documento</label>
-                                        <select name="doc-tipo" class="form-control" th:field="*{tipoDocumento}">
+                                        <select name="doc-tipo" class="form-control" required="" th:field="*{tipoDocumento}">
                                               <option selected value="0">Selecione...</option>
                                               <option value="BI">B.Identidade</option>
                                               <option value="Carta de Condução">C.Conducao</option>
@@ -190,7 +192,7 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">+258</div>
                                             </div>
-                                            <input type="text" class="form-control" name="telef-1" placeholder="Digite o telefone"
+                                            <input type="text" class="form-control" name="telef-1" placeholder="Digite o telefone" required=""
                                             th:field="*{telefone}">
                                         </div>
                                     </div>
@@ -218,7 +220,8 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="residencia" class="form-label">Residencia</label>
-                                        <input type="text" class="form-control" placeholder="Digite a residencia" th:field="*{residencia}">
+                                        <input type="text" class="form-control" placeholder="Digite a residencia" required=""
+                                        th:field="*{residencia}">
                                     </div>
                                 </div>
 
