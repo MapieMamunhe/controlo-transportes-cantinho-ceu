@@ -1,264 +1,370 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" th:href=" @{/plugins/fontawesome/css/all.min.css} ">
+    <link
+      rel="stylesheet"
+      th:href=" @{/plugins/fontawesome/css/all.min.css} "
+    />
 
     <!--bootstrap-->
-    <link rel="stylesheet" th:href=" @{/plugins/bootstrap/css/bootstrap.min.css} ">
+    <link
+      rel="stylesheet"
+      th:href=" @{/plugins/bootstrap/css/bootstrap.min.css} "
+    />
 
     <!--adminlte-->
-    <link rel="stylesheet" th:href=" @{/plugins/admin-LTE/css/adminlte.min.css} ">
+    <link
+      rel="stylesheet"
+      th:href=" @{/plugins/admin-LTE/css/adminlte.min.css} "
+    />
 
     <!--estilo personalizado-->
-    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/dashboard.css} ">
-    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/cadastros.css} ">
+    <link
+      rel="stylesheet"
+      th:href=" @{/plugins/personalizacao/css/dashboard.css} "
+    />
+    <link
+      rel="stylesheet"
+      th:href=" @{/plugins/personalizacao/css/cadastros.css} "
+    />
     <title>Novo Motorista</title>
-</head>
+  </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+  <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <!--A barra superior azul comeca aqui-->
-        <nav class="main-header navbar navbar-expand barra-sup bg-cicc">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-white" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
+      <!--A barra superior azul comeca aqui-->
+      <nav class="main-header navbar navbar-expand barra-sup bg-cicc">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" data-widget="pushmenu" href="#"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+      </nav>
+      <!--fim da barra superior azul-->
 
+      <!--Inicio do Menu Lateral-->
 
+      <aside class="main-sidebar menu-lf bg-menu-lf border-r">
+        <!-- Sidebar -->
+        <div class="sidebar my-2">
+          <!-- Sidebar user panel (optional) -->
+          <div
+            class="user-panel mt-3 pb-3 mb-3"
+            style="border-bottom: 2px solid grey; height: 80px"
+          >
+            <div class="text-center">
+              <div class="image d-flex justify-content-center">
+                <img
+                  src="... "
+                  class="img-circle elevation-2"
+                  alt="LOGOTIPO "
+                />
+              </div>
+              <div class="info">
+                <a href="# " class="d-block">LogoTipo</a>
+              </div>
+            </div>
+          </div>
 
-            </ul>
-
-        </nav>
-        <!--fim da barra superior azul-->
-
-        <!--Inicio do Menu Lateral-->
-
-        <aside class="main-sidebar menu-lf bg-menu-lf border-r">
-
-            <!-- Sidebar -->
-            <div class="sidebar my-2">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3" style=" border-bottom: 2px solid grey; height: 80px; ">
-
-                    <div class=" text-center ">
-                        <div class="image d-flex justify-content-center">
-                            <img src="... " class="img-circle elevation-2 " alt="LOGOTIPO ">
-                        </div>
-                        <div class="info">
-                            <a href="# " class="d-block ">LogoTipo</a>
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2 ">
-                    <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview " role="menu " data-accordion="false ">
-                        <!-- Add icons to the links using the .nav-icon class
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview "
+              role="menu "
+              data-accordion="false "
+            >
+              <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview">
-                            <a href="# " class="nav-link">
-                                <i class="nav-icon fas fa-house "></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left "></i>
-                                </p>
-                            </a>
+              <li class="nav-item has-treeview">
+                <a href="# " class="nav-link">
+                  <i class="nav-icon fas fa-house"></i>
+                  <p>
+                    Dashboard
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+              </li>
 
-                        </li>
-
-                        <li class="nav-item has-treeview  menu-open">
-                            <a href="# " class="nav-link">
-                                <i class="nav-icon fas fa-copy "></i>
-                                <p> Cadastros
-                                    <i class="fas fa-angle-left right "></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a th:href="@{/carrinhas/nova}" class="nav-link ">
-                                        <i class="far fa-circle nav-icon "></i>
-                                        <p>Carrinhas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a th:href="@{/funcionarios/motorista/novo}" class="nav-link active">
-                                        <i class="far fa-circle nav-icon "></i>
-                                        <p>Motoristas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a href="# " class="nav-link ">
-                                        <i class="far fa-circle nav-icon "></i>
-                                        <p>Zonas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a th:href="@{/funcionarios/secretaria/novo}" class="nav-link ">
-                                        <i class="far fa-circle nav-icon "></i>
-                                        <p>Educadoras</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-
-
-
-
-
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-        <!--Fim do menu Lateral-->
-
-        <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-        <div class="content-wrapper  bg-white z-index-1">
-
-            <section class="content p-0">
-                <div class="container-fluid  px-5">
-                    <div class="card mt-3 bd-1">
-                        <div class="card-header bg-cicc py-2">
-                            <div class="float-left">
-                                <i class="fa-solid fa-database"></i> Novo Motorista
-
-                            </div>
-                            <div class="float-right">
-                                Espaco para a data
-                            </div>
-                        </div>
-                        <form th:action="@{/funcionarios/motorista/salvar}" th:object="${funcionario}" method="post">
-                            <div class="card-body">
-
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-7 col-sm-12">
-                                        <label for="nome" class="form-label">Nome</label>
-                                        <input type="text" class="form-control" name="nome" placeholder="Digite o nome" required=""
-                                        th:field="*{nome}">
-                                    </div>
-                                    <div class="form-group col-md-5 col-sm-12">
-                                        <label for="apelido" class="form-label">Apelido</label>
-                                        <input type="text" class="form-control" name="apelido" placeholder="Digite o apelido" required=""
-                                        th:field="*{apelido}">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <label for="data-nasc" class="form-label">Data de nascimento</label>
-                                        <input type="date" class="form-control" name="data-nasc" required="" th:field="*{dataNascimento}">
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <label for="sexo" class="form-label">Sexo</label>
-                                        <select name="sexo" class="form-control" required="" th:field="*{sexo}">
-                                              <option selected value="0">Selecione...</option>
-                                              <option value="M">Masculino</option>
-                                              <option value="F">Feminino</option>
-                                            </select>
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <label for="doc-tipo" class="form-label">Tipo de documento</label>
-                                        <select name="doc-tipo" class="form-control" required="" th:field="*{tipoDocumento}">
-                                              <option selected value="0">Selecione...</option>
-                                              <option value="BI">B.Identidade</option>
-                                              <option value="Carta de Condução">C.Conducao</option>
-                                              <option value="Cartão de Eleitor">C.Eleitor</option>
-                                              <option value="Passaporte">Passaporte</option>
-                                            </select>
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <label for="doc-num" class="form-label">Numero do documento</label>
-                                        <input type="text" class="form-control" name="doc-num" placeholder="Digite o nr do documento"
-                                        th:field="*{nrDocumento}">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4 col-sm-12">
-                                        <label class="form-label" for="telef-1">Telefone</label>
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">+258</div>
-                                            </div>
-                                            <input type="text" class="form-control" name="telef-1" placeholder="Digite o telefone" required=""
-                                            th:field="*{telefone}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4 col-sm-12">
-                                        <label class="form-label" for="telef-2">Telefone Alternativo</label>
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">+258</div>
-                                            </div>
-                                            <input type="text" class="form-control" name="telef-2" placeholder="Digite o telefone alt"
-                                            th:field="*{telefoneAlternativo}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4 col-sm-12">
-                                        <label class="form-label" for="email">Email</label>
-                                        <div class="input-group mb-2 mr-sm-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">@</div>
-                                            </div>
-                                            <input type="email" class="form-control" name="email" placeholder="Digite o email" th:field="*{email}">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="residencia" class="form-label">Residencia</label>
-                                        <input type="text" class="form-control" placeholder="Digite a residencia" required=""
-                                        th:field="*{residencia}">
-                                    </div>
-                                </div>
-
-
-
-
-
-                            </div>
-                            <div class="card-footer py-0 bg-white">
-                                <div class="float-right">
-                                    <div class="form-group">
-                                        <button class="btn btn-danger mx-3  btn-sm px-3"><i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar</button>
-                                        <button class="btn bg-cicc btn-cadastro mx-3  btn-sm px-3"><i class="fa-solid fa-plus mx-1"></i>Cadastrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </section>
-
+              <li class="nav-item has-treeview menu-open">
+                <a href="# " class="nav-link">
+                  <i class="nav-icon fas fa-copy"></i>
+                  <p>
+                    Cadastros
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a th:href="@{/carrinhas/nova}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Carrinhas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      th:href="@{/funcionarios/motorista/novo}"
+                      class="nav-link active"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Motoristas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="# " class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Zonas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      th:href="@{/funcionarios/secretaria/novo}"
+                      class="nav-link"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Educadoras</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
         </div>
-        <!--Fim do content-wrapper-->
+        <!-- /.sidebar -->
+      </aside>
 
-        <!--Inicio do rodape-->
-        <footer class="main-footer footer py-2">
-            <div class="text-center ">
-                Sistema de controlo dos transportes do centro Infantil Cantinho do Ceu | 2022
+      <!--Fim do menu Lateral-->
 
-                <div class="float-right d-none d-sm-inline-block ">
-                    <b>Versao 1.0</b>
+      <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+      <div class="content-wrapper bg-white z-index-1">
+        <section class="content p-0">
+          <div class="container-fluid px-5">
+            <div class="card mt-3 bd-1">
+              <div class="card-header bg-cicc py-2">
+                <div class="float-left">
+                  <i class="fa-solid fa-database"></i> Novo Motorista
                 </div>
+                <div class="float-right">Espaco para a data</div>
+              </div>
+              <form
+                th:action="@{/funcionarios/motorista/salvar}"
+                th:object="${funcionario}"
+                method="post"
+              >
+                <div class="card-body">
+                  <div class="form-row">
+                    <div class="form-group col-md-12 col-sm-12">
+                      <label for="tipoFuncionario" class="form-label"
+                        >Escolha o funcionario</label
+                      >
+                      <select
+                        name="tipoFuncionario"
+                        class="form-control"
+                        required
+                        <!--th:field="*{sexo}"
+                        --
+                      >
+                        >
+                        <option selected value="0">Selecione...</option>
+                        <option value="Educadora">Educadora</option>
+                        <option value="Motorista">Motorista</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-7 col-sm-12">
+                      <label for="nome" class="form-label">Nome</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nome"
+                        minlength="3"
+                        maxlength="200"
+                        placeholder="Digite o nome"
+                        required
+                        th:field="*{nome}"
+                      />
+                    </div>
+                    <div class="form-group col-md-5 col-sm-12">
+                      <label for="apelido" class="form-label">Apelido</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="apelido"
+                        minlength="3"
+                        maxlength="45"
+                        placeholder="Digite o apelido"
+                        required=""
+                        th:field="*{apelido}"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3 col-sm-12">
+                      <label for="data-nasc" class="form-label"
+                        >Data de nascimento</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="data-nasc"
+                        max="2004-12-12"
+                        min="1950-12-12"
+                        required
+                        th:field="*{dataNascimento}"
+                      />
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                      <label for="sexo" class="form-label">Sexo</label>
+                      <select
+                        name="sexo"
+                        class="form-control"
+                        required
+                        th:field="*{sexo}"
+                      >
+                        <option selected value="0">Selecione...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                      <label for="doc-tipo" class="form-label"
+                        >Tipo de documento</label
+                      >
+                      <select
+                        name="doc-tipo"
+                        class="form-control"
+                        required
+                        th:field="*{tipoDocumento}"
+                      >
+                        <option selected value="0">Selecione...</option>
+                        <option value="BI">B.Identidade</option>
+                        <option value="Carta de Condução">C.Conducao</option>
+                        <option value="Cartão de Eleitor">C.Eleitor</option>
+                        <option value="Passaporte">Passaporte</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                      <label for="doc-num" class="form-label"
+                        >Numero do documento</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="doc-num"
+                        placeholder="Digite o nr do documento"
+                        required
+                        th:field="*{nrDocumento}"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-4 col-sm-12">
+                      <label class="form-label" for="telef-1">Telefone</label>
+                      <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">+258</div>
+                        </div>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="telef-1"
+                          min="820000000"
+                          max="879999999"
+                          placeholder="Digite o telefone"
+                          required
+                          th:field="*{telefone}"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-12">
+                      <label class="form-label" for="telef-2"
+                        >Telefone Alternativo</label
+                      >
+                      <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">+258</div>
+                        </div>
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="telef-2"
+                          min="820000000"
+                          max="879999999"
+                          placeholder="Digite o telefone alternativo"
+                          th:field="*{telefoneAlternativo}"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-12">
+                      <label class="form-label" for="email">Email</label>
+                      <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">@</div>
+                        </div>
+                        <input
+                          type="email"
+                          class="form-control"
+                          name="email"
+                          placeholder="Digite o email"
+                          th:field="*{email}"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label for="residencia" class="form-label"
+                        >Residencia</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="cidade,distrito,bairro,quarteirao"
+                        required
+                        th:field="*{residencia}"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer py-0 bg-white">
+                  <div class="float-right">
+                    <div class="form-group">
+                      <button class="btn btn-danger mx-3 btn-sm px-3">
+                        <i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
+                      </button>
+                      <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3">
+                        <i class="fa-solid fa-plus mx-1"></i>Cadastrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
+        </section>
+      </div>
+      <!--Fim do content-wrapper-->
 
-        </footer>
-        <!--Fim do rodape-->
+      <!--Inicio do rodape-->
+      <footer class="main-footer footer py-2">
+        <div class="text-center">
+          Sistema de controlo dos transportes do centro Infantil Cantinho do Ceu
+          | 2022
+
+          <div class="float-right d-none d-sm-inline-block">
+            <b>Versao 1.0</b>
+          </div>
+        </div>
+      </footer>
+      <!--Fim do rodape-->
     </div>
     <!---wrapper-->
 
@@ -266,6 +372,5 @@
     <script th:src="@{/plugins/fontawesome/js/all.min.js} "></script>
     <script th:src="@{/plugins/bootstrap/js/bootstrap.min.js} "></script>
     <script th:src="@{/plugins/admin-LTE/js/adminlte.min.js} "></script>
-</body>
-
+  </body>
 </html>
