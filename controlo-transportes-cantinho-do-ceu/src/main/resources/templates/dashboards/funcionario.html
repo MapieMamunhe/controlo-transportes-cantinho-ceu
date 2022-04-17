@@ -1,112 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html layout:decorate = "~{layout}">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard-Funcionario</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/dashboard.css" />
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../static/css/dashboard.css" />
-    <!-- <link rel="stylesheet" href="/webjars/bootstrap/bootstrap.min.css" /> -->
+    <title>Dashboard</title>
   </head>
   <body>
     <main>
       <header>Titulo</header>
-      <div class="container">
-        <section class="menu">
-          <!--Parte superior do menu contendo o logo do cantinho do ceu-->
-          <div>
-            <section id="logo">
-              <figure>
-                <img
-                  id="logo-cantinho"
-                  src="../../static/img/cantinho-do-ceu-logo.jpg"
-                  alt="Logo do cantinho do ceu"
-                />
-                <figcaption>Cantinho do ceu</figcaption>
-              </figure>
-              <hr />
-            </section>
-            <!--Botoes do menu -->
-            <section>
-              <ul>
-                <li>
-                  <figure>
-                    <img src="" alt="" />
-                    <figcaption
-                      class="btn dropdown-toggle"
-                      data-toggle="collapse"
-                      data-target="TOADD"
-                    >
-                      Dasboard
-                    </figcaption>
-                  </figure>
-                </li>
-                <li>
-                  <figure>
-                    <figcaption
-                      class="btn dropdown-toggle"
-                      data-toggle="collapse"
-                      data-target="#lista-cadastro"
-                    >
-                      <img
-                        src="../../static/img/plus-circle.svg"
-                        alt="plus-icon"
-                      />
-                      Cadastros
-                    </figcaption>
-                    <ul id="lista-cadastro" class="collapse">
-                      <li>
-                        <input type="radio" name="cadastro" id="carinha" />
-                        <label for="carinha">Carinhas</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="cadastro" id="motorista" />
-                        <label for="motorista">Motoristas</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="cadastro" id="rotas" />
-                        <label for="rotas">Rotas</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="cadastro" id="secretarias" />
-                        <label for="secretarias">Educadoras</label>
-                      </li>
-                    </ul>
-                  </figure>
-                </li>
-                <li>
-                  <figure>
-                    <img src="" alt="" />
-                    <figcaption
-                      class="btn dropdown-toggle"
-                      data-toggle="collapse"
-                      data-target="TOADD"
-                    >
-                      Listar
-                    </figcaption>
-                  </figure>
-                </li>
-                <li>
-                  <figure>
-                    <img src="" alt="" />
-                    <figcaption
-                      class="btn dropdown-toggle"
-                      data-toggle="collapse"
-                      data-target="TOADD"
-                    >
-                      Alocacoes
-                    </figcaption>
-                  </figure>
-                </li>
-              </ul>
-            </section>
-          </div>
+   
           <!--Area do dashboard-->
-        </section>
-        <section class="dashboard">
+        <section class="dashboard" layout:fragment = "body">
           <div class="area-dashboard">
             <section class="cabecalho">
               <figure>
@@ -182,15 +85,6 @@
             </section>
           </div>
         </section>
-      </div>
-      <footer id="rodape">
-        Sistema de controlo dos transportes do centro infantil cantinho do ceu |
-        2022
-      </footer>
-    </main>
-    <script src="/js/jquery.slim.min.js"></script>
-    <script src="/js/bootstrap.bundle.js"></script>
-    <script src="../../static/js/jquery.slim.min.js"></script>
-    <script src="../../static/js/bootstrap.bundle.js"></script>
+      
   </body>
 </html>

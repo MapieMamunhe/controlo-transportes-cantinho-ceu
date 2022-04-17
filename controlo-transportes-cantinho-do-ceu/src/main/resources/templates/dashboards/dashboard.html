@@ -63,7 +63,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
-                            <a href="# " class="nav-link">
+                            <a th:href="@{/funcionario}" class="nav-link">
                                 <i class="nav-icon fas fa-house "></i>
                                 <p>
                                     Dashboard
@@ -82,13 +82,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item ">
-                                    <a href="# " class="nav-link ">
+                                    <a th:href="@{/carrinhas/nova}" class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
                                         <p>Carrinhas</p>
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="# " class="nav-link ">
+                                    <a th:href="@{/funcionarios/motorista/novo}" class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
                                         <p>Motoristas</p>
                                     </a>
@@ -100,7 +100,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a href="# " class="nav-link ">
+                                    <a th:href="@{/funcionarios/secretaria/novo}" class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
                                         <p>Educadoras</p>
                                     </a>

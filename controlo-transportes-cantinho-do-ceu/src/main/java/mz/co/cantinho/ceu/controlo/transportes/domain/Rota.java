@@ -8,6 +8,4 @@ import javax.persistence.Table;
 @Table(name = "rota")
 public class Rota extends EntidadeAbstrata<Long>{
 
-	
-	
 }

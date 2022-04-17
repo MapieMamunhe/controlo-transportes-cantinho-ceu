@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -14,28 +18,40 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "funcionario")
 public class Funcionario extends EntidadeAbstrata<Long>{
 
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 200)
 	@Column(nullable = false, length = 200)
 	private String nome;
 	
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 45)
 	@Column(nullable = false, length = 45)
 	private String apelido;
 	
+	@NotNull
+	@Past
 	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "data_nascimento", nullable = false)
 	private LocalDate dataNascimento;
 	
+	@NotNull
 	@Column(nullable = false, length = 1)
 	private String sexo;
 	
-	/*@Column(nullable = false)
-	private String documento;*/
-	
+	@NotNull
 	@Column(name = "tipo_documento", nullable = false)
 	private String tipoDocumento;
 	
+	@NotNull
+	@NotBlank
 	@Column(name = "nr_documento", nullable = false)
 	private String nrDocumento;
 	
+	@NotNull
+	@NotBlank
+	@Size(min = 9, max = 16)
 	@Column(nullable = false, length = 16)
 	private String telefone;
 	
@@ -45,6 +61,8 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@Column()
 	private String email;
 	
+	@NotNull
+	@NotBlank
 	@Column(nullable = false)
 	private String residencia;
 

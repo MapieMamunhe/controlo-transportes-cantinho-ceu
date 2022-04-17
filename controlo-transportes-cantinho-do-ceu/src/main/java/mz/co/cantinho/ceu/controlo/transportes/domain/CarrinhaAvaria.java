@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -16,18 +18,24 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "carrinhaavaria")
 public class CarrinhaAvaria extends EntidadeAbstrata<Long>{
 
+	@NotNull
+	@PastOrPresent
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(name = "data_avaria", nullable = false)
 	private LocalDate dataAvaria;
 	
+	@NotNull
+	@PastOrPresent
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(name = "data_resolucao")
 	private LocalDate dataResolucao;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "carrinha_id")
 	private Carrinha carrinha;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "avaria_id")
 	private Avaria avaria;

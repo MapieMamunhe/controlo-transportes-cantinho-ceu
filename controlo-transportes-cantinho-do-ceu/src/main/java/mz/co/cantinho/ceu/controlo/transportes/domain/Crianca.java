@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -16,15 +20,24 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "crianca")
 public class Crianca extends EntidadeAbstrata<Long>{
 
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 200)
 	@Column(nullable = false, length = 200)
 	private String nome;
 	
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 45)
 	@Column(nullable = false, length = 45)
 	private String apelido;
 	
+	@NotNull
+	@Past
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate dataNascimento;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "encarregado_id")
 	private Encarregado encarregado;

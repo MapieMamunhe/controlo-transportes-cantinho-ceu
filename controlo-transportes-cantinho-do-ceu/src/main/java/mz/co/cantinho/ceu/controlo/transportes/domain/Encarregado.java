@@ -3,24 +3,38 @@ package mz.co.cantinho.ceu.controlo.transportes.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "encarregado")
 public class Encarregado extends EntidadeAbstrata<Long>{
 
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 200)
 	@Column(nullable = false, length = 200)
 	private String nome;
 	
+	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 45)
 	@Column(nullable = false, length = 45)
 	private String apelido;
 	
+	@NotNull
+	@NotBlank
+	@Size(min = 9, max = 16)
 	@Column(nullable = false, length = 16)
 	private String telefone;
 	
 	@Column(name = "telefone_alternativo", nullable = false, length = 16)
 	private String telefoneAlternativo;
-	
+
+	@Email
 	@Column(nullable = false)
 	private String email;
 
