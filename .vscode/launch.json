@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ControloTransportesCantinhoDoCeuApplication<controlo-transportes-cantinho-do-ceu>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "mz.co.cantinho.ceu.controlo.transportes.ControloTransportesCantinhoDoCeuApplication",
+            "projectName": "controlo-transportes-cantinho-do-ceu",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

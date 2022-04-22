@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -65,6 +66,10 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@NotBlank
 	@Column(nullable = false)
 	private String residencia;
+	
+	@NotNull
+	@Transient
+	private String papel;
 
 	public String getNome() {
 		return nome;
@@ -147,6 +152,13 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	public void setResidencia(String residencia) {
 		this.residencia = residencia;
 	}
-	
+
+	public String getPapel() {
+		return papel;
+	}
+
+	public void setPapel(String papel) {
+		this.papel = papel;
+	}
 	
 }
