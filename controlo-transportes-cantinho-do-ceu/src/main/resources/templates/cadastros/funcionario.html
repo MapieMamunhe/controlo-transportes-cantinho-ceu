@@ -1,7 +1,7 @@
 <html layout:decorate = "~{layout}">
   <head>
     <meta charset="UTF-8" />
-    <title>Novo Motorista</title>
+    <title>Novo Funcionário</title>
   </head>
 
   <body class="hold-transition sidebar-mini layout-fixed">
@@ -13,12 +13,12 @@
             <div class="card mt-3 bd-1">
               <div class="card-header bg-cicc py-2">
                 <div class="float-left">
-                  <i class="fa-solid fa-database"></i> Novo Motorista
+                  <i class="fa-solid fa-database"></i> Novo Funcionário
                 </div>
-                <div class="float-right">Espaco para a data</div>
+                <div class="float-right">Espaço para a data</div>
               </div>
               <form
-                th:action="@{/funcionarios/motorista/salvar}"
+                th:action="@{/funcionarios/salvar}"
                 th:object="${funcionario}"
                 method="post"
               >
@@ -26,13 +26,13 @@
                   <div class="form-row">
                     <div class="form-group col-md-12 col-sm-12">
                       <label for="tipoFuncionario" class="form-label"
-                        >Escolha o funcionario</label
+                        >Escolha o Funcionário</label
                       >
                       <select
                         name="tipoFuncionario"
                         class="form-control"
                         required
-                        th:field="*{sexo}"
+                        th:field="*{papel}"
                       >
                         
                         <option selected value="0">Selecione...</option>
@@ -109,14 +109,14 @@
                       >
                         <option selected value="0">Selecione...</option>
                         <option value="BI">B.Identidade</option>
-                        <option value="Carta de Condução">C.Conducao</option>
-                        <option value="Cartão de Eleitor">C.Eleitor</option>
+                        <option value="Carta de Condução">C. Condução</option>
+                        <option value="Cartão de Eleitor">C. Eleitor</option>
                         <option value="Passaporte">Passaporte</option>
                       </select>
                     </div>
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="doc-num" class="form-label"
-                        >Numero do documento</label
+                        >Número do documento</label
                       >
                       <input
                         type="text"
@@ -130,7 +130,7 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4 col-sm-12">
-                      <label class="form-label" for="telef-1">Telefone</label>
+                      <label class="form-label" for="telef-1">Celular</label>
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">+258</div>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="form-group col-md-4 col-sm-12">
                       <label class="form-label" for="telef-2"
-                        >Telefone Alternativo</label
+                        >Celular Alternativo</label
                       >
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
@@ -185,7 +185,7 @@
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <label for="residencia" class="form-label"
-                        >Residencia</label
+                        >Residência</label
                       >
                       <input
                         type="text"
