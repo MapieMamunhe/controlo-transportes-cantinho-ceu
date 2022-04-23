@@ -11,3 +11,8 @@
 .btn-cadastro:hover {
     color: #fff;
 }
+
+.obrigatorio:after{
+	content: '*';
+	color: #EF5F5F;
+}
