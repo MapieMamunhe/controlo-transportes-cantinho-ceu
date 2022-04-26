@@ -1,32 +1,28 @@
-<html layout:decorate = "~{layout}">
-  <head>
+<html layout:decorate="~{layout}">
+
+<head>
     <meta charset="UTF-8" />
-    <title>Novo Motorista</title>
-  </head>
+    <title>Carrinhas</title>
+</head>
 
-  <body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed">
 
-      <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-      <div class="content-wrapper bg-white z-index-1" layout:fragment = "body">
+    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
         <section class="content p-0">
-          <div class="container-fluid px-5">
-            <div class="card mt-3 bd-1">
-              <div class="card-header bg-cicc py-2">
-                <div class="float-left">
-                  <i class="fa-solid fa-database"></i> Nova Carrinha
-                </div>
-                <div class="float-right">Espaco para a data</div>
-              </div>
-              <form
-                th:action="@{/carrinhas/salvar}"
-                th:object="${carrinha}"
-                method="post"
-              >
-                <div class="card-body">
-                  <div class="form-row">
-                    <div class="form-group col-md-12 col-sm-12">
-                      <label for="matricula" class="form-label obrigatorio"
-                        >Matricula</label
+            <div class="container-fluid px-5">
+                <div class="card mt-3 bd-1">
+                    <div class="card-header bg-cicc py-2">
+                        <div class="float-left">
+                            <i class="fa-solid fa-database"></i> Nova Carrinha
+                        </div>
+                        <div class="float-right">Espaco para a data</div>
+                    </div>
+                    <form th:action="@{/carrinhas/salvar}" th:object="${carrinha}" method="post">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="matricula" class="form-label obrigatorio">Matricula</label
                       >
                       <input
                         type="text"
