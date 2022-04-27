@@ -12,7 +12,44 @@
     color: #fff;
 }
 
-.obrigatorio:after{
-	content: '*';
-	color: #EF5F5F;
+.obrigatorio:after {
+    content: '*';
+    color: #EF5F5F;
+}
+
+.ca {
+    padding: 0;
+    margin-top: 0;
+}
+
+.table-row {
+    font-weight: 700;
+    color: #4F4F4F;
+}
+
+.bg-btn-info {
+    background-color: #308E3C;
+    color: white;
+}
+
+.bg-btn-info:hover {
+    background-color: #308E3C;
+    color: white;
+    font-size: 13pt;
+}
+
+.bg-sec {
+    background-color: #EDEDED;
+}
+
+.f {
+    font-size: 12pt;
+}
+
+.erros {
+    color: red;
+    font-size: 8pt;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 10px;
 }

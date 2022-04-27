@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-	<head>
-		<meta charset="UTF-8">
-		
-		<meta charset="UTF-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <!-- Font Awesome -->
-	    <link rel="stylesheet" th:href=" @{/plugins/fontawesome/css/all.min.css} ">
-	
-	    <!--bootstrap-->
-	    <link rel="stylesheet" th:href=" @{/plugins/bootstrap/css/bootstrap.min.css} ">
-	
-	    <!--adminlte-->
-	    <link rel="stylesheet" th:href=" @{/plugins/admin-LTE/css/adminlte.min.css} ">
-	
-	    <!--estilo personalizado-->
-	    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/dashboard.css} ">
-	    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/cadastros.css} ">
-	    
-	</head>
-		
-	<body>
-	
-		<div class="wrapper"><!-- Container de todo o corpo -->
-		
-			<nav th:replace = "fragments/header :: header">
-				<div>Top bar</div>
-			</nav>
-			
-			<aside th:replace = "fragments/menu :: menu">
-				<div>Side menu</div>
-			</aside>
-			
-			<div class="content-wrapper  bg-white z-index-1" layout:fragment = "body">
-				<section>Main content</section>
-			</div>
-			
-			<footer th:replace = "fragments/footer :: footer">
-				<div>Footer</div>
-			</footer>
-			
-		</div><!-- Fim do container principal -->
-	
-	</body>
-	
-	<script th:src="@{/plugins/jquery/jquery.min.js} "></script>
-    <script th:src="@{/plugins/fontawesome/js/all.min.js} "></script>
-    <script th:src="@{/plugins/bootstrap/js/bootstrap.min.js} "></script>
-    <script th:src="@{/plugins/admin-LTE/js/adminlte.min.js} "></script>
-	
+<head>
+    <meta charset="UTF-8">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href=" @{/plugins/fontawesome/css/all.min.css} ">
+
+    <!--bootstrap-->
+    <link rel="stylesheet" th:href=" @{/plugins/bootstrap/css/bootstrap.min.css} ">
+
+    <!--adminlte-->
+    <link rel="stylesheet" th:href=" @{/plugins/admin-LTE/css/adminlte.min.css} ">
+
+    <!--estilo personalizado-->
+    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/dashboard.css} ">
+    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/cadastros.css} ">
+    <link rel="icon" type="image/png" th:href=" @{/plugins/img/logoTipoFiticio.png} " />
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Container de todo o corpo -->
+
+        <nav th:replace="fragments/header :: header">
+            <div>Top bar</div>
+        </nav>
+
+        <aside th:replace="fragments/menu :: menu">
+            <div>Side menu</div>
+        </aside>
+
+        <div class="content-wrapper  bg-white z-index-1" layout:fragment="body">
+            <section>Main content</section>
+        </div>
+
+        <footer th:replace="fragments/footer :: footer">
+            <div>Footer</div>
+        </footer>
+
+    </div>
+    <!-- Fim do container principal -->
+
+</body>
+
+<script th:src="@{/plugins/jquery/jquery.min.js} "></script>
+<script th:src="@{/plugins/fontawesome/js/all.min.js} "></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js} "></script>
+<script th:src="@{/plugins/admin-LTE/js/adminlte.min.js} "></script>
+
 </html>

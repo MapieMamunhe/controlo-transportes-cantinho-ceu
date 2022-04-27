@@ -30,6 +30,11 @@ public class FuncionarioController {
     public String secretaria(Funcionario funcionario){
     	return "/cadastros/funcionario";
     }
+
+	@GetMapping("/")
+    public String listar(){
+    	return "/listar/funcionarios";
+    }
     
     @PostMapping("/salvar")
     public String salvar(Funcionario funcionario){

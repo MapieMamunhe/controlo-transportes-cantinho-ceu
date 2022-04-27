@@ -1,78 +1,51 @@
-<html layout:decorate = "~{layout}">
-  <head>
+<html layout:decorate="~{layout}">
+
+<head>
     <meta charset="UTF-8" />
     <title>Novo Funcionário</title>
-  </head>
+</head>
 
-  <body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed">
 
-      <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-      <div class="content-wrapper bg-white z-index-1" layout:fragment = "body">
+    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
         <section class="content p-0">
-          <div class="container-fluid px-5">
-            <div class="card mt-3 bd-1">
-              <div class="card-header bg-cicc py-2">
-                <div class="float-left">
-                  <i class="fa-solid fa-database"></i> Novo Funcionário
-                </div>
-                <div class="float-right">Espaço para a data</div>
-              </div>
-              <form
-                th:action="@{/funcionarios/salvar}"
-                th:object="${funcionario}"
-                method="post"
-              >
-                <div class="card-body">
-                  <div class="form-row">
-                    <div class="form-group col-md-12 col-sm-12">
-                      <label for="tipoFuncionario" class="form-label obrigatorio"
-                        >Escolha o Funcionário</label
-                      >
-                      <select
-                        name="tipoFuncionario"
-                        class="form-control"
-                        required
-                        th:field="*{papel}"
-                      >
+            <div class="container-fluid px-5">
+                <div class="card mt-3 bd-1">
+                    <div class="card-header bg-cicc py-2">
+                        <div class="float-left">
+                            <i class="fa-solid fa-database"></i> Novo Funcionário
+                        </div>
+                        <div class="float-right">Espaço para a data</div>
+                    </div>
+                    <form th:action="@{/funcionarios/salvar}" th:object="${funcionario}" method="post">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="tipoFuncionario" class="form-label obrigatorio">Escolha o Funcionário</label>
+                                    <select name="tipoFuncionario" class="form-control" required th:field="*{papel}">
                         
-                        <option selected value="0">Selecione...</option>
-                        <option value="Educadora">Educadora</option>
-                        <option value="Motorista">Motorista</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-7 col-sm-12">
-                      <label for="nome" class="form-label obrigatorio">Nome</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="nome"
-                        minlength="3"
-                        maxlength="200"
-                        placeholder="Digite o nome"
-                        required
-                        th:field="*{nome}"
-                      />
-                    </div>
-                    <div class="form-group col-md-5 col-sm-12">
-                      <label for="apelido" class="form-label obrigatorio">Apelido</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="apelido"
-                        minlength="3"
-                        maxlength="45"
-                        placeholder="Digite o apelido"
-                        required=""
-                        th:field="*{apelido}"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-3 col-sm-12">
-                      <label for="data-nasc" class="form-label obrigatorio"
-                        >Data de nascimento</label
+                                        <option selected value="0">Selecione...</option>
+                                        <option value="Educadora">Educadora</option>
+                                        <option value="Motorista">Motorista</option>
+                                   </select>
+                                </div>
+                                <div class="form-group col-md-5 col-sm-12">
+                                    <label for="nome" class="form-label obrigatorio">Nome</label>
+                                    <input type="text" class="form-control is-invalid" name="nome" minlength="3" maxlength="200" placeholder="Digite o nome (apenas os primeiros nomes)" required th:field="*{nome}" />
+                                    <span class="erros">Digite o nome</span>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="apelido" class="form-label obrigatorio">Apelido</label>
+                                    <input type="text" class="form-control is-invalid" name="apelido" minlength="3" maxlength="45" placeholder="Digite o apelido (ultimo nome)" required="" th:field="*{apelido}" />
+                                    <span class="erros">Digite o apelido</span>
+                                </div>
+
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="data-nasc" class="form-label obrigatorio">Data de nascimento</label
                       >
                       <input
                         type="date"
@@ -83,36 +56,33 @@
                         required
                         th:field="*{dataNascimento}"
                       />
+                      <span class="erros d-none">Mensagem de erro</span><!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
                     </div>
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="sexo" class="form-label obrigatorio">Sexo</label>
-                      <select
-                        name="sexo"
-                        class="form-control"
-                        required
-                        th:field="*{sexo}"
-                      >
+                                    <select name="sexo" class="form-control" required th:field="*{sexo}">
                         <option selected value="0">Selecione...</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>
                       </select>
-                    </div>
-                    <div class="form-group col-md-3 col-sm-12">
-                      <label for="doc-tipo" class="form-label obrigatorio"
-                        >Tipo de documento</label
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                    <label for="doc-tipo" class="form-label obrigatorio">Tipo de documento</label
                       >
-                      <select
+                      <select 
                         name="doc-tipo"
-                        class="form-control"
+                        class="form-control is-invalid" 
                         required
                         th:field="*{tipoDocumento}"
                       >
+                      <!---a class is-invalid destaca o campo caso a validacao for quebrada. -->
                         <option selected value="0">Selecione...</option>
                         <option value="BI">B.Identidade</option>
                         <option value="Carta de Condução">C. Condução</option>
                         <option value="Cartão de Eleitor">C. Eleitor</option>
                         <option value="Passaporte">Passaporte</option>
                       </select>
+                      <span class="erros d-none">Mensagem de erro</span><!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
                     </div>
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="doc-num" class="form-label obrigatorio"
@@ -126,31 +96,23 @@
                         required
                         th:field="*{nrDocumento}"
                       />
+                      <span class="erros d-none">Mensagem de erro</span><!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4 col-sm-12">
                       <label class="form-label obrigatorio" for="telef-1">Celular</label>
-                      <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">+258</div>
-                        </div>
-                        <input
-                          type="number"
-                          class="form-control"
-                          name="telef-1"
-                          min="820000000"
-                          max="879999999"
-                          placeholder="Digite o telefone"
-                          required
-                          th:field="*{telefone}"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group col-md-4 col-sm-12">
-                      <label class="form-label" for="telef-2"
-                        >Celular Alternativo</label
-                      >
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">+258</div>
+                                        </div>
+                                        <input type="number" class="form-control" name="telef-1" min="820000000" max="879999999" placeholder="Digite o telefone" required th:field="*{telefone}" />
+                                    </div>
+                                    <span class="erros d-none">Mensagem de erro</span>
+                                    <!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
+                                </div>
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label class="form-label" for="telef-2">Celular Alternativo</label >
                       <div class="input-group mb-2 mr-sm-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">+258</div>
@@ -168,55 +130,94 @@
                     </div>
                     <div class="form-group col-md-4 col-sm-12">
                       <label class="form-label" for="email">Email</label>
-                      <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">@</div>
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">@</div>
+                                        </div>
+                                        <input type="email" class="form-control" name="email" placeholder="Digite o email" th:field="*{email}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card m-0 elevation-0 border">
+                                <div class="card-header px-2 py-1  border-bottom">
+                                    <span class="form-label obrigatorio">Residência</span>
+                                </div>
+                                <div class=" card-body py-1 px-2 ca">
+                                    <div class="form-row">
+
+                                        <div class="form-group col-md-3 col-sm-12 ">
+                                            <div class="input-group p-0">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text ">Ci.</div>
+                                                </div>
+                                                <select name="" class="form-control " required>
+                                                <option selected value="0 ">Selecione a cidade...</option>
+                                                <option value="Maputo ">Maputo</option>
+                                                <option value="Matola ">Matola</option>
+                                              </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-3 col-sm-12 ">
+                                            <div class="input-group p-0">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text ">D.</div>
+                                                </div>
+                                                <select name="" class="form-control " required>
+                                                  <option selected value="0 ">Selecione o distrito...</option>
+                                                  <option value="Maputo ">Distrito 1</option>
+                                                  <option value="Matola ">Distrito de Boane</option>
+                                                  <option value="Matola ">Kamavota</option>
+                                                  <option value="Matola ">Kamaxakene</option>
+                                                  <option value="Matola ">Kamubukuana</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3 col-sm-12">
+                                            <div class="input-group p-0">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text ">B.</div>
+                                                </div>
+                                                <input type="text " class="form-control is-invalid" placeholder="Bairro " required th:field="*{residencia} " />
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group col-md-3 col-sm-12">
+                                            <div class="input-group p-0">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text ">Q.</div>
+                                                </div>
+                                                <input type="text " class="form-control " placeholder="Quarteirao " required th:field="*{residencia} " />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <input
-                          type="email"
-                          class="form-control"
-                          name="email"
-                          placeholder="Digite o email"
-                          th:field="*{email}"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <label for="residencia" class="form-label obrigatorio"
-                        >Residência</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="cidade,distrito,bairro,quarteirao"
-                        required
-                        th:field="*{residencia}"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer py-0 bg-white">
-                  <div class="float-right">
-                    <div class="form-group">
-                      <button class="btn btn-danger mx-3 btn-sm px-3">
-                        <i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
+                        <div class="card-footer py-0 bg-white ">
+                            <div class="float-right ">
+                                <div class="form-group ">
+                                    <button class="btn btn-danger mx-3 btn-sm px-3 ">
+                        <i class="fa-solid fa-circle-xmark mx-1 "></i>Cancelar
                       </button>
-                      <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3">
-                        <i class="fa-solid fa-plus mx-1"></i>Cadastrar
+                                    <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3 ">
+                        <i class="fa-solid fa-plus mx-1 "></i>Cadastrar
                       </button>
-                    </div>
-                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </form>
             </div>
-          </div>
         </section>
-      </div>
-      <!--Fim do content-wrapper-->
+    </div>
+    <!--Fim do content-wrapper-->
     <!---wrapper-->
 
-    
-  </body>
+
+</body>
+
 </html>
