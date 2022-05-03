@@ -13,19 +13,18 @@ import mz.co.cantinho.ceu.controlo.transportes.service.CarrinhaService;
 @RequestMapping("/carrinhas")
 public class CarrinhaController {
     
+
 	@Autowired
 	private CarrinhaService service;
 	
+
 	@GetMapping("/nova")
-    public String novaCarinha(Carrinha carrinha){
 		return "/cadastros/carrinha";
 	}
-	
 	@PostMapping("/salvar")
 	public String salvar(Carrinha carrinha) {
 		service.gravar(carrinha);
 		return "redirect:/carrinhas/nova";
 	}
 
-       
 }
