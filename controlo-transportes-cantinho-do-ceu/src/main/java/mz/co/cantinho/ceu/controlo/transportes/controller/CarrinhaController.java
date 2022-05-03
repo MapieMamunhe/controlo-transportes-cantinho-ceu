@@ -39,6 +39,7 @@ public class CarrinhaController {
 	}
 	
 	@GetMapping("/nova")
+	public String novo(Carrinha carrinha) {
 		return "/cadastros/carrinha";
 	}
 	@PostMapping("/salvar")
