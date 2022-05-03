@@ -15,12 +15,18 @@ import javax.validation.constraints.Size;
 @Table(name = "contafuncionario")
 public class ContaFuncionario extends EntidadeAbstrata<Long>{
 
-	@NotNull
-	@NotBlank
-	@Size(min = 3, max = 30)
-	@Column(name = "nome_utilizador", nullable = false, length = 30)
-	private String nomeUtilizador;
+	/*
+	 * @NotNull
+	 * 
+	 * @NotBlank
+	 * 
+	 * @Size(min = 3, max = 30)
+	 * 
+	 * @Column(name = "nome_utilizador", nullable = false, length = 30) private
+	 * String nomeUtilizador;
+	 */
 	
+	@NotBlank
 	@NotNull
 	@Size(min = 4, max = 100)
 	@Column(name = "palavra_passe", nullable = false, length = 100)
@@ -30,14 +36,18 @@ public class ContaFuncionario extends EntidadeAbstrata<Long>{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario;
+	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name = "perfil_id")
+	private Perfil perfil;
 
-	public String getNomeUtilizador() {
-		return nomeUtilizador;
-	}
-
-	public void setNomeUtilizador(String nomeUtilizador) {
-		this.nomeUtilizador = nomeUtilizador;
-	}
+	/*
+	 * public String getNomeUtilizador() { return nomeUtilizador; }
+	 * 
+	 * public void setNomeUtilizador(String nomeUtilizador) { this.nomeUtilizador =
+	 * nomeUtilizador; }
+	 */
 
 	public String getPalavraPasse() {
 		return palavraPasse;
@@ -54,6 +64,13 @@ public class ContaFuncionario extends EntidadeAbstrata<Long>{
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
 	
 }

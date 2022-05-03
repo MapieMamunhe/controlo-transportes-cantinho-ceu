@@ -3,13 +3,20 @@ package mz.co.cantinho.ceu.controlo.transportes.validator;
 import java.time.LocalDate;
 import java.time.Period;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
+import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
 
+@Component
 public class FuncionarioValidator implements Validator{
 
+	@Autowired
+	private FuncionarioService service;
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return Funcionario.class.equals(clazz);
@@ -19,33 +26,73 @@ public class FuncionarioValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Funcionario funcionario = (Funcionario)target;
 		
+		//validar nome
+		if(!nomeValido(funcionario.getNome())) {
+			errors.rejectValue("nome", "NomeValido.Funcionario");
+		}
+		
+		if(!nomeValido(funcionario.getApelido())) {
+			errors.rejectValue("apelido", "ApelidoValido.Funcionario");
+		}
+		
 		//validar documento
 		if(!documentoValido(funcionario.getTipoDocumento(), funcionario.getNrDocumento())) {
-			errors.rejectValue("doc-num", "Número de documento inválido.");
+			errors.rejectValue("nrDocumento", "DocumentoValido.Funcionario");
+		}
+		else {//verifica se existe um documento com o mesmo número registado
+			if(service.nrDocumentoExiste(funcionario.getNrDocumento())) {
+				errors.rejectValue("nrDocumento", "Duplicado.Funcionario.nrDocumento");
+			}
 		}
 		
 		//validar celular
 		if(!celularValido(funcionario.getTelefone())) {
-			errors.rejectValue("telef-1", "Celular inválido.");
+			errors.rejectValue("telefone", "TelefoneValido.Funcionario");
+		}
+		else {//verifica se celular já foi registado
+			if(service.celularExiste(funcionario.getTelefone())) {
+				errors.rejectValue("telefone", "Duplicado.Funcionario.telefone");
+			}
 		}
 		
 		//validar celular alternativo, se for introduzido
-		if(!funcionario.getTelefoneAlternativo().equals(null)) {
+		if(!funcionario.getTelefoneAlternativo().isBlank()) {
 			if(!celularValido(funcionario.getTelefoneAlternativo())) {
-				errors.rejectValue("telef-2", "Celular inválido.");
+				errors.rejectValue("telefoneAlternativo", "TelefoneValido.Funcionario");
+			}
+			else {//verificações feitas caso número alternativo seja válido
+				if(funcionario.getTelefone().trim().equals(funcionario.getTelefoneAlternativo().trim())) {
+					errors.rejectValue("telefoneAlternativo", "Iguais.Funcionario.telefone");
+				}
+				else if(service.celularExiste(funcionario.getTelefoneAlternativo())) {
+					errors.rejectValue("telefoneAlternativo", "Duplicado.Funcionario.telefone");
+				}
+			}
+		}
+		
+		//Verificar se já existe o email, caso seja introduzido
+		if(!funcionario.getEmail().isBlank()) {
+			if(service.emailExiste(funcionario.getEmail())) {
+				errors.rejectValue("email", "Duplicado.Funcionario.email");
 			}
 		}
 		
 		//verificar idade
 		if(!idadeValida(funcionario.getDataNascimento(), funcionario.getPapel())) {
 			if(funcionario.getPapel().equalsIgnoreCase("Motorista")) {
-				errors.rejectValue("", "Data de nascimento inválida. Motorista deve ter idade igual ou superior à 21 anos.");
+				errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario.Motorista");
 			}
 			else {
-				errors.rejectValue("", "Data de nascimento inválida. Funcionário deve ter idade igual ou superior à 18 anos.");
+				errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario");
 			}
 		}
 		
+	}
+	
+	//AUXILIARES
+	//Validar nome
+	private boolean nomeValido(String nome) {
+		 return nome.matches("[A-Za-zÀ-Úà-ú ]*");
 	}
 	
 	//Validar número de documento de acordo com o tipo

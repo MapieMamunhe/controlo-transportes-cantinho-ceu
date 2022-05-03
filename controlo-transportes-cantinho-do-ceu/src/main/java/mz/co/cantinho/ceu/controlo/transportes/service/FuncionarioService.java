@@ -11,5 +11,8 @@ public interface FuncionarioService {
 	void remover(Long id);
 	Funcionario buscarPorId(Long id);
 	List<Funcionario> buscarTodos();
+	boolean nrDocumentoExiste(String nrDocumento);
+	boolean celularExiste(String telefone);
+	boolean emailExiste(String email);
 	
 }

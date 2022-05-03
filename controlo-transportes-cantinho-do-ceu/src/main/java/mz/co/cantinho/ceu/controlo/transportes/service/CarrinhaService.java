@@ -11,5 +11,6 @@ public interface CarrinhaService {
 	void remover(Long id);
 	Carrinha buscarPorId(Long id);
 	List<Carrinha> buscarTodos();
+	boolean matriculaExiste(String matricula);
 	
 }

@@ -11,5 +11,6 @@ public interface CarrinhaDao {
 	void delete(Long id);
 	List<Carrinha> findAll();
 	Carrinha findById(Long id);
+	boolean matriculaExiste(String matricula);
 	
 }

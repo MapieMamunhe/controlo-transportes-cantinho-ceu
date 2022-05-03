@@ -46,5 +46,23 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		return dao.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public boolean nrDocumentoExiste(String nrDocumento) {
+		return dao.nrDocumentoExiste(nrDocumento);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public boolean celularExiste(String telefone) {
+		return dao.celularExiste(telefone);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public boolean emailExiste(String email) {
+		return dao.emailExiste(email);
+	}
+
 
 }

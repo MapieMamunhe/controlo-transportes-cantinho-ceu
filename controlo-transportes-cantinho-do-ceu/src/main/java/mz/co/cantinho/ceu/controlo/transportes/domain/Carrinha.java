@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -19,27 +22,29 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "carrinha")
 public class Carrinha extends EntidadeAbstrata<Long>{
 
-	@NotBlank
 	@NotNull
 	@Positive
 	@Min(value = 15)
+	@Max(value = 30)
+	@Digits(fraction = 0, integer = 2)
 	@Column(nullable = false)
 	private int capacidade;
 	
 	@NotNull
 	@PositiveOrZero
+	@Digits(fraction = 0, integer = 2)
 	@Column(name = "lugares_ocupados",nullable = false)
 	private int lugaresOcupados;
 	
 	@NotBlank
 	@NotNull
-	@Column(nullable = false, length = 8)
+	@Size(min = 3, max = 50)
+	@Column(nullable = false, length = 50)
 	private String matricula;
 	
-	@NotNull
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(name = "data_registo", nullable = false)
-	private LocalDate dataRegisto;
+	private LocalDate dataRegisto = LocalDate.now();
 
 	public int getCapacidade() {
 		return capacidade;

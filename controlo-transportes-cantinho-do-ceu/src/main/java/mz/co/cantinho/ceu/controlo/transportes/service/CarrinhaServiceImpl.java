@@ -46,4 +46,9 @@ public class CarrinhaServiceImpl implements CarrinhaService{
 		return dao.findAll();
 	}
 
+	@Override
+	public boolean matriculaExiste(String matricula) {
+		return dao.matriculaExiste(matricula);
+	}
+
 }

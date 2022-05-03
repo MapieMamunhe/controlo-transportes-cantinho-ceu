@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,11 +34,6 @@ public class Crianca extends EntidadeAbstrata<Long>{
 	@Past
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate dataNascimento;
-	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "encarregado_id")
-	private Encarregado encarregado;
 
 	public String getNome() {
 		return nome;
@@ -66,13 +59,4 @@ public class Crianca extends EntidadeAbstrata<Long>{
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Encarregado getEncarregado() {
-		return encarregado;
-	}
-
-	public void setEncarregado(Encarregado encarregado) {
-		this.encarregado = encarregado;
-	}
-	
-	
 }

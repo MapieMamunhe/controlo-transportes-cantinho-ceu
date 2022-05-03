@@ -1,76 +1,62 @@
 <html layout:decorate="~{layout}">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Carrinhas</title>
+<meta charset="UTF-8" />
+<title>Carrinhas</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
-        <section class="content p-0">
-            <div class="container-fluid px-5">
-                <div class="card mt-3 bd-1">
-                    <div class="card-header bg-cicc py-2">
-                        <div class="float-left">
-                            <i class="fa-solid fa-database"></i> Nova Carrinha
-                        </div>
-                        <div class="float-right">Espaco para a data</div>
-                    </div>
-                    <form th:action="@{/carrinhas/salvar}" th:object="${carrinha}" method="post">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-12 col-sm-12">
-                                    <label for="matricula" class="form-label obrigatorio">Matricula</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        required
-                        name="matriculas"
-                        placeholder="Digite a matricula"
-                       
-                        th:field="*{matricula}"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12 col-sm-12">
-                      <label for="capacidade" class="form-label obrigatorio"
-                        >Capacidade</label
-                      >
-                      <input
-                        type="number"
-                        min="1"
-                        required
-                        class="form-control"
-                        name="capacidade"
-                        th:field="*{capacidade}"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer py-0 bg-white">
-                  <div class="float-right">
-                    <div class="form-group">
-                      <button class="btn btn-danger mx-3 btn-sm px-3">
-                        <i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
-                      </button>
-                      <button
-                        class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3"
-                        type="submit"
-                      >
-                        <i class="fa-solid fa-plus mx-1"></i>Cadastrar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-      </div>
-      <!--Fim do content-wrapper-->
-
+	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+	<div class="content-wrapper bg-white z-index-1" layout:fragment="body">
+		<section class="content p-0">
+			<div class="container-fluid px-5">
+				<div class="card mt-3 bd-1">
+					<div class="card-header bg-cicc py-2">
+						<div class="float-left">
+							<i class="fa-solid fa-database"></i> Nova Carrinha
+						</div>
+						<div class="float-right">Espaco para a data</div>
+					</div>
+					<form th:action="@{/carrinhas/salvar}" th:object="${carrinha}"method="post">
+						<div class="card-body">
+							<div class="form-row">
+								<div class="form-group col-md-12 col-sm-12">
+									<label for="matricula" class="form-label obrigatorio">Matrícula</label>
+									<input type="text" class="form-control" required
+										name="matriculas" placeholder="Digite a matricula"
+										th:field="*{matricula}"
+										th:classappend = "${#fields.hasErrors('matricula')} ? 'is-invalid'"/>
+								</div>
+								<span class = "erros" th:errors = "*{matricula}"></span>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-12 col-sm-12">
+									<label for="capacidade" class="form-label obrigatorio">Capacidade</label>
+									<input type="number" min="1" required class="form-control"
+										name="capacidade" th:field="*{capacidade}" 
+										th:classappend = "${#fields.hasErrors('capacidade')} ? 'is-invalid'"/>
+								</div>
+								<span class = "erros" th:errors = "*{capacidade}"></span>
+							</div>
+						</div>
+						<div class="card-footer py-0 bg-white">
+							<div class="float-right">
+								<div class="form-group">
+									<button class="btn btn-danger mx-3 btn-sm px-3">
+										<i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
+									</button>
+									<button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3"
+										type="submit">
+										<i class="fa-solid fa-plus mx-1"></i>Cadastrar
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!--Fim do content-wrapper-->
 </html>
