@@ -26,6 +26,12 @@ public class FuncionarioValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Funcionario funcionario = (Funcionario)target;
 		
+		//Validar escolha de perfil
+		if(funcionario.getPapel().equalsIgnoreCase("0")) { 
+			System.out.println("Nenhum papel selecionado");
+			errors.rejectValue("papel", "PapelValido.Funcionario");
+		}
+		 
 		//validar nome
 		if(!nomeValido(funcionario.getNome())) {
 			errors.rejectValue("nome", "NomeValido.Funcionario");

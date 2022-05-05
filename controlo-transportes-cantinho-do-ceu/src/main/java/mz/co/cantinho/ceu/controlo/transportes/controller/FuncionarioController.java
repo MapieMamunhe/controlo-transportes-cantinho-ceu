@@ -20,10 +20,12 @@ import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Educadora;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Motorista;
+import mz.co.cantinho.ceu.controlo.transportes.domain.Perfil;
 import mz.co.cantinho.ceu.controlo.transportes.service.ContaFuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.EducadoraService;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.MotoristaService;
+import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
 import mz.co.cantinho.ceu.controlo.transportes.validator.FuncionarioValidator;
 
 @Controller
@@ -41,6 +43,9 @@ public class FuncionarioController {
 	
 	@Autowired
 	private EducadoraService educadoraService;
+	
+	@Autowired
+	private PerfilService perfilService;
 	
 	@Autowired
 	private FuncionarioValidator funcionarioValidator;
@@ -76,8 +81,9 @@ public class FuncionarioController {
     	if(result.hasErrors()) {//verifica se campos têm erros
     		return "/cadastros/funcionario";
     	}
-    	funcionarioService.gravar(funcionario);
     	
+    	funcionarioService.gravar(funcionario);
+    	criarConta(funcionario);
     	registarPorPapel(funcionario);
     	return "redirect:/funcionarios/novo";
     }
@@ -102,6 +108,15 @@ public class FuncionarioController {
     	}
     }
     
+    //Cria conta de funcionário.
+    private void criarConta(Funcionario funcionario) {
+    	ContaFuncionario contaF = new ContaFuncionario();
+    	contaF.setFuncionario(funcionario);
+    	contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
+    	contaF.setPalavraPasse("0000");
+    	contaFuncionarioService.gravar(contaF);
+    }
+    
     @ModelAttribute("funcionarios")
     public List<ContaFuncionario> funcionarios(){
     	return contaFuncionarioService.buscarTodos();
@@ -110,5 +125,10 @@ public class FuncionarioController {
     @ModelAttribute("bairro")
     public CidadeDistrito[] bairros() {
     	return CidadeDistrito.values();
+    }
+    
+    @ModelAttribute("perfis")
+    public List<Perfil> perfis(){
+    	return perfilService.buscarTodos();
     }
 }

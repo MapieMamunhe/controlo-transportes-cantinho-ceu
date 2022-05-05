@@ -41,6 +41,8 @@ public class ContaFuncionario extends EntidadeAbstrata<Long>{
 	@OneToOne
 	@JoinColumn(name = "perfil_id")
 	private Perfil perfil;
+	
+	
 
 	/*
 	 * public String getNomeUtilizador() { return nomeUtilizador; }
