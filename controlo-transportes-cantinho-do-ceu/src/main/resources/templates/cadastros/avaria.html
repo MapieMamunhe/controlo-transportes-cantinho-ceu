@@ -1,0 +1,77 @@
+<html layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Nova avaria</title>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
+        <section class="content p-0">
+            <div class="container-fluid px-5">
+                <div class="card mt-3 bd-1">
+                    <div class="card-header bg-cicc py-2">
+                        <div class="float-left">
+                            <i class="fa-solid fa-screwdriver-wrench mx-2"></i>Nova avaria
+                        </div>
+                        <div class="float-right">Espaço para a data</div>
+                    </div>
+                    <form th:action="@{/avarias/salvar}" th:object="${avaria}" method="post">
+                        <div class="card-body">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label for="nome" class="form-label obrigatorio">Tipo</label
+                    >
+                    <input  type="text" class="form-control" minlength="3" maxlength="200"placeholder="Digite o tipo de avaria"
+                      th:field="*{tipo}"
+                      th:classappend="${#fields.hasErrors('tipo')} ? 'is-invalid'"
+                  
+                    />
+            
+                    <div class="erros" th:errors="*{tipo}"></div>
+                  </div>
+                 
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="descricao" class="form-label obrigatorio">Descricao</label
+                            >
+                            <textarea
+                            th:field="*{descricao}"
+                            th:classappend="${#fields.hasErrors('tipo')} ? 'is-invalid'"
+                            cols="30" rows="7"
+                            class="form-control"
+                            placeholder="Digite a descricao de avaria. (Exemplo: a avaria no alternador causa falhas na iluminação, no carregamento de baterria e no distribuidor de corrente electrica nas velas, etc.)">
+                        </textarea>
+                    </div>
+
+                </div>
+
+             </div>
+                        <!--Mensagem de confirmacao-->
+                        <div th:replace="fragments/alert"></div>
+                        <div class="card-footer py-0 bg-white p-3">
+                            <div class="float-right">
+                                <div class="form-group">
+                                    <button class="btn btn-danger mx-3 btn-sm px-3">
+                      <i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
+                    </button>
+                                    <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3">
+                      <i class="fa-solid fa-plus mx-1"></i>Cadastrar
+                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--Fim do content-wrapper-->
+    <!---wrapper-->
+</body>
+
+</html>

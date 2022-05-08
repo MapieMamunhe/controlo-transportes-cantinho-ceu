@@ -49,7 +49,7 @@
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-database"></i>
                             <p> Cadastros
-                                <i class="fas fa-angle-left right "></i>
+                                <i class="fa-solid fa-caret-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview ml-3 barra-l">
@@ -65,6 +65,18 @@
                                     <p>Funcionarios</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a th:href="@{/encarregados/novo}" class="nav-link">
+                                    <i class="fa-solid fa-person"></i>
+                                    <p>Encarregados</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a th:href="@{/avarias/nova}" class="nav-link">
+                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                    <p>Avarias</p>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>
@@ -72,7 +84,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-eye"></i>
                             <p>Visualizar
-                                <i class="fas fa-angle-left right "></i>
+                                <i class="fa-solid fa-caret-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview ml-3 barra-l">
@@ -88,22 +100,35 @@
                                     <p>Funcionarios</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item ">
-                                <a href="# " class="nav-link ">
-                                    <i class="far fa-circle nav-icon "></i>
-                                    <p>Zonas</p>
+                            <li class="nav-item">
+                                <a th:href="@{/encarregados/listar}" class="nav-link">
+                                    <i class="fa-solid fa-person"></i>
+                                    <p>Encarregados</p>
                                 </a>
-                            </li> -->
-                            <!--<li class="nav-item ">
-                                    <a th:href="@{/funcionarios/secretaria/novo}" class="nav-link active">
-                                        <i class="far fa-circle nav-icon "></i>
-                                        <p>Educadoras</p>
-                                    </a>
-                                </li>-->
+                            </li>
+
 
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="fa-solid fa-message"></i>
+                            <p>Comunicar
+                                <i class="fa-solid fa-caret-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview ml-3 barra-l">
+                            <li class="nav-item ">
+                                <a th:href="@{/avarias/comunicar}" class="nav-link ">
+                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                    <p>Avarias</p>
+                                </a>
+                            </li>
 
+
+
+                        </ul>
+                    </li>
 
                 </ul>
 
