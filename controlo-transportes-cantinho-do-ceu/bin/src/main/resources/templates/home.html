@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href=" @{/plugins/fontawesome/css/all.min.css} ">
+
+    <!--bootstrap-->
+    <link rel="stylesheet" th:href=" @{/plugins/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href=" @{/plugins/personalizacao/css/login.css} ">
+    <link rel="icon" type="image/png" th:href=" @{/plugins/img/logoTipoFiticio.png} " />
+</head>
+<title>Login</title>
+
+<body class="body">
+
+    <div class="d-flex justify-content-center align-items-center h-100 v-100">
+        <div class="form-login">
+            <div class="row box-s">
+                <div class="col-md-6 col-sm-12 bg-white px-5">
+                    <div class="login-text mt-5 mb-4">Login | <b>CICC@2022</b></div>
+                    <form method="post">
+                        <div class="form-row">
+                            <div class="input-group mb-3 border-b">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-0 icon-color" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control border-0" placeholder="Nome do utilizador" aria-label="Nome do utilizador">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group mb-4 border-b">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white border-0 icon-color" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+                                </div>
+                                <input type="password" class="form-control border-0" placeholder="Senha" aria-label="Senha">
+                            </div>
+
+
+                        </div>
+                        <div class="form-row mt-4 ">
+                            <button class="btn btn-login form-control mb-3"><i class="fa-solid fa-right-to-bracket mx-2"></i>Entrar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 col-sm-12 back-foto">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script th:src="@{/plugins/jquery/jquery.min.js} "></script>
+    <script th:src="@{/plugins/fontawesome/js/all.min.js} "></script>
+    <script th:src="@{/plugins/bootstrap/js/bootstrap.min.js} "></script>
+</body>
+
+</html>

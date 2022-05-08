@@ -83,7 +83,6 @@ public class FuncionarioController {
 		}
 
 		if (result.hasErrors()) {// verifica se campos têm erros
-			model.addAttribute("fail", "Erro ao cadastrar Funcionário");
 			return "/cadastros/funcionario";
 		}
 		funcionarioService.gravar(funcionario);

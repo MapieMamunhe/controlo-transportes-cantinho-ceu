@@ -82,11 +82,14 @@ public class FuncionarioValidator implements Validator {
 		}
 
 		// verificar idade
-		if (!idadeValida(funcionario.getDataNascimento(), funcionario.getPapel())) {
-			if (funcionario.getPapel().equalsIgnoreCase("Motorista")) {
-				errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario.Motorista");
-			} else {
-				errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario");
+		if(funcionario.getDataNascimento() != null) {
+			if (!idadeValida(funcionario.getDataNascimento(), funcionario.getPapel())) {
+				if (funcionario.getPapel().equalsIgnoreCase("Motorista")) {
+					errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario.Motorista");
+				}
+				else {
+					errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario");
+				}
 			}
 		}
 

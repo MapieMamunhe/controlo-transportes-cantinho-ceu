@@ -1,0 +1,42 @@
+.bg-menu-lf {
+    background-color: #F1EBEB;
+}
+
+.fw-b {
+    font-weight: bold;
+}
+
+.bd-1 {
+    border: 1px solid gray;
+    box-shadow: none;
+}
+
+.bd-b {
+    border-bottom: 2px solid #fff !important;
+}
+
+.fs-menu {
+    font-size: 18pt;
+}
+
+.border-r {
+    border-right: 1px solid gray;
+}
+
+.bg-cicc {
+    background-color: #545DC1;
+    color: white;
+}
+
+.footer {
+    background-color: #F1EBEB !important;
+}
+
+.icon-menu {
+    width: 60px;
+    height: 60px;
+}
+
+.content-wr {
+    background-color: #F4F6F9;
+}

@@ -1,5 +1,9 @@
 package mz.co.cantinho.ceu.controlo.transportes.controller;
 
+
+
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -44,13 +49,18 @@ public class CarrinhaController {
 
 	@PostMapping("/salvar")
 	public String salvar(@Valid Carrinha carrinha, BindingResult result, RedirectAttributes attr) {
-		if (!result.hasErrors()) {// verifica se campos têm erros
-			service.gravar(carrinha);
-			attr.addFlashAttribute("success", "Carinha gravada");
-		} else {
-			attr.addFlashAttribute("fail", "Erro ao cadastrar a Carinha");
+		if (result.hasErrors()) {// verifica se campos têm erros
+			return "/cadastros/carrinha";
 		}
+		service.gravar(carrinha);
+		attr.addFlashAttribute("success", "Carinha gravada");
 		return "redirect:/carrinhas/nova";
 	}
+	
+	@ModelAttribute("carrinhas")
+	public List<Carrinha> listaCarrinhas(){
+		return service.buscarTodos();
+	}
+	
 
 }

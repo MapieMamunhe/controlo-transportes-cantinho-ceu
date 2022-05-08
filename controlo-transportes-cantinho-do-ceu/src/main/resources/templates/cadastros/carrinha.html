@@ -16,21 +16,21 @@
                         <div class="float-left">
                             <i class="fa-solid fa-bus mx-2"></i> Nova Carrinha
                         </div>
-                        <div class="float-right">Espaco para a data</div>
+                        <div class="float-right"></div>
                     </div>
                     <form th:action="@{/carrinhas/salvar}" th:object="${carrinha}" method="post">
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="matricula" class="form-label obrigatorio">Matrícula</label>
-                                    <input type="text" class="form-control" required name="matriculas" placeholder="Digite a matricula" th:field="*{matricula}" th:classappend="${#fields.hasErrors('matricula')} ? 'is-invalid'" />
+                                    <input type="text" class="form-control" name="matriculas" placeholder="Digite a matricula" th:field="*{matricula}" th:classappend="${#fields.hasErrors('matricula')} ? 'is-invalid'" />
                                 </div>
                                 <span class="erros" th:errors="*{matricula}"></span>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="capacidade" class="form-label obrigatorio">Capacidade</label>
-                                    <input type="number" min="1" required class="form-control" name="capacidade" th:field="*{capacidade}" th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'" />
+                                    <input type="number" class="form-control" name="capacidade" th:field="*{capacidade}" th:classappend="${#fields.hasErrors('capacidade')} ? 'is-invalid'" />
                                 </div>
                                 <span class="erros" th:errors="*{capacidade}"></span>
                             </div>
