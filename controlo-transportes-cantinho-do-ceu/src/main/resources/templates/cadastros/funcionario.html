@@ -1,173 +1,274 @@
 <html layout:decorate="~{layout}">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Novo Funcionário</title>
+  </head>
 
-<head>
-<meta charset="UTF-8" />
-<title>Novo Funcionário</title>
-</head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
+      <section class="content p-0">
+        <div class="container-fluid px-5">
+          <div class="card mt-3 bd-1">
+            <div class="card-header bg-cicc py-2">
+              <div class="float-left">
+                <i class="fa-solid fa-database"></i> Novo Funcionário
+              </div>
+              <div class="float-right">Espaço para a data</div>
+            </div>
+            <form
+              th:action="@{/funcionarios/salvar}"
+              th:object="${funcionario}"
+              method="post"
+            >
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="tipoFuncionario" class="form-label obrigatorio"
+                      >Perfil</label
+                    >
+                    <select
+                      name="tipoFuncionario"
+                      class="form-control"
+                      required
+                      th:field="*{papel}"
+                    >
+                      <option value="0">Selecione...</option>
+                      <option
+                        th:each="p : ${perfis}"
+                        th:value="${p.nome}"
+                        th:text="${p.nome}"
+                      ></option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-5 col-sm-12">
+                    <label for="nome" class="form-label obrigatorio"
+                      >Nome</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="nome"
+                      minlength="3"
+                      maxlength="200"
+                      placeholder="Digite o nome (apenas os primeiros nomes)"
+                      required
+                      th:field="*{nome}"
+                      th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"
+                    />
+                    <div class="erros" th:errors="*{nome}"></div>
+                  </div>
+                  <div class="form-group col-md-4 col-sm-12">
+                    <label for="apelido" class="form-label obrigatorio"
+                      >Apelido</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="apelido"
+                      minlength="3"
+                      maxlength="45"
+                      placeholder="Digite o apelido (ultimo nome)"
+                      required
+                      th:field="*{apelido}"
+                      th:classappend="${#fields.hasErrors('apelido')} ? 'is-invalid'"
+                    />
+                    <span class="erros" th:errors="*{apelido}"></span>
+                  </div>
+                </div>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+                <div class="form-row">
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="data-nasc" class="form-label obrigatorio"
+                      >Data de nascimento</label
+                    >
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="data-nasc"
+                      max="2004-12-12"
+                      min="1950-12-12"
+                      required
+                      th:field="*{dataNascimento}"
+                      th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'"
+                    />
+                    <span
+                      class="erros d-block"
+                      th:errors="*{dataNascimento}"
+                    ></span>
+                    <!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
+                  </div>
 
-	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-	<div class="content-wrapper bg-white z-index-1" layout:fragment="body">
-		<section class="content p-0">
-			<div class="container-fluid px-5">
-				<div class="card mt-3 bd-1">
-					<div class="card-header bg-cicc py-2">
-						<div class="float-left">
-							<i class="fa-solid fa-database"></i> Novo Funcionário
-						</div>
-						<div class="float-right">Espaço para a data</div>
-					</div>
-					<form th:action="@{/funcionarios/salvar}"
-						th:object="${funcionario}" method="post">
-						<div class="card-body">
-							<div class="form-row">
-								<div class="form-group col-md-3 col-sm-12">
-									<label for="tipoFuncionario" class="form-label obrigatorio">Perfil</label> 
-									<select name="tipoFuncionario" class="form-control" required th:field="*{papel}">
-										<option value="0">Selecione...</option>
-										<option th:each = "p : ${perfis}" th:value="${p.nome}" th:text = "${p.nome}"></option>
-									</select>
-								</div>
-								<div class="form-group col-md-5 col-sm-12">
-									<label for="nome" class="form-label obrigatorio">Nome</label> <input
-										type="text" class="form-control" name="nome" minlength="3"
-										maxlength="200"
-										placeholder="Digite o nome (apenas os primeiros nomes)"
-										required th:field="*{nome}"
-										th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
-									<div class="erros" th:errors="*{nome}"></div>
-								</div>
-								<div class="form-group col-md-4 col-sm-12">
-									<label for="apelido" class="form-label obrigatorio">Apelido</label>
-									<input type="text" class="form-control"
-										name="apelido" minlength="3" maxlength="45"
-										placeholder="Digite o apelido (ultimo nome)" required
-										th:field="*{apelido}"
-										th:classappend="${#fields.hasErrors('apelido')} ? 'is-invalid'" />
-									<span class="erros" th:errors="*{apelido}"></span>
-								</div>
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="sexo" class="form-label obrigatorio"
+                      >Sexo</label
+                    >
+                    <select
+                      name="sexo"
+                      class="form-control"
+                      required
+                      th:field="*{sexo}"
+                      th:classappend="${#fields.hasErrors('sexo')} ? 'is-invalid'"
+                    >
+                      <option selected value="0">Selecione...</option>
+                      <option value="M">Masculino</option>
+                      <option value="F">Feminino</option>
+                    </select>
+                    <span class="erros d-block" th:errors="*{sexo}"></span>
+                  </div>
 
-							</div>
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="doc-tipo" class="form-label obrigatorio"
+                      >Tipo de documento</label
+                    >
+                    <select
+                      name="doc-tipo"
+                      class="form-control"
+                      required
+                      th:field="*{tipoDocumento}"
+                      th:classappend="${#fields.hasErrors('tipoDocumento')} ? 'is-invalid'"
+                    >
+                      <!---a class is-invalid destaca o campo caso a validacao for quebrada. -->
+                      <option selected value="0">Selecione...</option>
+                      <option value="BI">B.Identidade</option>
+                      <option value="Carta de Condução">C. Condução</option>
+                      <option value="Cartão de Eleitor">C. Eleitor</option>
+                      <option value="Passaporte">Passaporte</option>
+                    </select>
+                    <span
+                      class="erros d-block"
+                      th:errors="*{tipoDocumento}"
+                    ></span>
+                    <!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
+                  </div>
 
-							<div class="form-row">
-								<div class="form-group col-md-3 col-sm-12">
-									<label for="data-nasc" class="form-label obrigatorio">Data de nascimento</label>
-									<input type="date" class="form-control"
-										name="data-nasc" max="2004-12-12" min="1950-12-12" required
-										th:field="*{dataNascimento}"
-										th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'" />
-									<span class="erros d-block" th:errors="*{dataNascimento}"></span>
-									<!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
-								</div>
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="doc-num" class="form-label obrigatorio"
+                      >Númerodo documento</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="doc-num"
+                      placeholder="Digite o nr do documento"
+                      required
+                      th:field="*{nrDocumento}"
+                      th:classappend="${#fields.hasErrors('nrDocumento')} ? 'is-invalid'"
+                    />
+                    <span
+                      class="erros d-block"
+                      th:errors="*{nrDocumento}"
+                    ></span>
+                    <!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
+                  </div>
+                </div>
 
-								<div class="form-group col-md-3 col-sm-12">
-									<label for="sexo" class="form-label obrigatorio">Sexo</label>
-									<select
-										name="sexo" class="form-control" required th:field="*{sexo}"
-										th:classappend="${#fields.hasErrors('sexo')} ? 'is-invalid'">
-										<option selected value="0">Selecione...</option>
-										<option value="M">Masculino</option>
-										<option value="F">Feminino</option>
-									</select>
-									<span class="erros d-block" th:errors="*{sexo}"></span>
-								</div>
+                <div class="form-row">
+                  <div class="form-group col-md-4 col-sm-12">
+                    <label class="form-label obrigatorio" for="telef-1"
+                      >Celular</label
+                    >
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">+258</div>
+                      </div>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="telef-1"
+                        min="820000000"
+                        max="879999999"
+                        placeholder="Digite o telefone"
+                        required
+                        th:field="*{telefone}"
+                        th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'"
+                      />
+                      <span
+                        class="erros d-block"
+                        th:errors="*{telefone}"
+                      ></span>
+                    </div>
+                    <!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
+                  </div>
 
-								<div class="form-group col-md-3 col-sm-12">
-									<label for="doc-tipo" class="form-label obrigatorio">Tipo de documento</label>
-									<select name="doc-tipo"
-										class="form-control" required
-										th:field="*{tipoDocumento}"
-										th:classappend="${#fields.hasErrors('tipoDocumento')} ? 'is-invalid'">
-										<!---a class is-invalid destaca o campo caso a validacao for quebrada. -->
-										<option selected value="0">Selecione...</option>
-										<option value="BI">B.Identidade</option>
-										<option value="Carta de Condução">C. Condução</option>
-										<option value="Cartão de Eleitor">C. Eleitor</option>
-										<option value="Passaporte">Passaporte</option>
-									</select>
-									<span class="erros d-block" th:errors="*{tipoDocumento}"></span>
-									<!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
-								</div>
-								
-								<div class="form-group col-md-3 col-sm-12">
-									<label for="doc-num" class="form-label obrigatorio">Númerodo documento</label>
-									<input type="text" class="form-control"
-										name="doc-num" placeholder="Digite o nr do documento" required
-										th:field="*{nrDocumento}"
-										th:classappend="${#fields.hasErrors('nrDocumento')} ? 'is-invalid'"/>
-									<span class="erros d-block" th:errors="*{nrDocumento}"></span>
-									<!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
-								</div>
-							</div>
-							
-							<div class="form-row">
-								<div class="form-group col-md-4 col-sm-12">
-									<label class="form-label obrigatorio" for="telef-1">Celular</label>
-									<div class="input-group mb-2 mr-sm-2">
-										<div class="input-group-prepend">
-											<div class="input-group-text">+258</div>
-										</div>
-										<input type="number" class="form-control" name="telef-1"
-											min="820000000" max="879999999"
-											placeholder="Digite o telefone" required
-											th:field="*{telefone}"
-											th:classappend="${#fields.hasErrors('telefone')} ? 'is-invalid'"/>
-										<span class="erros d-block" th:errors="*{telefone}"></span>
-									</div>
-									<!--Atencao cleiton. para visualizar a mensagem remova o d-none e coloca o d-block-->
-								</div>
-								
-								<div class="form-group col-md-4 col-sm-12">
-									<label class="form-label" for="telef-2">CelularAlternativo</label>
-									<div class="input-group mb-2 mr-sm-2">
-										<div class="input-group-prepend">
-											<div class="input-group-text">+258</div>
-										</div>
-										<input type="number" class="form-control" name="telef-2"
-											min="820000000" max="879999999"
-											placeholder="Digite o telefone alternativo"
-											th:field="*{telefoneAlternativo}"
-											th:classappend="${#fields.hasErrors('telefoneAlternativo')} ? 'is-invalid'"/>
-										<span class="erros d-block" th:errors="*{telefoneAlternativo}"></span>
-									</div>
-								</div>
-								<div class="form-group col-md-4 col-sm-12">
-									<label class="form-label" for="email">Email</label>
-									<div class="input-group mb-2 mr-sm-2">
-										<div class="input-group-prepend">
-											<div class="input-group-text">@</div>
-										</div>
-										<input type="email" class="form-control" name="email"
-											placeholder="Digite o email" th:field="*{email}"
-											th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"/>
-										<span class="erros d-block" th:errors="*{email}"></span>
-									</div>
-								</div>
-							</div>
+                  <div class="form-group col-md-4 col-sm-12">
+                    <label class="form-label" for="telef-2"
+                      >CelularAlternativo</label
+                    >
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">+258</div>
+                      </div>
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="telef-2"
+                        min="820000000"
+                        max="879999999"
+                        placeholder="Digite o telefone alternativo"
+                        th:field="*{telefoneAlternativo}"
+                        th:classappend="${#fields.hasErrors('telefoneAlternativo')} ? 'is-invalid'"
+                      />
+                      <span
+                        class="erros d-block"
+                        th:errors="*{telefoneAlternativo}"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-4 col-sm-12">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        placeholder="Digite o email"
+                        th:field="*{email}"
+                        th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+                      />
+                      <span class="erros d-block" th:errors="*{email}"></span>
+                    </div>
+                  </div>
+                </div>
 
-							<div class="card m-0 elevation-0 border">
-								<div class="card-header px-2 py-1  border-bottom">
-									<span class="form-label obrigatorio">Residência</span>
-								</div>
-								<div class=" card-body py-1 px-2 ca">
-									<div class="form-row">
+                <div class="card m-0 elevation-0 border">
+                  <div class="card-header px-2 py-1 border-bottom">
+                    <span class="form-label obrigatorio">Residência</span>
+                  </div>
+                  <div class="card-body py-1 px-2 ca">
+                    <div class="form-row">
+                      <div class="form-group col-md-3 col-sm-12">
+                        <div class="input-group p-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">Bairro</div>
+                          </div>
+                          <select
+                            name=""
+                            class="form-control"
+                            required
+                            th:field="*{residencia}"
+                            th:classappend="${#fields.hasErrors('residencia')} ? 'is-invalid'"
+                          >
+                            <option selected value="0 ">
+                              Selecione o Bairro...
+                            </option>
+                            <option
+                              th:each="b : ${bairro}"
+                              th:value="${b.nome}"
+                              th:text="${b.nome}"
+                            ></option>
+                          </select>
+                          <span
+                            class="erros d-block"
+                            th:errors="*{residencia}"
+                          ></span>
+                        </div>
+                      </div>
 
-										<div class="form-group col-md-3 col-sm-12 ">
-											<div class="input-group p-0">
-												<div class="input-group-prepend ">
-													<div class="input-group-text ">Bairro</div>
-												</div>
-												<select name="" class="form-control " required th:field="*{residencia}"
-													th:classappend="${#fields.hasErrors('residencia')} ? 'is-invalid'">
-													<option selected value="0 ">Selecione o Bairro...</option>
-													<option th:each = "b : ${bairro}" th:value="${b.nome}" th:text = "${b.nome}"></option>
-												</select>
-												<span class="erros d-block" th:errors="*{residencia}"></span>
-											</div>
-										</div>
-
-										<!-- <div class="form-group col-md-3 col-sm-12 ">
+                      <!-- <div class="form-group col-md-3 col-sm-12 ">
 											<div class="input-group p-0">
 												<div class="input-group-prepend ">
 													<div class="input-group-text ">D.</div>
@@ -182,7 +283,7 @@
 												</select>
 											</div>
 										</div> -->
-										<!-- <div class="form-group col-md-3 col-sm-12">
+                      <!-- <div class="form-group col-md-3 col-sm-12">
 											<div class="input-group p-0">
 												<div class="input-group-prepend">
 													<div class="input-group-text ">B.</div>
@@ -191,42 +292,43 @@
 											</div>
 
 										</div> -->
-										<div class="form-group col-md-3 col-sm-12">
-											<div class="input-group p-0">
-												<div class="input-group-prepend ">
-													<div class="input-group-text ">Quarteirão</div>
-												</div>
-												<input type="text" class="form-control "
-													placeholder="Quarteirao " required/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-						</div>
-						<div class="card-footer py-0 bg-white ">
-							<div class="float-right ">
-								<div class="form-group ">
-									<button class="btn btn-danger mx-3 btn-sm px-3 ">
-										<i class="fa-solid fa-circle-xmark mx-1 "></i>Cancelar
-									</button>
-									<button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3 ">
-										<i class="fa-solid fa-plus mx-1 "></i>Cadastrar
-									</button>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</section>
-	</div>
-	<!--Fim do content-wrapper-->
-	<!---wrapper-->
-
-
-</body>
-
+                      <div class="form-group col-md-3 col-sm-12">
+                        <div class="input-group p-0">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">Quarteirão</div>
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Quarteirao "
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Mensagem de confirmacao-->
+              <div th:replace="fragments/alert"></div>
+              <div class="card-footer py-0 bg-white">
+                <div class="float-right">
+                  <div class="form-group">
+                    <button class="btn btn-danger mx-3 btn-sm px-3">
+                      <i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
+                    </button>
+                    <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3">
+                      <i class="fa-solid fa-plus mx-1"></i>Cadastrar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!--Fim do content-wrapper-->
+    <!---wrapper-->
+  </body>
 </html>
