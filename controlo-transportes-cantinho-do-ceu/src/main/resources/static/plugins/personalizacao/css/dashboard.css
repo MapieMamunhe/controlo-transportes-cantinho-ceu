@@ -7,7 +7,7 @@
 }
 
 .bd-1 {
-    border: 1px solid gray;
+    border: 1px solid rgb(232, 232, 232);
     box-shadow: none;
 }
 
@@ -19,9 +19,7 @@
     font-size: 18pt;
 }
 
-.border-r {
-    border-right: 1px solid gray;
-}
+.border-r {}
 
 .bg-cicc {
     background-color: #545DC1;
@@ -127,4 +125,22 @@
 .barra-l {
     border-left: 3px solid #4B6EAF;
     background-color: #dbdfe1;
+}
+
+.btn-user {
+    font-size: 13pt;
+    color: white;
+}
+
+.btn-user:hover {
+    color: rgb(226, 225, 225);
+}
+
+.drop-menu {
+    background-color: #eee9e7 !important;
+}
+
+.img {
+    width: 50% !important;
+    height: 50%;
 }
