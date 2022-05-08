@@ -2,15 +2,6 @@
     background-color: #F1EBEB;
 }
 
-.barra-sup {
-    margin-left: 0 !important;
-    z-index: 1 !important;
-}
-
-.menu-lf {
-    margin-top: 56px;
-}
-
 .fw-b {
     font-weight: bold;
 }

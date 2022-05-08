@@ -9,8 +9,12 @@
     <aside class="main-sidebar menu-lf bg-menu-lf border-r" th:fragment="menu">
 
         <!-- Sidebar -->
-        <div class="sidebar my-2">
+        <div class="sidebar p-0">
             <!-- Sidebar user panel (optional) -->
+            <div class="sub-menu bg-cicc" style="height: 56px; width: 100%;">
+
+            </div>
+
             <div class="user-panel mt-3 pb-3 mb-3" style=" border-bottom: 2px solid grey; height: 80px; ">
 
                 <div class=" text-center ">
@@ -28,23 +32,22 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2 ">
-                <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview " role="menu " data-accordion="false ">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                   with font-awesome or any other icon font library -->
+           with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview">
                         <a th:href="@{/funcionario}" class="nav-link">
                             <i class="nav-icon fas fa-house "></i>
                             <p>
                                 Dashboard
-                                <i class="right fas fa-angle-left "></i>
+
                             </p>
                         </a>
 
                     </li>
-
-                    <li class="nav-item has-treeview  menu-open">
-                        <a href="# " class="nav-link">
-                            <i class="nav-icon fas fa-copy "></i>
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-database"></i>
                             <p> Cadastros
                                 <i class="fas fa-angle-left right "></i>
                             </p>
@@ -62,26 +65,13 @@
                                     <p>Funcionarios</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item ">
-                                <a href="# " class="nav-link ">
-                                    <i class="far fa-circle nav-icon "></i>
-                                    <p>Zonas</p>
-                                </a>
-                            </li> -->
-                            <!--<li class="nav-item ">
-                                    <a th:href="@{/funcionarios/secretaria/novo}" class="nav-link active">
-                                        <i class="far fa-circle nav-icon "></i>
-                                        <p>Educadoras</p>
-                                    </a>
-                                </li>-->
 
                         </ul>
                     </li>
-
-                    <li class="nav-item has-treeview  menu-open">
-                        <a href="# " class="nav-link">
-                            <i class="nav-icon fas fa-copy "></i>
-                            <p> Visualizar
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-eye"></i>
+                            <p>Visualizar
                                 <i class="fas fa-angle-left right "></i>
                             </p>
                         </a>
@@ -113,8 +103,13 @@
 
                         </ul>
                     </li>
+
+
                 </ul>
+
             </nav>
+
+
             <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
