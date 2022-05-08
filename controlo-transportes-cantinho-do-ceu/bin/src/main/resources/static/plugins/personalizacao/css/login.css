@@ -1,0 +1,51 @@
+.altura {
+    width: 100% !important;
+}
+
+.comprimento {
+    width: 100% !important;
+}
+
+.body {
+    background: linear-gradient(to right, #545DC1, #8D93D5);
+}
+
+.back-foto {
+    background-image: url('../../img/logo1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.form-login {
+    width: 50%;
+}
+
+.btn-login {
+    background: linear-gradient(to right, #545DC1, #8D93D5) !important;
+    font-size: 13pt;
+    color: white;
+}
+
+.border-b {
+    border-bottom: 2px solid #545DC1 !important;
+}
+
+.form-control:focus {
+    outline: 0 none !important;
+    border-color: none !important;
+    box-shadow: none;
+}
+
+.icon-color,
+.login-text {
+    color: #545DC1;
+    font-size: 15pt;
+}
+
+.box-s {
+    box-shadow: inset 5px 5px 5px rgba(255, 255, 255) 0 0 8px rgba(255, 255, 255);
+}
+
+.b-r {
+    border-radius: 10px;
+}

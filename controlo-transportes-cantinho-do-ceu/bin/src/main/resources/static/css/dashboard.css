@@ -13,11 +13,10 @@ section.menu {
   color: #7d7d7d;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  width: 264px;
   display: flex;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
 }
 section.dashboard {
   grid-area: "dashboard";
@@ -30,23 +29,22 @@ section.dashboard {
 
 div.container {
   display: grid;
-  grid-template-columns: 0.1fr auto;
+  grid-template-columns: 264px auto;
   grid-template-rows: 1fr;
   grid-template-areas:
     "menu dashboard"
     "menu footer";
   grid-area: "container";
-  gap: 0.75em;
   margin: 0;
 }
+
 main {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
   grid-template-areas:
     "header"
     "container";
-  grid-gap: 0.75em;
 }
 section.cabecalho {
   background-color: #545dc2;
@@ -92,6 +90,26 @@ a.btn {
   background-color: #545dc2;
   width: 268px;
   padding: 0;
+  border: none;
+}
+ul li {
+  list-style: none;
+  margin: 0;
+}
+figcaption.btn {
+  font-weight: bold;
+  color: #7d7d7d;
+}
+figcaption.btn:hover {
+  font-weight: bold;
+  color: lightseagreen;
+}
+img#logo-cantinho {
+  border-radius: 75px;
+  margin-top: 15px;
+}
+section.menu div {
+  width: 100%;
 }
 footer {
   grid-area: "footer";
@@ -104,4 +122,20 @@ footer#rodape {
   text-align: center;
   margin: 0;
   padding: 0;
+}
+
+ul#lista-cadastro {
+  padding-left: 35%;
+  text-align: left;
+  background-color: white;
+  border-left: solid 5px #7d7d7d;
+}
+ul#lista-cadastro > li {
+  margin-top: 15px;
+}
+li > label {
+  cursor: pointer;
+}
+li > label:hover + li > input[type="radio"] {
+  color: lightseagreen;
 }
