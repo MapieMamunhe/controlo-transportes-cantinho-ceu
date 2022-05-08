@@ -6,10 +6,10 @@
 </head>
 
 <body>
-    <aside class="main-sidebar menu-lf bg-menu-lf border-r" th:fragment="menu">
+    <aside class="main-sidebar menu-lf bg-menu-lf" th:fragment="menu">
 
         <!-- Sidebar -->
-        <div class="sidebar p-0">
+        <div class="sidebar m-0 p-0">
             <!-- Sidebar user panel (optional) -->
             <div class="sub-menu bg-cicc" style="height: 56px; width: 100%;">
 
@@ -32,7 +32,7 @@
             </div>
 
             <!-- Sidebar Menu -->
-            <nav class="mt-2 ">
+            <nav class="mt-2 mb-0">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
@@ -46,14 +46,14 @@
                         </a>
 
                     </li>
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link active">
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-database"></i>
                             <p> Cadastros
                                 <i class="fa-solid fa-caret-left right"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview ml-3 barra-l">
+                        <ul class="nav nav-treeview ml-1 barra-l">
                             <li class="nav-item ">
                                 <a th:href="@{/carrinhas/nova}" class="nav-link ">
                                     <i class="fa-solid fa-bus"></i>
@@ -81,14 +81,14 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-eye"></i>
                             <p>Visualizar
                                 <i class="fa-solid fa-caret-left right"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview ml-3 barra-l">
+                        <ul class="nav nav-treeview ml-1 barra-l">
                             <li class="nav-item ">
                                 <a th:href="@{/carrinhas/listar}" class="nav-link ">
                                     <i class="fa-solid fa-bus"></i>
@@ -111,14 +111,14 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="fa-solid fa-message"></i>
                             <p>Comunicar
                                 <i class="fa-solid fa-caret-left right"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview ml-3 barra-l">
+                        <ul class="nav nav-treeview ml-1 barra-l">
                             <li class="nav-item ">
                                 <a th:href="@{/avarias/comunicar}" class="nav-link ">
                                     <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -140,6 +140,8 @@
         </div>
         <!-- /.sidebar -->
     </aside>
+
+
 </body>
 
 </html>

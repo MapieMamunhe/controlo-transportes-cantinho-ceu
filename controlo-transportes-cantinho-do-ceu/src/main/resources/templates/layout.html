@@ -47,6 +47,22 @@
 
     </div>
     <!-- Fim do container principal -->
+    <script>
+        const paginaActual = location.href;
+        const menuItem = document.querySelectorAll('a');
+        const tamanho = menuItem.length;
+        for (let i = 0; i < tamanho; i++) {
+            if (menuItem[i].href === paginaActual) {
+                menuItem[i].classList.add('menu-activo')
+                var pai = menuItem[i].parentNode;
+                pai = pai.parentNode;
+                pai = pai.parentNode;
+                pai.classList.add('menu-open')
+                break
+            }
+
+        }
+    </script>
 
 </body>
 
