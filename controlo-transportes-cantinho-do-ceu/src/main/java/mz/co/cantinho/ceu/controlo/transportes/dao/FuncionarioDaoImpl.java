@@ -1,5 +1,7 @@
 package mz.co.cantinho.ceu.controlo.transportes.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
@@ -22,4 +24,15 @@ public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implement
 		return !createQuery("select f from Funcionario f where f.email = ?1", email).isEmpty();
 	}
 
+	@Override
+	public Funcionario findByCellOrEmail(String cellOrEmail) {
+		List<Funcionario> lista = createQuery("select f from Funcionario f where f.telefone = ?1 or f.email = ?1", cellOrEmail);
+		
+		if(lista.isEmpty()) {
+			return null;
+		}
+		
+		return lista.get(0);
+	}
+	
 }

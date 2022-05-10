@@ -14,5 +14,6 @@ public interface FuncionarioDao {
 	boolean nrDocumentoExiste(String nrDocumento);
 	boolean celularExiste(String celular);
 	boolean emailExiste(String email);
+	Funcionario findByCellOrEmail(String cellOrEmail);
 	
 }
