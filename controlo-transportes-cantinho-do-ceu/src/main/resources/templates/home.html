@@ -18,37 +18,35 @@
 
     <div class="d-flex justify-content-center align-items-center h-100 v-100">
         <div class="form-login">
-            <div class="row box-s">
-                <div class="col-md-6 col-sm-12 bg-white px-5">
-                    <div class="login-text mt-5 mb-4">Login | <b>CICC@2022</b></div>
-                    <form method="post" th:action = "@{/}">
-                    	<div  th:if = "${param.error}" class="erros">Dados de acesso inválidos</div>
-                        <div class="form-row">
-                            <div class="input-group mb-3 border-b">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white border-0 icon-color" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+            <div class="row box-s bg-white">
+                <div class=" col-md-6 col-sm-12 bg-white px-5 b-r">
+                    <div class="login-text mt-3 mb-5 text-center ">Login | <b>CICC@2022</b></div>
+                    <form method="post " th:action="@{/} ">
+                        <div th:if="${param.error}" class="alert alert-danger ">Dados de acesso inválidos</div>
+                        <div class="form-row ">
+                            <div class="input-group mb-3 border-b ">
+                                <div class="input-group-prepend ">
+                                    <span class="input-group-text bg-white border-0 icon-color " id="basic-addon1 "><i class="fa-solid fa-user "></i></span>
                                 </div>
-                                <input type="text" class="form-control border-0" placeholder="Nome do utilizador" aria-label="Nome do utilizador"
-                                id = "username" name = "username">
+                                <input type="text " class="form-control border-0 " placeholder="Nome do utilizador " aria-label="Nome do utilizador " id="username " name="username ">
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="input-group mb-4 border-b">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white border-0 icon-color" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+                        <div class="form-row ">
+                            <div class="input-group mb-4 border-b ">
+                                <div class="input-group-prepend ">
+                                    <span class="input-group-text bg-white border-0 icon-color " id="basic-addon1 "><i class="fa-solid fa-lock "></i></span>
                                 </div>
-                                <input type="password" class="form-control border-0" placeholder="Senha" aria-label="Senha"
-                                id = "password" name = "password">
+                                <input type="password " class="form-control border-0 " placeholder="Senha " aria-label="Senha " id="password " name="password ">
                             </div>
 
 
                         </div>
                         <div class="form-row mt-4 ">
-                            <button class="btn btn-login form-control mb-3"><i class="fa-solid fa-right-to-bracket mx-2"></i>Entrar</button>
+                            <button class="btn btn-login form-control mb-3 "><i class="fa-solid fa-right-to-bracket mx-2 "></i>Entrar</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6 col-sm-12 back-foto">
+                <div class="col-md-6 col-sm-12 back-foto ">
 
                 </div>
             </div>

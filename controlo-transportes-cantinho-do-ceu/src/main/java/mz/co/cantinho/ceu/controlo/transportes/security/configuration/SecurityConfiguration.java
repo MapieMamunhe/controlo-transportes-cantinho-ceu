@@ -23,12 +23,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 	
-	/*PERFIS
-	 * ('Educadora'),
-    ('Gestor de transportes'),
-	('Motorista'),
-    ('Secretária');
-	 * */
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

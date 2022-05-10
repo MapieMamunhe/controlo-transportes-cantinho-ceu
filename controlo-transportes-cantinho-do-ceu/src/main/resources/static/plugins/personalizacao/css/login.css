@@ -11,13 +11,20 @@
 }
 
 .back-foto {
-    background-image: url('../../img/logo1.jpg');
+    background-image: url('../../img/logoTipoFiticio.png');
     background-size: cover;
     background-position: center;
+    background-clip: border-box;
+}
+
+.b-r {
+    border-right: #545DC1 2px solid;
+    border-radius: 0 !important;
 }
 
 .form-login {
     width: 50%;
+    height: 50%;
 }
 
 .btn-login {
