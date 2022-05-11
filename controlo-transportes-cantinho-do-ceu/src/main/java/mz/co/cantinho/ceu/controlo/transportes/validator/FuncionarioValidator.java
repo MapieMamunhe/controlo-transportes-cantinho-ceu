@@ -34,11 +34,11 @@ public class FuncionarioValidator implements Validator {
 
 		// validar nome
 		if (!nomeValido(funcionario.getNome())) {
-			errors.rejectValue("nome", "NomeValido.Funcionario");
+			errors.rejectValue("nome", "NomeValido.Utilizador");
 		}
 
 		if (!nomeValido(funcionario.getApelido())) {
-			errors.rejectValue("apelido", "ApelidoValido.Funcionario");
+			errors.rejectValue("apelido", "ApelidoValido.Utilizador");
 		}
 
 		// validar documento
@@ -52,7 +52,7 @@ public class FuncionarioValidator implements Validator {
 
 		// validar celular
 		if (!celularValido(funcionario.getTelefone())) {
-			errors.rejectValue("telefone", "TelefoneValido.Funcionario");
+			errors.rejectValue("telefone", "TelefoneValido.Utilizador");
 		} else {// verifica se celular já foi registado
 			if (service.celularExiste(funcionario.getTelefone())) {
 				errors.rejectValue("telefone", "Duplicado.Funcionario.telefone");
@@ -62,7 +62,7 @@ public class FuncionarioValidator implements Validator {
 		// validar celular alternativo, se for introduzido
 		if (!funcionario.getTelefoneAlternativo().replace(" ", "").isEmpty()) {
 			if (!celularValido(funcionario.getTelefoneAlternativo())) {
-				errors.rejectValue("telefoneAlternativo", "TelefoneValido.Funcionario");
+				errors.rejectValue("telefoneAlternativo", "TelefoneValido.Utilizador");
 			} else {// verificações feitas caso número alternativo seja válido
 				if (funcionario.getTelefone().trim().equals(funcionario.getTelefoneAlternativo().trim())) {
 					errors.rejectValue("telefoneAlternativo", "Iguais.Funcionario.telefone");

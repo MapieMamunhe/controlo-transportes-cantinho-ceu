@@ -16,11 +16,11 @@
                         <div class="float-left">
                             <i class="fa-solid fa-database"></i> Lista de Carrinhas
                         </div>
-                        <div class="float-right">Espaço para a data</div>
+                        <div class="float-right"></div>
                     </div>
                     <div class="card-body">
 
-                        <form action="" class="form-row">
+                        <!-- <form action="" class="form-row">
 
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Digite a matrícula">
@@ -29,13 +29,13 @@
                                 </div>
                             </div>
 
-                        </form>
+                        </form> -->
 
                         <div class="table-responsive table-responsive-md table-responsive-sm">
                             <table class="table table-striped border table-sm">
                                 <thead class="bg-cicc">
                                     <tr>
-                                        <th scope="col">Nr. de ordem</th>
+                                        <!-- <th scope="col">Nr. de ordem</th> -->
                                         <th scope="col">Matrícula</th>
                                         <th scope="col">Capacidade</th>
                                         <th scope="col">Lugares ocupados</th>
@@ -43,7 +43,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="table-row" th:each = "c : ${carrinhas}">
-                                        <td ></td>
+                                        <!-- <td ></td> -->
                                         <td th:text = "${c.matricula}"></td>
                                         <td th:text = "${c.capacidade}"></td>
                                         <td th:text = "${c.lugaresOcupados}"></td>

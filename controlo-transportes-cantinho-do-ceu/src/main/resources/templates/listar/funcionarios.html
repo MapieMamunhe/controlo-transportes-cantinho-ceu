@@ -20,16 +20,16 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="" class="form-row">
+                        <!-- <form action="" class="form-row">
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Digite o nome, apelido, a funcao ou o id do funcionario para pesquisar">
+                                <input type="text" class="form-control" placeholder="Digite o nome do funcionário">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
 
-                        </form>
+                        </form> -->
 
                         <div class="table-responsive table-responsive-md table-responsive-sm">
                             <table class="table table-striped border table-sm">
@@ -38,22 +38,32 @@
 
                                         <th class="px-3">Nome</th>
                                         <th>Cargo</th>
-                                        <th>Contacto</th>
-                                        <th class="text-right px-3">Accao</th>
+                                        <th>Celular</th>
+                                        <th>Celular alternativo</th>
+                                        <th>email</th>
+                                        <th>Data de nascimento</th>
+                                        <th>Tipo de documento</th>
+                                        <th>Número de documento</th>
+                                        <!-- <th class="text-right px-3">Accao</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="table-row" th:each="f : ${funcionarios} ">
-                                        <td th:text="${f.funcionario.nome} "></td>
+                                        <td th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
                                         <td th:text="${f.perfil.nome} "></td>
                                         <td th:text="${f.funcionario.telefone} "></td>
-                                        <td class="text-right ">
+                                        <td th:text="${f.funcionario.telefoneAlternativo} "></td>
+                                        <td th:text="${f.funcionario.email} "></td>
+                                        <td th:text="${f.funcionario.dataNascimento} "></td>
+                                        <td th:text="${f.funcionario.tipoDocumento} "></td>
+                                        <td th:text="${f.funcionario.nrDocumento} "></td>
+                                        <!-- <td class="text-right ">
                                             <div class="d-flex justify-content-end ">
                                                 <a href=" " role="button" class="btn btn-sm bg-btn-info p-0 f " data-bs-toggle="modal" data-bs-target="#info-funcionario"><i class="fa-solid fa-circle-info mx-1 "></i></a>
                                                 <a href=" " role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 "><i class="fa-solid fa-pen-to-square mx-1"></i></a>
                                                 <a href=" " role="button" class="btn btn-sm bg-btn-danger p-0 f "><i class="fa-solid fa-trash-can mx-1"></i></a>
                                             </div>
-                                        </td>
+                                        </td> -->
                                     </tr>
 
 

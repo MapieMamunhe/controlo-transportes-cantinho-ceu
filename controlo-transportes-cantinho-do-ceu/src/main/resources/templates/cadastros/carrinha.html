@@ -20,6 +20,9 @@
                     </div>
                     <form th:action="@{/carrinhas/salvar}" th:object="${carrinha}" method="post">
                         <div class="card-body">
+                        <div class = "px-3"><!--Mensagem de confirmacao-->
+                        	<div th:replace="fragments/alert">
+                        </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12 col-sm-12">
                                     <label for="matricula" class="form-label obrigatorio">Matrícula</label>
@@ -35,14 +38,13 @@
                                 <span class="erros" th:errors="*{capacidade}"></span>
                             </div>
                         </div>
-                        <!--Mensagem de confirmacao-->
-                        <div th:replace="fragments/alert">
+                        
                         </div>
 
                         <div class="card-footer py-0 bg-white">
                             <div class="float-right">
                                 <div class="form-group">
-                                    <button class="btn btn-danger mx-3 btn-sm px-3">
+                                    <button type = "reset" class="btn btn-danger mx-3 btn-sm px-3">
 										<i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
 									</button>
                                     <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3" type="submit">
