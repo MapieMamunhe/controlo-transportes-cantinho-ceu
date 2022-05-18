@@ -11,5 +11,6 @@ public interface EncarregadoService {
 	void remover(Long id);
 	Encarregado buscarPorId(Long id);
 	List<Encarregado> buscarTodos();
+	List<Encarregado> buscarPorNome(String nome);
 	
 }

@@ -46,4 +46,9 @@ public class EncarregadoServiceImpl implements EncarregadoService {
 		return dao.findAll();
 	}
 
+	@Override
+	public List<Encarregado> buscarPorNome(String nome) {
+		return dao.findByNome(nome);
+	}
+
 }

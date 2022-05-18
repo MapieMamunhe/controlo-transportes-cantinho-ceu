@@ -11,5 +11,6 @@ public interface EncarregadoDao {
 	void delete(Long id);
 	List<Encarregado> findAll();
 	Encarregado findById(Long id);
+	List<Encarregado> findByNome(String nome);
 	
 }

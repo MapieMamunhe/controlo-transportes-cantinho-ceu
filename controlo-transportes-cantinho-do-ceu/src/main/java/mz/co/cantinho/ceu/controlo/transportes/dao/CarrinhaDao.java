@@ -12,5 +12,6 @@ public interface CarrinhaDao {
 	List<Carrinha> findAll();
 	Carrinha findById(Long id);
 	boolean matriculaExiste(String matricula);
+	List<Carrinha> findByRegistration(String matricula);
 	
 }

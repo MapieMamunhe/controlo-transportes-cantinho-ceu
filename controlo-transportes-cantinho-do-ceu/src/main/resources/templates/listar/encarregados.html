@@ -7,7 +7,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-	
+
 	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
 	<div class="content-wrapper bg-white z-index-1" layout:fragment="body">
 		<section class="content p-0">
@@ -21,20 +21,20 @@
 					</div>
 					<div class="card-body">
 
-						<!-- <form action="" class="form-row">
+						<form th:action="@{/encarregados/pesquisar}" class="form-row" method = "GET">
 
 							<div class="input-group mb-3">
 								<input type="text" class="form-control"
-									placeholder="Digite o nome do encarregado">
+									placeholder="Digite o nome do encarregado" th:name = "nome">
 								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button"
+									<button class="btn btn-outline-secondary"
 										id="button-addon2">
 										<i class="fas fa-search"></i>
 									</button>
 								</div>
 							</div>
 
-						</form> -->
+						</form>
 
 						<div
 							class="table-responsive table-responsive-md table-responsive-sm">

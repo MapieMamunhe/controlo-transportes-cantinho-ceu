@@ -12,5 +12,6 @@ public interface CarrinhaService {
 	Carrinha buscarPorId(Long id);
 	List<Carrinha> buscarTodos();
 	boolean matriculaExiste(String matricula);
+	List<Carrinha> buscarPorMatricula(String matricula);
 	
 }

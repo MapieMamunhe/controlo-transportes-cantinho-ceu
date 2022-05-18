@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.Carrinha;
@@ -55,6 +56,12 @@ public class CarrinhaController {
 		service.gravar(carrinha);
 		attr.addFlashAttribute("success", "Carinha gravada");
 		return "redirect:/carrinhas/nova";
+	}
+	
+	@GetMapping("/pesquisar")
+	public String pesquisar(@RequestParam("matricula") String matricula, ModelMap model) {
+		model.addAttribute("carrinhas", service.buscarPorMatricula(matricula));
+		return "listar/carrinhas";
 	}
 	
 	@ModelAttribute("carrinhas")

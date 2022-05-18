@@ -34,5 +34,5 @@ public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implement
 		
 		return lista.get(0);
 	}
-	
+
 }

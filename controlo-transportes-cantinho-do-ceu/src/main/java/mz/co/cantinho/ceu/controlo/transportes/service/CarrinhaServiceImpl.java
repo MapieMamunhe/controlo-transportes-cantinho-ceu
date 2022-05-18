@@ -51,4 +51,9 @@ public class CarrinhaServiceImpl implements CarrinhaService{
 		return dao.matriculaExiste(matricula);
 	}
 
+	@Override
+	public List<Carrinha> buscarPorMatricula(String matricula) {
+		return dao.findByRegistration(matricula);
+	}
+
 }

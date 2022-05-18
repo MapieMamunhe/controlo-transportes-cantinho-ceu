@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.CidadeDistrito;
@@ -62,8 +64,7 @@ public class FuncionarioController {
 	}
 
 	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		// model.addAttribute("funcionario", )
+	public String listar() {
 		return "/listar/funcionarios";
 	}
 
@@ -117,8 +118,14 @@ public class FuncionarioController {
 		ContaFuncionario contaF = new ContaFuncionario();
 		contaF.setFuncionario(funcionario);
 		contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
-		contaF.setPalavraPasse("0000");
+		contaF.setPalavraPasse(DigestUtils.sha256Hex("[0000]"));
 		contaFuncionarioService.gravar(contaF);
+	}
+	
+	@GetMapping("/pesquisar")
+	public String buscarPorNome(@RequestParam("nome")String nome, ModelMap model) {
+		model.addAttribute("funcionarios", contaFuncionarioService.buscarPorNomeFuncionario(nome));
+		return "/listar/funcionarios";
 	}
 
 	@ModelAttribute("funcionarios")
@@ -135,4 +142,5 @@ public class FuncionarioController {
 	public List<Perfil> perfis() {
 		return perfilService.buscarTodos();
 	}
+	
 }

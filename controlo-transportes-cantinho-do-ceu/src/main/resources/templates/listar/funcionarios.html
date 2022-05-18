@@ -1,198 +1,215 @@
 <html layout:decorate="~{layout}">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Funcionários</title>
+<meta charset="UTF-8" />
+<title>Funcionários</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
-        <section class="content p-0">
-            <div class="container-fluid px-5">
-                <div class="card mt-3 bd-1">
-                    <div class="card-header bg-cicc py-2">
-                        <div class="float-left">
-                            <i class="fa-solid fa-database"></i> Lista de Funcionários
-                        </div>
-                        <div class="float-right">Espaço para a data</div>
-                    </div>
-                    <div class="card-body">
+	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+	<div class="content-wrapper bg-white z-index-1" layout:fragment="body">
+		<section class="content p-0">
+			<div class="container-fluid px-5">
+				<div class="card mt-3 bd-1">
+					<div class="card-header bg-cicc py-2">
+						<div class="float-left">
+							<i class="fa-solid fa-database"></i> Lista de Funcionários
+						</div>
+						<div class="float-right"></div>
+					</div>
+					<div class="card-body">
 
-                        <!-- <form action="" class="form-row">
+						<form th:action="@{/funcionarios/pesquisar}" class="form-row" method = "GET">
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Digite o nome do funcionário">
+                                <input th:name="nome" type="text" class="form-control" placeholder="Digite o nome do funcionário">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                                    <button class="btn btn-outline-secondary" id="button-addon2"><i class="fas fa-search"></i></button>
                                 </div>
                             </div>
 
-                        </form> -->
+                        </form>
 
-                        <div class="table-responsive table-responsive-md table-responsive-sm">
-                            <table class="table table-striped border table-sm">
-                                <thead class="bg-cicc">
-                                    <tr>
+						<div
+							class="table-responsive table-responsive-md table-responsive-sm">
+							<table class="table table-striped border table-sm">
+								<thead class="bg-cicc">
+									<tr>
 
-                                        <th class="px-3">Nome</th>
-                                        <th>Cargo</th>
-                                        <th>Celular</th>
-                                        <th>Celular alternativo</th>
-                                        <th>email</th>
-                                        <th>Data de nascimento</th>
-                                        <th>Tipo de documento</th>
-                                        <th>Número de documento</th>
-                                        <!-- <th class="text-right px-3">Accao</th> -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="table-row" th:each="f : ${funcionarios} ">
-                                        <td th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
-                                        <td th:text="${f.perfil.nome} "></td>
-                                        <td th:text="${f.funcionario.telefone} "></td>
-                                        <td th:text="${f.funcionario.telefoneAlternativo} "></td>
-                                        <td th:text="${f.funcionario.email} "></td>
-                                        <td th:text="${f.funcionario.dataNascimento} "></td>
-                                        <td th:text="${f.funcionario.tipoDocumento} "></td>
-                                        <td th:text="${f.funcionario.nrDocumento} "></td>
-                                        <!-- <td class="text-right ">
+										<th class="px-3">Nome</th>
+										<th>Cargo</th>
+										<th>Celular</th>
+										<th>Celular alternativo</th>
+										<th>email</th>
+										<th>Data de nascimento</th>
+										<th>Tipo de documento</th>
+										<th>Número de documento</th>
+										<th class="text-right px-3">Acção</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-row" th:each="f : ${funcionarios} ">
+										<td
+											th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
+										<td th:text="${f.perfil.nome} "></td>
+										<td th:text="${f.funcionario.telefone} "></td>
+										<td th:text="${f.funcionario.telefoneAlternativo} "></td>
+										<td th:text="${f.funcionario.email} "></td>
+										<td th:text="${f.funcionario.dataNascimento} "></td>
+										<td th:text="${f.funcionario.tipoDocumento} "></td>
+										<td th:text="${f.funcionario.nrDocumento} "></td>
+										<td class="text-right ">
                                             <div class="d-flex justify-content-end ">
                                                 <a href=" " role="button" class="btn btn-sm bg-btn-info p-0 f " data-bs-toggle="modal" data-bs-target="#info-funcionario"><i class="fa-solid fa-circle-info mx-1 "></i></a>
                                                 <a href=" " role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 "><i class="fa-solid fa-pen-to-square mx-1"></i></a>
                                                 <a href=" " role="button" class="btn btn-sm bg-btn-danger p-0 f "><i class="fa-solid fa-trash-can mx-1"></i></a>
                                             </div>
-                                        </td> -->
-                                    </tr>
+                                        </td>
+									</tr>
+
+								</tbody>
+							</table>
+
+						</div>
 
 
 
-                                </tbody>
-                            </table>
+						<!-- Inicio da janela Modal para visualizar os restantes atributos do funcionario -->
+						<div class="modal fade" id="info-funcionario" tabindex="-1"
+							aria-hidden="true">
+							<div class="modal-dialog modal-info-w">
+								<div class="modal-content">
+									<div class="modal-header py-1 bg-cicc">
+										<h5 class="modal-title">
+											<i class="fas fa-circle-info"></i> Informacao do funcinario x
+										</h5>
 
-                        </div>
+									</div>
+									<div class="modal-body px-4">
+										<!--a seccao a seguir eh para visualizacao de dados pessoais-->
+										<div class="row">
+											<div class="row">
+												<div class="title">
+													<i class="fa-solid fa-user-tie mx-2"></i>Dados pessoais
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Nome</span> <span
+														class="field-info">Salomao Jose</span>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Apelido</span> <span
+														class="field-info">Valoi</span>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Sexo</span> <span
+														class="field-info">Masculio</span>
+												</div>
 
+											</div>
+											<div class="row">
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Data de Nascimento</span>
+													<span class="field-info">03/12/1994</span>
+												</div>
 
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Documento de
+														Identificacao</span> <span class="field-info">Bilhete de
+														Identidade</span>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Numero de documento</span>
+													<span class="field-info">110101173733J</span>
+												</div>
 
-                        <!-- Inicio da janela Modal para visualizar os restantes atributos do funcionario -->
-                        <div class="modal fade" id="info-funcionario" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-info-w">
-                                <div class="modal-content">
-                                    <div class="modal-header py-1 bg-cicc">
-                                        <h5 class="modal-title"><i class="fas fa-circle-info"></i> Informacao do funcinario x</h5>
+											</div>
+										</div>
+										<!--a seccao a seguir eh para visualizacao de contactos-->
+										<div class="row mt-3">
+											<div class="row">
+												<div class="title">
+													<i class="fa-solid fa-phone mx-1"></i>Contactos
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Telefone 1</span> <span
+														class="field-info">+258848841005</span>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold">Telefone 2</span> <span
+														class="field-info">+258828841007</span>
+												</div>
+												<div class="col-md-4 col-sm-12">
+													<span class="text-muted fw-bold mr-1">Email</span> <span
+														class="field-info">salomaojosevaloi@gmail.com</span>
+												</div>
 
-                                    </div>
-                                    <div class="modal-body px-4">
-                                        <!--a seccao a seguir eh para visualizacao de dados pessoais-->
-                                        <div class="row">
-                                            <div class="row">
-                                                <div class="title"><i class="fa-solid fa-user-tie mx-2"></i>Dados pessoais</div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Nome</span>
-                                                    <span class="field-info">Salomao Jose</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Apelido</span>
-                                                    <span class="field-info">Valoi</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Sexo</span>
-                                                    <span class="field-info">Masculio</span>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Data de Nascimento</span>
-                                                    <span class="field-info">03/12/1994</span>
-                                                </div>
-
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Documento de Identificacao</span>
-                                                    <span class="field-info">Bilhete de Identidade</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Numero de documento</span>
-                                                    <span class="field-info">110101173733J</span>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <!--a seccao a seguir eh para visualizacao de contactos-->
-                                        <div class="row mt-3">
-                                            <div class="row">
-                                                <div class="title"><i class="fa-solid fa-phone mx-1"></i>Contactos</div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Telefone 1</span>
-                                                    <span class="field-info">+258848841005</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold">Telefone 2</span>
-                                                    <span class="field-info">+258828841007</span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <span class="text-muted fw-bold mr-1">Email</span>
-                                                    <span class="field-info">salomaojosevaloi@gmail.com</span>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <!--a seccao a seguir eh para visualizacao do endereco do funcionario-->
-                                        <div class="row mt-3">
-                                            <div class="row">
-                                                <div class="title"><i class="fa-solid fa-address-card mx-2"></i>Endereco</div>
-                                                <div class="col-md-9 col-sm-12">
-                                                    <span class="text-muted fw-bold">Bairro</span>
-                                                    <span class="field-info">Zimpeto,Distrito de Kamubukwana, Maputo</span>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12">
-                                                    <span class="text-muted fw-bold">Quarteirao</span>
-                                                    <span class="field-info">67</span>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                        <!--a seccao a seguir eh para visualizacao dos dados contratuais-->
-                                        <div class="row mt-3">
-                                            <div class="row">
-                                                <div class="title"><i class="fa-solid fa-building mx-2"></i>Dados contratuais</div>
-                                                <div class="col-md-3 col-sm-12">
-                                                    <span class="text-muted fw-bold">Cargo</span>
-                                                    <span class="field-info">Motorista</span>
-                                                </div>
-                                                <div class="col-md-2 col-sm-12">
-                                                    <span class="text-muted fw-bold">Data de inicio</span>
-                                                    <span class="field-info">09/10/2021</span>
-                                                </div>
-                                                <div class="col-md-7 col-sm-12">
-                                                    <span class="text-muted fw-bold">Rota atribuida</span>
-                                                    <span class="field-info">Zimpeto,Distrito de Kamubukwana, Maputo</span>
-                                                </div>
-                                            </div>
+											</div>
+										</div>
+										<!--a seccao a seguir eh para visualizacao do endereco do funcionario-->
+										<div class="row mt-3">
+											<div class="row">
+												<div class="title">
+													<i class="fa-solid fa-address-card mx-2"></i>Endereco
+												</div>
+												<div class="col-md-9 col-sm-12">
+													<span class="text-muted fw-bold">Bairro</span> <span
+														class="field-info">Zimpeto,Distrito de Kamubukwana,
+														Maputo</span>
+												</div>
+												<div class="col-md-3 col-sm-12">
+													<span class="text-muted fw-bold">Quarteirao</span> <span
+														class="field-info">67</span>
+												</div>
+											</div>
 
 
 
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer p-1">
-                                        <button type="button" class="btn bg-btn-danger btn-sm" data-bs-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>
+										</div>
+										<!--a seccao a seguir eh para visualizacao dos dados contratuais-->
+										<div class="row mt-3">
+											<div class="row">
+												<div class="title">
+													<i class="fa-solid fa-building mx-2"></i>Dados contratuais
+												</div>
+												<div class="col-md-3 col-sm-12">
+													<span class="text-muted fw-bold">Cargo</span> <span
+														class="field-info">Motorista</span>
+												</div>
+												<div class="col-md-2 col-sm-12">
+													<span class="text-muted fw-bold">Data de inicio</span> <span
+														class="field-info">09/10/2021</span>
+												</div>
+												<div class="col-md-7 col-sm-12">
+													<span class="text-muted fw-bold">Rota atribuida</span> <span
+														class="field-info">Zimpeto,Distrito de Kamubukwana,
+														Maputo</span>
+												</div>
+											</div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Fim da janela modal para info do funcionario-->
-                    </div>
-                </div>
 
-            </div>
-        </section>
-    </div>
-    <!--Fim do content-wrapper-->
-    <!---wrapper-->
+
+										</div>
+									</div>
+									<div class="modal-footer p-1">
+										<button type="button" class="btn bg-btn-danger btn-sm"
+											data-bs-dismiss="modal">
+											<i class="fas fa-times"></i> Fechar
+										</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--Fim da janela modal para info do funcionario-->
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+	<!--Fim do content-wrapper-->
+	<!---wrapper-->
 
 
 </body>

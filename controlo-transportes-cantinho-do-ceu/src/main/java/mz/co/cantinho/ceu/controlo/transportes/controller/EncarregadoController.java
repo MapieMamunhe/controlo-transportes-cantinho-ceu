@@ -13,6 +13,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
 
@@ -57,6 +58,12 @@ public class EncarregadoController {
     	encarregadoService.gravar(encarregado);
     	attr.addFlashAttribute("success", "Encarregado registado.");
     	return "redirect:/encarregados/novo";
+    }
+    
+    @GetMapping("/pesquisar")
+    public String pesquisar(@RequestParam("nome") String nome, ModelMap model) {
+    	model.addAttribute("encarregados", encarregadoService.buscarPorNome(nome));
+    	return "/listar/encarregados";
     }
     
     @ModelAttribute("encarregados")

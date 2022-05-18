@@ -10,6 +10,7 @@ public interface ContaFuncionarioDao {
 	void update(ContaFuncionario contaFuncionario);
 	void delete(Long id);
 	List<ContaFuncionario> findAll();
+	List<ContaFuncionario> findFuncionarioName(String nome);
 	ContaFuncionario findById(Long id);
 	ContaFuncionario findByFuncionarioId(Long id);
 }

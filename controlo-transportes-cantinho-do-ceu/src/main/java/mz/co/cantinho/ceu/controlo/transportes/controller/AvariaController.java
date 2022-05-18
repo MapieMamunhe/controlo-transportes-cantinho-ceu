@@ -28,9 +28,10 @@ public class AvariaController {
 
     @GetMapping("/comunicar")
     public String comunicar(CarrinhaAvaria carrinhaAvaria) {
-        
         return "/cadastros/avaria-carrinha";
     }
+    
+    
 
     @GetMapping("/nova")
     public String novo(Avaria avaria) {
