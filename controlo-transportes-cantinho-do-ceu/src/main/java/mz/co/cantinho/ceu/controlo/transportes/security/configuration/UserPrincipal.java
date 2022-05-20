@@ -1,4 +1,4 @@
-package mz.co.cantinho.ceu.controlo.transportes.security.configuration;
+	package mz.co.cantinho.ceu.controlo.transportes.security.configuration;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,7 +25,6 @@ public class UserPrincipal implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		System.out.println("Palavra-passe: "+this.contaFuncionario.getPalavraPasse());
 		return this.contaFuncionario.getPalavraPasse();
 	}
 

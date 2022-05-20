@@ -11,5 +11,6 @@ public interface AvariaService {
 	void remover(Long id);
 	Avaria buscarPorId(Long id);
 	List<Avaria> buscarTodos();
+	boolean avariaExiste(String tipo);
 	
 }

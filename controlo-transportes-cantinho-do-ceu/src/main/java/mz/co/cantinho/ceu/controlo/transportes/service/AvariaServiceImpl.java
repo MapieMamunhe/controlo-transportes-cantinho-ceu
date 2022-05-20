@@ -46,4 +46,9 @@ public class AvariaServiceImpl implements AvariaService{
 		return dao.findAll();
 	}
 
+	@Override
+	public boolean avariaExiste(String tipo) {
+		return dao.avariaExiste(tipo);
+	}
+
 }

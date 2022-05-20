@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,14 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.CidadeDistrito;
 import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
-import mz.co.cantinho.ceu.controlo.transportes.domain.Educadora;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
-import mz.co.cantinho.ceu.controlo.transportes.domain.Motorista;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Perfil;
 import mz.co.cantinho.ceu.controlo.transportes.service.ContaFuncionarioService;
-import mz.co.cantinho.ceu.controlo.transportes.service.EducadoraService;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
-import mz.co.cantinho.ceu.controlo.transportes.service.MotoristaService;
 import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
 import mz.co.cantinho.ceu.controlo.transportes.validator.FuncionarioValidator;
 
@@ -40,12 +35,6 @@ public class FuncionarioController {
 
 	@Autowired
 	private ContaFuncionarioService contaFuncionarioService;
-
-	@Autowired
-	private MotoristaService motoristaService;
-
-	@Autowired
-	private EducadoraService educadoraService;
 
 	@Autowired
 	private PerfilService perfilService;
@@ -87,39 +76,8 @@ public class FuncionarioController {
 			return "/cadastros/funcionario";
 		}
 		funcionarioService.gravar(funcionario);
-		criarConta(funcionario);
-		registarPorPapel(funcionario);
 		attr.addFlashAttribute("success", "Funcionário cadastrado com sucesso");
 		return "redirect:/funcionarios/novo";
-	}
-
-	// Regista funcionário de acordo com o papel (mototrista ou educadora)
-	private void registarPorPapel(Funcionario funcionario) {
-		switch (funcionario.getPapel()) {
-			case "Motorista":
-				Motorista motorista = new Motorista();
-				motorista.setFuncionario(funcionario);
-				motoristaService.gravar(motorista);
-				break;
-
-			case "Educadora":
-				Educadora educadora = new Educadora();
-				educadora.setFuncionario(funcionario);
-				educadoraService.gravar(educadora);
-				break;
-
-			default:
-				break;
-		}
-	}
-
-	// Cria conta de funcionário.
-	private void criarConta(Funcionario funcionario) {
-		ContaFuncionario contaF = new ContaFuncionario();
-		contaF.setFuncionario(funcionario);
-		contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
-		contaF.setPalavraPasse(DigestUtils.sha256Hex("[0000]"));
-		contaFuncionarioService.gravar(contaF);
 	}
 	
 	@GetMapping("/pesquisar")

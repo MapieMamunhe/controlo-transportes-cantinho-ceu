@@ -11,5 +11,6 @@ public interface AvariaDao {
 	void delete(Long id);
 	List<Avaria> findAll();
 	Avaria findById(Long id);
+	boolean avariaExiste(String tipo);
 	
 }
