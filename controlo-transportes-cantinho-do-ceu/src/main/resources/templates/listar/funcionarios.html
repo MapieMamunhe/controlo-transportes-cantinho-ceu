@@ -50,8 +50,7 @@
 								</thead>
 								<tbody>
 									<tr class="table-row" th:each="f : ${funcionarios} ">
-										<td
-											th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
+										<td th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
 										<td th:text="${f.perfil.nome} "></td>
 										<td th:text="${f.funcionario.telefone} "></td>
 										<td th:text="${f.funcionario.telefoneAlternativo} "></td>

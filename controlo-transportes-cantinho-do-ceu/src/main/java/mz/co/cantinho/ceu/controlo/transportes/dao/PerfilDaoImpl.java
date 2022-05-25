@@ -12,8 +12,11 @@ public class PerfilDaoImpl  extends AbstractDao<Perfil, Long> implements PerfilD
 	@Override
 	public Perfil findByName(String name) {
 		List<Perfil> perfis = createQuery("select p from Perfil p where p.nome = ?1", name);
-		System.out.println(name + "\nEncontrdados: " + perfis.size());
-		return perfis.get(0);
+		if(!perfis.isEmpty()) {
+			return perfis.get(0);
+		}
+		
+		return null;
 	}
 	
 }

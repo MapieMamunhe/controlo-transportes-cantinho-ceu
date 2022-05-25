@@ -10,12 +10,16 @@ import org.springframework.validation.Validator;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
+import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
 
 @Component
 public class FuncionarioValidator implements Validator {
 
 	@Autowired
 	private FuncionarioService service;
+	
+	@Autowired
+	private PerfilService perfilService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -27,8 +31,7 @@ public class FuncionarioValidator implements Validator {
 		Funcionario funcionario = (Funcionario) target;
 
 		// Validar escolha de perfil
-		if (funcionario.getPapel().equalsIgnoreCase("0")) {
-			System.out.println("Nenhum papel selecionado");
+		if (perfilService.buscarPorNome(funcionario.getPapel()) == null) {
 			errors.rejectValue("papel", "PapelValido.Funcionario");
 		}
 

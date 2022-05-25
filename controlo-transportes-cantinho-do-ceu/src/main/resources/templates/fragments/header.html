@@ -16,8 +16,9 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <div class="dropdown ">
-                <button class="btn bg-cicc dropdown-toggle btn-user" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
-                     <i class="fas fa-user"></i> Usuario logado
+                <button class="btn bg-cicc dropdown-toggle btn-user" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false"
+                sec:authentication="name">
+                     <i class="fas fa-user"></i> Utilizador logado
                 </button>
                 <ul class="dropdown-menu drop-menu" aria-labelledby="usuario">
                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gears mx-2"></i>Minha conta</a></li>
