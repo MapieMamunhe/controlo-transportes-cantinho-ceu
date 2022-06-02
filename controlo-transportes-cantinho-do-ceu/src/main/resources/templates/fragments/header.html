@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -15,10 +16,9 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <div class="dropdown ">
-                <button class="btn bg-cicc dropdown-toggle btn-user" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false"
-                sec:authentication="name">
-                     <i class="fas fa-user"></i> Utilizador logado
+            <div class="dropdown">
+                <button class="btn bg-cicc dropdown-toggle btn-user" type="button" id="usuario" data-bs-toggle="dropdown" aria-expanded="false">
+                     <i class="fas fa-user"></i><span> Utilizador logado</span>
                 </button>
                 <ul class="dropdown-menu drop-menu" aria-labelledby="usuario">
                     <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gears mx-2"></i>Minha conta</a></li>
@@ -26,7 +26,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item m-0" th:href="@{/}"><i class="fa-solid fa-arrow-right-from-bracket mx-2"></i>Logout</a></li>
+                    <li><a class="dropdown-item m-0" th:href="@{/logout}"><i class="fa-solid fa-arrow-right-from-bracket mx-2"></i>Logout</a></li>
                 </ul>
             </div>
         </ul>

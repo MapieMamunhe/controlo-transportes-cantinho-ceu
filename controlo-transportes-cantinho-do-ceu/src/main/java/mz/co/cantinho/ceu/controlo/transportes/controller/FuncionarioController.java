@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import mz.co.cantinho.ceu.controlo.transportes.domain.CidadeDistrito;
 import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Perfil;
+import mz.co.cantinho.ceu.controlo.transportes.domain.Zona;
 import mz.co.cantinho.ceu.controlo.transportes.service.ContaFuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
+import mz.co.cantinho.ceu.controlo.transportes.service.ZonaService;
 import mz.co.cantinho.ceu.controlo.transportes.validator.FuncionarioValidator;
 
 @Controller
@@ -41,6 +42,9 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioValidator funcionarioValidator;
+	
+	@Autowired
+	private ZonaService zonaService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -72,6 +76,9 @@ public class FuncionarioController {
 			funcionario.setEmail(null);
 		}
 
+		//System.out.println("Quarteirão digitado: "+funcionario.getResidenciaQuarteirao());
+		funcionario.setResidenciaQuarteirao(4);
+		
 		if (result.hasErrors()) {// verifica se campos têm erros
 			return "/cadastros/funcionario";
 		}
@@ -90,10 +97,10 @@ public class FuncionarioController {
 	public List<ContaFuncionario> funcionarios() {
 		return contaFuncionarioService.buscarTodos();
 	}
-
+	
 	@ModelAttribute("bairro")
-	public CidadeDistrito[] bairros() {
-		return CidadeDistrito.values();
+	public List<Zona> bairros() {
+		return zonaService.buscarTodos();
 	}
 
 	@ModelAttribute("perfis")

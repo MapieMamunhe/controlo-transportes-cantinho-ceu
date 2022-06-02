@@ -46,4 +46,14 @@ public class ZonaServiceImpl implements ZonaService {
 		return dao.findAll();
 	}
 
+	@Override
+	public Zona buscarPorNome(String nome) {
+		return dao.findByName(nome);
+	}
+
+	@Override
+	public boolean bairroExiste(String bairro) {
+		return dao.bairroExiste(bairro);
+	}
+
 }

@@ -65,9 +65,7 @@ ALTER TABLE carrinha
 ADD COLUMN data_registo TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 ALTER TABLE avaria 
-DROP COLUMN `descricao`;
-
-desc avaria;
+DROP COLUMN descricao;
 
 ALTER TABLE funcionario
 ADD COLUMN data_registo TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -126,6 +124,7 @@ CREATE TABLE IF NOT EXISTS perfil(
 
 INSERT INTO perfil(nome)
 VALUES
+	('Administrador'),
 	('Educadora'),
     ('Gestor de transportes'),
 	('Motorista'),
@@ -138,5 +137,77 @@ ADD FOREIGN KEY (perfil_id) REFERENCES perfil(id);
 
 ALTER TABLE contafuncionario
 DROP COLUMN nome_utilizador;
+
+DROP TABLE IF EXISTS funcionario_residencia;
+CREATE TABLE funcionario_residencia(
+	id BIGINT NOT NULL AUTO_INCREMENT,
+    quarteirao INT NOT NULL,
+    id_funcionario BIGINT NOT NULL UNIQUE,
+    id_zona BIGINT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_funcionario) REFERENCES funcionario(id),
+    FOREIGN KEY(id_zona) REFERENCES zona(id)
+);
+
+/*Migrar dados da coluna residência da tabela funcionario para a tabela funcionario_residecia*/
+DELIMITER $$
+DROP PROCEDURE IF EXISTS migrar_residencia$$
+CREATE PROCEDURE migrar_residencia()
+	BEGIN
+		DECLARE i INT DEFAULT 0;
+        DECLARE j INT DEFAULT 0;
+        DECLARE _id_zona INT;
+        DECLARE _id_funcionario INT;
+        DELETE FROM funcionario_residencia;
+ 
+		/*Selecionar id de cada zona*/
+        pega_zona: LOOP
+			/*ID DE ZONAS*/
+			SELECT id INTO _id_zona FROM zona WHERE nome = ANY (SELECT LEFT(residencia, length(residencia)-8) FROM funcionario) LIMIT i, 1;
+			SET j = 0;
+                /*Selecionar id de funcionario cuja residencia e igual a zona correspodente ao id actual*/
+                preenche_funcionario_zona: LOOP
+                    
+					/*ID DE FUNCIONARIO ACTUAL*/
+					SET _id_funcionario = (SELECT id FROM funcionario
+					WHERE residencia LIKE CONCAT((SELECT nome FROM zona WHERE nome = ANY (SELECT LEFT(residencia, length(residencia)-8)
+					FROM funcionario) LIMIT i, 1), '%') LIMIT j, 1);
+                    SET j = j+1;
+                    IF _id_funcionario IS NOT NULL THEN
+						/*Introduzir id de funcionario actual e zona actual na tabela zona_funcionario*/
+						INSERT INTO funcionario_residencia(quarteirao, id_funcionario, id_zona)
+						VALUES (01, _id_funcionario, _id_zona);
+                        ITERATE preenche_funcionario_zona;
+					ELSE
+						LEAVE preenche_funcionario_zona;
+					END IF;
+				END LOOP preenche_funcionario_zona;
+				
+                SET i = i+1;
+                IF _id_zona IS NOT NULL THEN
+                    ITERATE pega_zona;
+				ELSE
+					LEAVE pega_zona;
+				END IF;
+		END LOOP pega_zona;
+				
+    END; $$
+
+DELIMITER ;
+
+CALL migrar_residencia();
+
+ALTER TABLE funcionario
+DROP COLUMN residencia;
+
+DROP TABLE IF EXISTS funcionario_logs;
+CREATE TABLE IF NOT EXISTS funcionario_logs(
+	id BIGINT NOT NULL AUTO_INCREMENT,
+    login TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    logout TIMESTAMP,
+    conta_funcionario_id BIGINT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(conta_funcionario_id) REFERENCES contafuncionario(id)
+);
 
 SET FOREIGN_KEY_CHECKS = 1;

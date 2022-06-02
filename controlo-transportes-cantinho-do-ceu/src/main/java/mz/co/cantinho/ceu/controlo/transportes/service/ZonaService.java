@@ -11,5 +11,7 @@ public interface ZonaService {
 	void remover(Long id);
 	Zona buscarPorId(Long id);
 	List<Zona> buscarTodos();
+	Zona buscarPorNome(String nome);
+	boolean bairroExiste(String residencia);
 	
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -60,10 +61,10 @@
                                     <p>Carrinhas</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasRole('Administrador')" class="nav-item">
                                 <a th:href="@{/funcionarios/novo}" class="nav-link">
                                     <i class="fa-solid fa-user-tie"></i>
-                                    <p>Funcionarios</p>
+                                    <p>Funcionários</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -95,10 +96,10 @@
                                     <p>Carrinhas</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasRole('Administrador')" class="nav-item">
                                 <a th:href="@{/funcionarios/listar}" class="nav-link">
                                     <i class="fa-solid fa-user-tie"></i>
-                                    <p>Funcionarios</p>
+                                    <p>Funcionários</p>
                                 </a>
                             </li>
                             <li class="nav-item">

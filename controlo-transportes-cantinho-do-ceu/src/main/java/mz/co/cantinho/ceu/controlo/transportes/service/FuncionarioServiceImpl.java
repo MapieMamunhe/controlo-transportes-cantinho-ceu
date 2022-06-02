@@ -12,6 +12,7 @@ import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Educadora;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Motorista;
+import mz.co.cantinho.ceu.controlo.transportes.domain.Residencia;
 
 @Service
 @Transactional(readOnly = false)
@@ -33,11 +34,18 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	private ContaFuncionarioService contaFuncionarioService;
 	
 	@Autowired
+	ZonaService zonaService;
+	
+	@Autowired
+	ResidenciaService residenciaService;
+	
+	@Autowired
 	PasswordEncoder passwordEncoder;
 	
 	@Override
 	public void gravar(Funcionario funcionario) {
 		dao.save(funcionario);
+		registarResidencia(funcionario);
 		criarConta(funcionario);
 		registarPorPapel(funcionario);
 	}
@@ -113,6 +121,15 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 			contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
 			contaF.setPalavraPasse(passwordEncoder.encode("0000"));
 			contaFuncionarioService.gravar(contaF);
+		}
+		
+		//Armazenar residência de funcionário
+		private void registarResidencia(Funcionario funcionario) {
+			Residencia residencia = new Residencia();
+			residencia.setQuarteirao(funcionario.getResidenciaQuarteirao());
+			residencia.setFuncionario(funcionario);
+			residencia.setZona(zonaService.buscarPorNome(funcionario.getResidencia()));
+			residenciaService.gravar(residencia);
 		}
 
 }

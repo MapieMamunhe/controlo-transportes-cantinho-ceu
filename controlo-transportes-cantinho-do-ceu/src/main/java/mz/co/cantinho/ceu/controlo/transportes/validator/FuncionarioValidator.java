@@ -11,6 +11,7 @@ import org.springframework.validation.Validator;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
+import mz.co.cantinho.ceu.controlo.transportes.service.ZonaService;
 
 @Component
 public class FuncionarioValidator implements Validator {
@@ -20,6 +21,9 @@ public class FuncionarioValidator implements Validator {
 	
 	@Autowired
 	private PerfilService perfilService;
+	
+	@Autowired
+	ZonaService zonaService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -44,21 +48,36 @@ public class FuncionarioValidator implements Validator {
 			errors.rejectValue("apelido", "ApelidoValido.Utilizador");
 		}
 
+		//Validar sexo
+		if(!funcionario.getSexo().equals("M") && !funcionario.getSexo().equals("F")) {
+			errors.rejectValue("sexo", "SexoValido.Funcionario");
+		}
+		
 		// validar documento
-		if (!documentoValido(funcionario.getTipoDocumento(), funcionario.getNrDocumento())) {
-			errors.rejectValue("nrDocumento", "DocumentoValido.Funcionario");
-		} else {// verifica se existe um documento com o mesmo número registado
-			if (service.nrDocumentoExiste(funcionario.getNrDocumento())) {
-				errors.rejectValue("nrDocumento", "Duplicado.Funcionario.nrDocumento");
+		if(tipoDocumentoValido(funcionario.getTipoDocumento())) {
+			if (!documentoValido(funcionario.getTipoDocumento(), funcionario.getNrDocumento())) {
+				errors.rejectValue("nrDocumento", "DocumentoValido.Funcionario");
+			}
+			else {// verifica se existe um documento com o mesmo número registado
+				if (service.nrDocumentoExiste(funcionario.getNrDocumento())) {
+					errors.rejectValue("nrDocumento", "Duplicado.Funcionario.nrDocumento");
+				}
 			}
 		}
+		else {
+			errors.rejectValue("tipoDocumento", "DocumentoValido.tipo.Funcionario");
+		}
+		
 
 		// validar celular
-		if (!celularValido(funcionario.getTelefone())) {
-			errors.rejectValue("telefone", "TelefoneValido.Utilizador");
-		} else {// verifica se celular já foi registado
-			if (service.celularExiste(funcionario.getTelefone())) {
-				errors.rejectValue("telefone", "Duplicado.Funcionario.telefone");
+		if(!funcionario.getTelefone().replace(" ", "").isEmpty()) {
+			if (!celularValido(funcionario.getTelefone())) {
+				errors.rejectValue("telefone", "TelefoneValido.Utilizador");
+			} 
+			else {// verifica se celular já foi registado
+				if (service.celularExiste(funcionario.getTelefone())) {
+					errors.rejectValue("telefone", "Duplicado.Funcionario.telefone");
+				}
 			}
 		}
 
@@ -66,10 +85,12 @@ public class FuncionarioValidator implements Validator {
 		if (!funcionario.getTelefoneAlternativo().replace(" ", "").isEmpty()) {
 			if (!celularValido(funcionario.getTelefoneAlternativo())) {
 				errors.rejectValue("telefoneAlternativo", "TelefoneValido.Utilizador");
-			} else {// verificações feitas caso número alternativo seja válido
+			}
+			else {// verificações feitas caso número alternativo seja válido
 				if (funcionario.getTelefone().trim().equals(funcionario.getTelefoneAlternativo().trim())) {
 					errors.rejectValue("telefoneAlternativo", "Iguais.Funcionario.telefone");
-				} else if (service.celularExiste(funcionario.getTelefoneAlternativo())) {
+				}
+				else if (service.celularExiste(funcionario.getTelefoneAlternativo())) {
 					errors.rejectValue("telefoneAlternativo", "Duplicado.Funcionario.telefone");
 				}
 			}
@@ -82,6 +103,17 @@ public class FuncionarioValidator implements Validator {
 			if (service.emailExiste(funcionario.getEmail())) {
 				errors.rejectValue("email", "Duplicado.Funcionario.email");
 			}
+		}
+		
+		//validar residencia
+		if(zonaService.bairroExiste(funcionario.getResidencia())) {
+			funcionario.setResidenciaQuarteirao(4);
+			if(funcionario.getResidenciaQuarteirao() <= 0) {
+				errors.rejectValue("residenciaQuarteirao", "Residencia.QuarteiraoValido.Funcionario");
+			}
+		}
+		else {
+			errors.rejectValue("residencia", "Residencia.BairroValido.Funcionario");
 		}
 
 		// verificar idade
@@ -104,6 +136,11 @@ public class FuncionarioValidator implements Validator {
 		return nome.matches("[A-Za-zÀ-Úà-ú ]*");
 	}
 
+	//Validar tipo de dpcumento
+	private boolean tipoDocumentoValido(String tipoDoc) {
+		return tipoDoc.equals("BI") || tipoDoc.equals("Passaporte") || tipoDoc.equals("Carta de Condução");
+	}
+	
 	// Validar número de documento de acordo com o tipo
 	private boolean documentoValido(String tipo, String numero) {
 		switch (tipo) {

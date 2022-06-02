@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -63,10 +64,17 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@Column()
 	private String email;
 	
+	@Valid
 	@NotNull
 	@NotBlank
-	@Column(nullable = false)
+	@Transient
 	private String residencia;
+	
+	@Valid
+	@NotNull
+	@Digits(fraction = 0, integer = 2)
+	@Transient
+	private int residenciaQuarteirao;
 	
 	@Valid
 	@NotNull
@@ -101,8 +109,6 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 		return sexo;
 	}
 
-	
-	
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
@@ -153,6 +159,14 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 
 	public void setResidencia(String residencia) {
 		this.residencia = residencia;
+	}
+	
+	public int getResidenciaQuarteirao() {
+		return residenciaQuarteirao;
+	}
+
+	public void setResidenciaQuarteirao(int residenciaQuarteirao) {
+		this.residenciaQuarteirao = residenciaQuarteirao;
 	}
 
 	public String getPapel() {

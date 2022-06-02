@@ -39,8 +39,6 @@ public class AvariaController {
         return "/cadastros/avaria-carrinha";
     }
     
-    
-
     @GetMapping("/nova")
     public String novo(Avaria avaria) {
         return "/cadastros/avaria";

@@ -11,5 +11,7 @@ public interface ZonaDao {
 	void delete(Long id);
 	List<Zona> findAll();
 	Zona findById(Long id);
+	Zona findByName(String nome);
+	boolean bairroExiste(String bairro);
 	
 }
