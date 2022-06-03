@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.Avaria;
-import mz.co.cantinho.ceu.controlo.transportes.domain.CarrinhaAvaria;
 import mz.co.cantinho.ceu.controlo.transportes.service.AvariaService;
 import mz.co.cantinho.ceu.controlo.transportes.validator.AvariaValidator;
 
@@ -34,11 +33,6 @@ public class AvariaController {
         return "/listar/encarregados";
     }
 
-    @GetMapping("/comunicar")
-    public String comunicar(CarrinhaAvaria carrinhaAvaria) {
-        return "/cadastros/avaria-carrinha";
-    }
-    
     @GetMapping("/nova")
     public String novo(Avaria avaria) {
         return "/cadastros/avaria";
