@@ -107,7 +107,6 @@ public class FuncionarioValidator implements Validator {
 		
 		//validar residencia
 		if(zonaService.bairroExiste(funcionario.getResidencia())) {
-			funcionario.setResidenciaQuarteirao(4);
 			if(funcionario.getResidenciaQuarteirao() <= 0) {
 				errors.rejectValue("residenciaQuarteirao", "Residencia.QuarteiraoValido.Funcionario");
 			}

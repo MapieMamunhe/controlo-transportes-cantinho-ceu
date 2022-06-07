@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Rota;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Zona;
 import mz.co.cantinho.ceu.controlo.transportes.service.RotaService;
-import mz.co.cantinho.ceu.controlo.transportes.service.ZonaRotaService;
 import mz.co.cantinho.ceu.controlo.transportes.service.ZonaService;
 
 @Controller
@@ -24,9 +23,6 @@ public class RotaController {
 	
 	@Autowired
 	private ZonaService zonaService;
-	
-	@Autowired
-	private ZonaRotaService zonaRotaService;
 	
 	@GetMapping("/cadastrar")
 	private String cadastrar(Rota rota) {

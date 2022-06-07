@@ -1,75 +1,80 @@
 <html layout:decorate="~{layout}">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Nova avaria</title>
+<meta charset="UTF-8" />
+<title>Nova avaria</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
-    <div class="content-wrapper bg-white z-index-1" layout:fragment="body">
-        <section class="content p-0">
-            <div class="container-fluid px-5">
-                <div class="card mt-3 bd-1">
-                    <div class="card-header bg-cicc py-2">
-                        <div class="float-left">
-                            <i class="fa-solid fa-screwdriver-wrench mx-2"></i>Comunicar Avaria
-                        </div>
-                        <div class="float-right"></div>
-                    </div>
-                    <form th:action="@{/avarias/comunicar}" th:object="${carrinhaAvaria}" method="post">
-                        <div class="card-body">
-                            <div class="form-row">
+	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+	<div class="content-wrapper bg-white z-index-1" layout:fragment="body">
+		<section class="content p-0">
+			<div class="container-fluid px-5">
+				<div class="card mt-3 bd-1">
+					<div class="card-header bg-cicc py-2">
+						<div class="float-left">
+							<i class="fa-solid fa-screwdriver-wrench mx-2"></i>Comunicar
+							Avaria
+						</div>
+						<div class="float-right"></div>
+					</div>
+					<!--Mensagem de confirmacao-->
+					<div th:replace="fragments/alert"></div>
+					<form th:action="@{/carrinha-avaria/registar}"
+						th:object="${carrinhaAvaria}" method="post">
+						<div class="card-body">
+							<div class="form-row">
 
-                                <div class="form-group col-md-12 col-sm-12">
-                                    <label for="nome" class="form-label obrigatorio">Avaria</label>
-                                    <select class="form-select">
-                                        <option value="">Selecione...</option>
-                                        <option value="">Avaria 1</option>
-                                        <option value="">Avaria 2</option>
-                                    </select>
+								<div class="form-group col-md-12 col-sm-12">
+									<label for="nome" class="form-label obrigatorio">Avaria</label>
+									<select class="form-select" th:field="*{avaria}"
+										th:classappend="${#fields.hasErrors('avaria')} ? 'is-invalid'">
+										<option value="">Selecione...</option>
+										<option th:each="a : ${avarias}" th:value="${a.id}"
+											th:text="${a.tipo}"></option>
+									</select>
 
+									<div class="erros" th:errors="*{avaria}"></div>
+								</div>
 
-                                    <!--<div class="erros" th:errors="*{}"></div>-->
-                                </div>
+							</div>
 
-                            </div>
+							<div class="form-row">
+								<div class="form-group col-md-12 col-sm-12">
+									<label for="descricao" class="form-label obrigatorio">Matrícula da carrinha avariada</label>
+									<select class="form-select"
+										th:field="*{carrinha}"
+										th:classappend="${#fields.hasErrors('carrinha')} ? 'is-invalid'">
+										<option value="">Selecione...</option>
+										<option th:each="c : ${carrinhas}" th:value="${c.id}"
+											th:text="${c.matricula}"></option>
+									</select>
+									<div class="erros" th:errors="*{carrinha}"></div>
+								</div>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-12 col-sm-12">
-                                    <label for="descricao" class="form-label obrigatorio">Matricula da carrinha avariada</label>
-                                    <select class="form-select">
-                                        <option value="">Selecione...</option>
-                                        <option value="">AHJ-356-MC</option>
-                                        <option value="">AJJ-376-MC</option>
-                                        <option value="">AKJ-346-MC</option>
-                                    </select>
-                                </div>
+							</div>
 
-                            </div>
+						</div>
 
-                        </div>
-                        <!--Mensagem de confirmacao-->
-                        <div th:replace="fragments/alert"></div>
-                        <div class="card-footer py-0 bg-white p-3">
-                            <div class="float-right">
-                                <div class="form-group">
-                                    <button class="btn btn-danger mx-3 btn-sm px-3">
-                      <i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
-                    </button>
-                                    <button class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3">
-                      <i class="fa-solid fa-plus mx-1"></i>Comunicar
-                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!--Fim do content-wrapper-->
-    <!---wrapper-->
+						<div class="card-footer py-0 bg-white p-3">
+							<div class="float-right">
+								<div class="form-group">
+									<button type="reset" class="btn btn-danger mx-3 btn-sm px-3">
+										<i class="fa-solid fa-circle-xmark mx-1"></i>Cancelar
+									</button>
+									<button  type="submit" class="btn bg-cicc btn-cadastro mx-3 btn-sm px-3">
+										<i class="fa-solid fa-plus mx-1"></i>Comunicar
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!--Fim do content-wrapper-->
+	<!---wrapper-->
 </body>
 
 </html>

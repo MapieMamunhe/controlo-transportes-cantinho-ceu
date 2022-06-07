@@ -47,7 +47,7 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                         </a>
 
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li sec:authorize="hasAnyRole('Administrador', 'Gestor de transportes', 'Secretária')" class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-database"></i>
                             <p> Cadastros
@@ -55,7 +55,7 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                             </p>
                         </a>
                         <ul class="nav nav-treeview ml-1 barra-l">
-                            <li class="nav-item ">
+                            <li sec:authorize="hasAnyRole('Administrador', 'Gestor de transportes')" class="nav-item ">
                                 <a th:href="@{/carrinhas/nova}" class="nav-link ">
                                     <i class="fa-solid fa-bus"></i>
                                     <p>Carrinhas</p>
@@ -67,13 +67,13 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                                     <p>Funcionários</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasAnyRole('Administrador', 'Secretária')" class="nav-item">
                                 <a th:href="@{/encarregados/novo}" class="nav-link">
                                     <i class="fa-solid fa-person"></i>
                                     <p>Encarregados</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasAnyRole('Administrador', 'Gestor de transportes')" class="nav-item">
                                 <a th:href="@{/avarias/nova}" class="nav-link">
                                     <i class="fa-solid fa-screwdriver-wrench"></i>
                                     <p>Avarias</p>
@@ -90,7 +90,7 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                             </p>
                         </a>
                         <ul class="nav nav-treeview ml-1 barra-l">
-                            <li class="nav-item ">
+                            <li sec:authorize="hasAnyRole('Administrador', 'Gestor de transportes')" class="nav-item ">
                                 <a th:href="@{/carrinhas/listar}" class="nav-link ">
                                     <i class="fa-solid fa-bus"></i>
                                     <p>Carrinhas</p>
@@ -102,7 +102,7 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                                     <p>Funcionários</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasAnyRole('Administrador', 'Secretária')" class="nav-item">
                                 <a th:href="@{/encarregados/listar}" class="nav-link">
                                     <i class="fa-solid fa-person"></i>
                                     <p>Encarregados</p>
@@ -112,7 +112,7 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
 
                         </ul>
                     </li>
-                    <!-- <li class="nav-item has-treeview">
+                    <li sec:authorize="hasAnyRole('Administrador', 'Gestor de transportes', 'Motorista')" class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="fa-solid fa-message"></i>
                             <p>Comunicar
@@ -120,8 +120,8 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                             </p>
                         </a>
                         <ul class="nav nav-treeview ml-1 barra-l">
-                            <li class="nav-item ">
-                                <a th:href="@{/avarias/comunicar}" class="nav-link ">
+                            <li sec:authorize="hasAnyRole('Administrador', 'Gestor de transportes', 'Motorista')" class="nav-item ">
+                                <a th:href="@{/carrinha-avaria/comunicar}" class="nav-link ">
                                     <i class="fa-solid fa-screwdriver-wrench"></i>
                                     <p>Avarias</p>
                                 </a>
@@ -130,7 +130,7 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
 
 
                         </ul>
-                    </li> -->
+                    </li>
 
                 </ul>
 

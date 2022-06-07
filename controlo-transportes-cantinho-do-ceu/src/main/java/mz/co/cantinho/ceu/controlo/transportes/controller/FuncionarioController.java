@@ -75,9 +75,6 @@ public class FuncionarioController {
 		if (funcionario.getEmail().equals("")) {// Mesmo que telefone alternativo
 			funcionario.setEmail(null);
 		}
-
-		//System.out.println("Quarteirão digitado: "+funcionario.getResidenciaQuarteirao());
-		funcionario.setResidenciaQuarteirao(4);
 		
 		if (result.hasErrors()) {// verifica se campos têm erros
 			return "/cadastros/funcionario";
