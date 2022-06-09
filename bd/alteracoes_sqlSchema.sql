@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS crianca_encarregado(
     PRIMARY KEY(crianca_id, encarregado_id),
     FOREIGN KEY (crianca_id) REFERENCES crianca(id),
     FOREIGN KEY (encarregado_id) REFERENCES encarregado(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 ALTER TABLE carrinha
 MODIFY COLUMN matricula VARCHAR(50) NOT NULL UNIQUE;
@@ -147,7 +147,7 @@ CREATE TABLE funcionario_residencia(
     PRIMARY KEY(id),
     FOREIGN KEY(id_funcionario) REFERENCES funcionario(id),
     FOREIGN KEY(id_zona) REFERENCES zona(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Migrar dados da coluna residência da tabela funcionario para a tabela funcionario_residecia*/
 DELIMITER $$
@@ -208,6 +208,6 @@ CREATE TABLE IF NOT EXISTS funcionario_logs(
     conta_funcionario_id BIGINT NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(conta_funcionario_id) REFERENCES contafuncionario(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
