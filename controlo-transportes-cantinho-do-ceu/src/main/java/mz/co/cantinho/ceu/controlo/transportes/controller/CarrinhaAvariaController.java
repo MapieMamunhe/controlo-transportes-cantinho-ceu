@@ -41,6 +41,7 @@ public class CarrinhaAvariaController {
 	@PostMapping("/registar")
 	public String registar(@Valid CarrinhaAvaria carrinhaAvaria, BindingResult result, RedirectAttributes attr) {
 		if(result.hasErrors()) {
+			System.out.println("Found an error...");
 			return "/cadastros/avaria-carrinha";
 		}
 		carrinhaAvariaService.gravar(carrinhaAvaria);

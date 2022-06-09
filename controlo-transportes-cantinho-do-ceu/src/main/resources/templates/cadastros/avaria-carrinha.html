@@ -29,9 +29,8 @@
 									<label for="nome" class="form-label obrigatorio">Avaria</label>
 									<select class="form-select" th:field="*{avaria}"
 										th:classappend="${#fields.hasErrors('avaria')} ? 'is-invalid'">
-										<option value="">Selecione...</option>
-										<option th:each="a : ${avarias}" th:value="${a.id}"
-											th:text="${a.tipo}"></option>
+										<option value="-1">Selecione...</option>
+										<option th:each="a : ${avarias}" th:value="${a.id}" th:text="${a.tipo}"></option>
 									</select>
 
 									<div class="erros" th:errors="*{avaria}"></div>
@@ -45,9 +44,8 @@
 									<select class="form-select"
 										th:field="*{carrinha}"
 										th:classappend="${#fields.hasErrors('carrinha')} ? 'is-invalid'">
-										<option value="">Selecione...</option>
-										<option th:each="c : ${carrinhas}" th:value="${c.id}"
-											th:text="${c.matricula}"></option>
+										<option value="-1">Selecione...</option>
+										<option th:each="c : ${carrinhas}" th:value="${c.id}" th:text="${c.matricula}"></option>
 									</select>
 									<div class="erros" th:errors="*{carrinha}"></div>
 								</div>

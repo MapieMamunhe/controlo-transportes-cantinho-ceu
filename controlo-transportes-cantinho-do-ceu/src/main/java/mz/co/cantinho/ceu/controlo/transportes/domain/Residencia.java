@@ -1,5 +1,6 @@
 package mz.co.cantinho.ceu.controlo.transportes.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ public class Residencia extends EntidadeAbstrata<Long>{
 	int quarteirao;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_funcionario")
 	Funcionario funcionario;
 	

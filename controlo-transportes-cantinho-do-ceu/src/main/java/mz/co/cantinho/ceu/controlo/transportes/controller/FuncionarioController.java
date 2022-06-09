@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Perfil;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Zona;
-import mz.co.cantinho.ceu.controlo.transportes.service.ContaFuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
 import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
 import mz.co.cantinho.ceu.controlo.transportes.service.ZonaService;
@@ -33,9 +31,6 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioService funcionarioService;
-
-	@Autowired
-	private ContaFuncionarioService contaFuncionarioService;
 
 	@Autowired
 	private PerfilService perfilService;
@@ -86,13 +81,13 @@ public class FuncionarioController {
 	
 	@GetMapping("/pesquisar")
 	public String buscarPorNome(@RequestParam("nome")String nome, ModelMap model) {
-		model.addAttribute("funcionarios", contaFuncionarioService.buscarPorNomeFuncionario(nome));
+		model.addAttribute("funcionarios", funcionarioService.buscarPorNome(nome));
 		return "/listar/funcionarios";
 	}
 
 	@ModelAttribute("funcionarios")
-	public List<ContaFuncionario> funcionarios() {
-		return contaFuncionarioService.buscarTodos();
+	public List<Funcionario> funcionarios() {
+		return funcionarioService.buscarTodos();
 	}
 	
 	@ModelAttribute("bairro")

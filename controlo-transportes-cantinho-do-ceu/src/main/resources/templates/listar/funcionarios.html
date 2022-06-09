@@ -50,15 +50,15 @@
 								</thead>
 								<tbody>
 									<tr class="table-row" th:each="f : ${funcionarios}">
-										<td th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
-										<td th:text="${f.perfil.nome}"></td>
-										<td th:text="${f.funcionario.telefone}"></td>
-										<td th:text="${f.funcionario.email}"></td>
+										<td th:text="${f.nome} + ' ' + ${f.apelido}"></td>
+										<td th:text="${f.conta.perfil.nome}"></td>
+										<td th:text="${f.telefone}"></td>
+										<td th:text="${f.email}"></td>
 										<td class="text-right ">
 											<div class="d-flex justify-content-end ">
 												<a href=" " role="button"
 													class="btn btn-sm bg-btn-info p-0 f "
-													data-bs-toggle="modal" th:attr="data-bs-target=${'#info-funcionario' + f.funcionario.id}" data-row="${funcionario}" data-bs-target="#info-funcionario"><i
+													data-bs-toggle="modal" th:attr="data-bs-target=${'#info-funcionario' + f.id}" data-row="${funcionario}" data-bs-target="#info-funcionario"><i
 													class="fa-solid fa-circle-info mx-1 "></i></a> <a href=" "
 													role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 "><i
 													class="fa-solid fa-pen-to-square mx-1"></i></a> <a href=" "
@@ -74,7 +74,7 @@
 						</div>
 
 						<!-- Inicio da janela Modal para visualizar os restantes atributos do funcionario -->
-						<div th:each="f : ${funcionarios}" class="modal fade" th:attr="id=${'info-funcionario' + f.funcionario.id}" id="info-funcionario" tabindex="-1"
+						<div th:each="f : ${funcionarios}" class="modal fade" th:attr="id=${'info-funcionario' + f.id}" id="info-funcionario" tabindex="-1"
 							aria-hidden="true">
 							<div class="modal-dialog modal-info-w">
 								<div class="modal-content">
@@ -93,31 +93,31 @@
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Nome</span>
-													<span class="field-info" th:text="${f.funcionario.nome}"></span>
+													<span class="field-info" th:text="${f.nome}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Apelido</span>
-													<span class="field-info" th:text="${f.funcionario.apelido}"></span>
+													<span class="field-info" th:text="${f.apelido}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Sexo</span>
-													<span class="field-info" th:text="${f.funcionario.sexo}"></span>
+													<span class="field-info" th:text="${f.sexo}"></span>
 												</div>
 
 											</div>
 											<div class="row">
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Data de Nascimento</span>
-													<span class="field-info" th:text="${f.funcionario.dataNascimento}"></span>
+													<span class="field-info" th:text="${f.dataNascimento}"></span>
 												</div>
 
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Documento de Identificação</span>
-													<span class="field-info" th:text="${f.funcionario.tipoDocumento}"></span>
+													<span class="field-info" th:text="${f.tipoDocumento}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Número de documento</span>
-													<span class="field-info" th:text="${f.funcionario.nrDocumento}"></span>
+													<span class="field-info" th:text="${f.nrDocumento}"></span>
 												</div>
 
 											</div>
@@ -130,15 +130,15 @@
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Celular</span> <span
-														class="field-info" th:text="${f.funcionario.telefone}"></span>
+														class="field-info" th:text="${f.telefone}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Celular alternativo</span>
-													<span class="field-info" th:text="${f.funcionario.telefoneAlternativo}"></span>
+													<span class="field-info" th:text="${f.telefoneAlternativo}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold mr-1">Email</span>
-													<span class="field-info" th:text="${f.funcionario.email}"></span>
+													<span class="field-info" th:text="${f.email}"></span>
 												</div>
 
 											</div>
@@ -151,7 +151,7 @@
 												</div>
 												<div class="col-md-9 col-sm-12">
 													<span class="text-muted fw-bold">Bairro</span>
-													<span class="field-info">Zimpeto,Distrito de Kamubukwana, Maputo</span>
+													<span class="field-info" th:text="${f.residencia}"></span>
 												</div>
 												<div class="col-md-3 col-sm-12">
 													<span class="text-muted fw-bold">Quarteirão</span>
@@ -170,7 +170,7 @@
 												</div>
 												<div class="col-md-3 col-sm-12">
 													<span class="text-muted fw-bold">Perfil</span> <span
-														class="field-info" th:text="${f.perfil.nome}"></span>
+														class="field-info" th:text="${f.conta.perfil.nome}"></span>
 												</div>
 												<div class="col-md-2 col-sm-12">
 													<span class="text-muted fw-bold">Data de início</span> <span

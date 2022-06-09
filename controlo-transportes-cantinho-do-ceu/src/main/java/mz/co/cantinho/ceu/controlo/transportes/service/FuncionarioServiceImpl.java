@@ -1,14 +1,13 @@
 package mz.co.cantinho.ceu.controlo.transportes.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import mz.co.cantinho.ceu.controlo.transportes.dao.FuncionarioDao;
-import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Educadora;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Motorista;
@@ -28,25 +27,16 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	private EducadoraService educadoraService;
 	
 	@Autowired
-	private PerfilService perfilService;
-	
-	@Autowired
-	private ContaFuncionarioService contaFuncionarioService;
-	
-	@Autowired
 	ZonaService zonaService;
 	
 	@Autowired
 	ResidenciaService residenciaService;
 	
-	@Autowired
-	PasswordEncoder passwordEncoder;
-	
 	@Override
 	public void gravar(Funcionario funcionario) {
 		dao.save(funcionario);
 		registarResidencia(funcionario);
-		criarConta(funcionario);
+		//criarConta(funcionario);
 		registarPorPapel(funcionario);
 	}
 
@@ -71,7 +61,10 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Funcionario> buscarTodos() {
-		return dao.findAll();
+		List<Funcionario> funcionarios = dao.findAll();
+		funcionarios.sort(Comparator.comparing(Funcionario::getNome).thenComparing(Funcionario::getApelido));
+		funcionarioResidencia(funcionarios);
+		return funcionarios;
 	}
 
 	@Override
@@ -92,11 +85,16 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		return dao.emailExiste(email);
 	}
 	
-	//=============AUXILIARES==================
+	@Override
+	public List<Funcionario> buscarPorNome(String nome) {
+		return dao.findByName(nome);
+	}
+	
+	//========================================AUXILIARES===========================================
 	
 	// Regista funcionário de acordo com o papel (mototrista ou educadora)
 		private void registarPorPapel(Funcionario funcionario) {
-			switch (funcionario.getPapel()) {
+			switch (funcionario.getConta().getPerfil().getNome()) {
 				case "Motorista":
 					Motorista motorista = new Motorista();
 					motorista.setFuncionario(funcionario);
@@ -115,13 +113,13 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		}
 
 		// Cria conta de funcionário.
-		private void criarConta(Funcionario funcionario) {
-			ContaFuncionario contaF = new ContaFuncionario();
-			contaF.setFuncionario(funcionario);
-			contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
-			contaF.setPalavraPasse(passwordEncoder.encode("0000"));
-			contaFuncionarioService.gravar(contaF);
-		}
+		/*
+		 * private void criarConta(Funcionario funcionario) { ContaFuncionario contaF =
+		 * new ContaFuncionario(); contaF.setFuncionario(funcionario);
+		 * //contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
+		 * contaF.setPalavraPasse(passwordEncoder.encode("0000"));
+		 * contaFuncionarioService.gravar(contaF); }
+		 */
 		
 		//Armazenar residência de funcionário
 		private void registarResidencia(Funcionario funcionario) {
@@ -130,6 +128,23 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 			residencia.setFuncionario(funcionario);
 			residencia.setZona(zonaService.buscarPorNome(funcionario.getResidencia()));
 			residenciaService.gravar(residencia);
+		}
+		
+		//Colocar residência em cada funcionário
+		private void funcionarioResidencia(List<Funcionario> funcionario) {
+			Funcionario actual;
+			for(int i = 0; i < funcionario.size(); i++) {
+				actual = funcionario.get(i);
+				Residencia residencia = residenciaDe(actual);
+				actual.setResidencia(residencia.getZona().getNome() + ", " + residencia.getZona().getCidade());
+				actual.setResidenciaQuarteirao(residencia.getQuarteirao());
+				
+			}
+		}
+		
+		//Encontrar residência de cada funcionário
+		private Residencia residenciaDe(Funcionario funcionario) {
+			return residenciaService.buscarPorFuncionario(funcionario);
 		}
 
 }

@@ -2,8 +2,10 @@ package mz.co.cantinho.ceu.controlo.transportes.domain;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
@@ -64,6 +66,9 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@Column()
 	private String email;
 	
+	@OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL)
+	private ContaFuncionario conta;
+	
 	@Valid
 	@NotNull
 	@NotBlank
@@ -76,10 +81,13 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@Transient
 	private int residenciaQuarteirao;
 	
-	@Valid
-	@NotNull
-	@Transient
-	private String papel;
+	/*
+	 * @Valid
+	 * 
+	 * @NotNull
+	 * 
+	 * @Transient private String papel;
+	 */
 
 	public String getNome() {
 		return nome;
@@ -169,12 +177,21 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 		this.residenciaQuarteirao = residenciaQuarteirao;
 	}
 
-	public String getPapel() {
-		return papel;
+	public ContaFuncionario getConta() {
+		return conta;
 	}
 
-	public void setPapel(String papel) {
-		this.papel = papel;
+	public void setConta(ContaFuncionario conta) {
+		this.conta = conta;
 	}
+	
+
+	/*
+	 * public String getPapel() { return papel; }
+	 * 
+	 * public void setPapel(String papel) { this.papel = papel; }
+	 */
+	
+	
 	
 }

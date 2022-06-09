@@ -14,5 +14,6 @@ public interface FuncionarioService {
 	boolean nrDocumentoExiste(String nrDocumento);
 	boolean celularExiste(String telefone);
 	boolean emailExiste(String email);
+	List<Funcionario> buscarPorNome(String nome);
 	
 }
