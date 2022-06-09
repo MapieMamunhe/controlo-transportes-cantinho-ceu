@@ -20,16 +20,20 @@
 					</div>
 					<div class="card-body">
 
-						<form th:action="@{/funcionarios/pesquisar}" class="form-row" method = "GET">
+						<form th:action="@{/funcionarios/pesquisar}" class="form-row"
+							method="GET">
 
-                            <div class="input-group mb-3">
-                                <input th:name="nome" type="text" class="form-control" placeholder="Digite o nome do funcionário">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" id="button-addon2"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
+							<div class="input-group mb-3">
+								<input th:name="nome" type="text" class="form-control"
+									placeholder="Digite o nome do funcionário">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" id="button-addon2">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
 
-                        </form>
+						</form>
 
 						<div
 							class="table-responsive table-responsive-md table-responsive-sm">
@@ -38,33 +42,30 @@
 									<tr>
 
 										<th class="px-3">Nome</th>
-										<th>Cargo</th>
+										<th>Perfil</th>
 										<th>Celular</th>
-										<th>Celular alternativo</th>
 										<th>email</th>
-										<th>Data de nascimento</th>
-										<th>Tipo de documento</th>
-										<th>Número de documento</th>
 										<th class="text-right px-3">Acção</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="table-row" th:each="f : ${funcionarios} ">
+									<tr class="table-row" th:each="f : ${funcionarios}">
 										<td th:text="${f.funcionario.nome} + ' ' + ${f.funcionario.apelido}"></td>
-										<td th:text="${f.perfil.nome} "></td>
-										<td th:text="${f.funcionario.telefone} "></td>
-										<td th:text="${f.funcionario.telefoneAlternativo} "></td>
-										<td th:text="${f.funcionario.email} "></td>
-										<td th:text="${f.funcionario.dataNascimento} "></td>
-										<td th:text="${f.funcionario.tipoDocumento} "></td>
-										<td th:text="${f.funcionario.nrDocumento} "></td>
+										<td th:text="${f.perfil.nome}"></td>
+										<td th:text="${f.funcionario.telefone}"></td>
+										<td th:text="${f.funcionario.email}"></td>
 										<td class="text-right ">
-                                            <div class="d-flex justify-content-end ">
-                                                <a href=" " role="button" class="btn btn-sm bg-btn-info p-0 f " data-bs-toggle="modal" data-bs-target="#info-funcionario"><i class="fa-solid fa-circle-info mx-1 "></i></a>
-                                                <a href=" " role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 "><i class="fa-solid fa-pen-to-square mx-1"></i></a>
-                                                <a href=" " role="button" class="btn btn-sm bg-btn-danger p-0 f "><i class="fa-solid fa-trash-can mx-1"></i></a>
-                                            </div>
-                                        </td>
+											<div class="d-flex justify-content-end ">
+												<a href=" " role="button"
+													class="btn btn-sm bg-btn-info p-0 f "
+													data-bs-toggle="modal" th:attr="data-bs-target=${'#info-funcionario' + f.funcionario.id}" data-row="${funcionario}" data-bs-target="#info-funcionario"><i
+													class="fa-solid fa-circle-info mx-1 "></i></a> <a href=" "
+													role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 "><i
+													class="fa-solid fa-pen-to-square mx-1"></i></a> <a href=" "
+													role="button" class="btn btn-sm bg-btn-danger p-0 f "><i
+													class="fa-solid fa-trash-can mx-1"></i></a>
+											</div>
+										</td>
 									</tr>
 
 								</tbody>
@@ -72,16 +73,14 @@
 
 						</div>
 
-
-
 						<!-- Inicio da janela Modal para visualizar os restantes atributos do funcionario -->
-						<div class="modal fade" id="info-funcionario" tabindex="-1"
+						<div th:each="f : ${funcionarios}" class="modal fade" th:attr="id=${'info-funcionario' + f.funcionario.id}" id="info-funcionario" tabindex="-1"
 							aria-hidden="true">
 							<div class="modal-dialog modal-info-w">
 								<div class="modal-content">
 									<div class="modal-header py-1 bg-cicc">
 										<h5 class="modal-title">
-											<i class="fas fa-circle-info"></i> Informacao do funcinario x
+											<i class="fas fa-circle-info"></i> Detalhes
 										</h5>
 
 									</div>
@@ -93,33 +92,32 @@
 													<i class="fa-solid fa-user-tie mx-2"></i>Dados pessoais
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Nome</span> <span
-														class="field-info">Salomao Jose</span>
+													<span class="text-muted fw-bold">Nome</span>
+													<span class="field-info" th:text="${f.funcionario.nome}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Apelido</span> <span
-														class="field-info">Valoi</span>
+													<span class="text-muted fw-bold">Apelido</span>
+													<span class="field-info" th:text="${f.funcionario.apelido}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Sexo</span> <span
-														class="field-info">Masculio</span>
+													<span class="text-muted fw-bold">Sexo</span>
+													<span class="field-info" th:text="${f.funcionario.sexo}"></span>
 												</div>
 
 											</div>
 											<div class="row">
 												<div class="col-md-4 col-sm-12">
 													<span class="text-muted fw-bold">Data de Nascimento</span>
-													<span class="field-info">03/12/1994</span>
+													<span class="field-info" th:text="${f.funcionario.dataNascimento}"></span>
 												</div>
 
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Documento de
-														Identificacao</span> <span class="field-info">Bilhete de
-														Identidade</span>
+													<span class="text-muted fw-bold">Documento de Identificação</span>
+													<span class="field-info" th:text="${f.funcionario.tipoDocumento}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Numero de documento</span>
-													<span class="field-info">110101173733J</span>
+													<span class="text-muted fw-bold">Número de documento</span>
+													<span class="field-info" th:text="${f.funcionario.nrDocumento}"></span>
 												</div>
 
 											</div>
@@ -131,16 +129,16 @@
 													<i class="fa-solid fa-phone mx-1"></i>Contactos
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Telefone 1</span> <span
-														class="field-info">+258848841005</span>
+													<span class="text-muted fw-bold">Celular</span> <span
+														class="field-info" th:text="${f.funcionario.telefone}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold">Telefone 2</span> <span
-														class="field-info">+258828841007</span>
+													<span class="text-muted fw-bold">Celular alternativo</span>
+													<span class="field-info" th:text="${f.funcionario.telefoneAlternativo}"></span>
 												</div>
 												<div class="col-md-4 col-sm-12">
-													<span class="text-muted fw-bold mr-1">Email</span> <span
-														class="field-info">salomaojosevaloi@gmail.com</span>
+													<span class="text-muted fw-bold mr-1">Email</span>
+													<span class="field-info" th:text="${f.funcionario.email}"></span>
 												</div>
 
 											</div>
@@ -149,16 +147,15 @@
 										<div class="row mt-3">
 											<div class="row">
 												<div class="title">
-													<i class="fa-solid fa-address-card mx-2"></i>Endereco
+													<i class="fa-solid fa-address-card mx-2"></i>Endereço
 												</div>
 												<div class="col-md-9 col-sm-12">
-													<span class="text-muted fw-bold">Bairro</span> <span
-														class="field-info">Zimpeto,Distrito de Kamubukwana,
-														Maputo</span>
+													<span class="text-muted fw-bold">Bairro</span>
+													<span class="field-info">Zimpeto,Distrito de Kamubukwana, Maputo</span>
 												</div>
 												<div class="col-md-3 col-sm-12">
-													<span class="text-muted fw-bold">Quarteirao</span> <span
-														class="field-info">67</span>
+													<span class="text-muted fw-bold">Quarteirão</span>
+													<span class="field-info">67</span>
 												</div>
 											</div>
 
@@ -172,21 +169,18 @@
 													<i class="fa-solid fa-building mx-2"></i>Dados contratuais
 												</div>
 												<div class="col-md-3 col-sm-12">
-													<span class="text-muted fw-bold">Cargo</span> <span
-														class="field-info">Motorista</span>
+													<span class="text-muted fw-bold">Perfil</span> <span
+														class="field-info" th:text="${f.perfil.nome}"></span>
 												</div>
 												<div class="col-md-2 col-sm-12">
-													<span class="text-muted fw-bold">Data de inicio</span> <span
+													<span class="text-muted fw-bold">Data de início</span> <span
 														class="field-info">09/10/2021</span>
 												</div>
 												<div class="col-md-7 col-sm-12">
-													<span class="text-muted fw-bold">Rota atribuida</span> <span
-														class="field-info">Zimpeto,Distrito de Kamubukwana,
-														Maputo</span>
+													<span class="text-muted fw-bold">Rota atribuida</span>
+													<span class="field-info">Zimpeto,Distrito de Kamubukwana, Maputo</span>
 												</div>
 											</div>
-
-
 
 										</div>
 									</div>
