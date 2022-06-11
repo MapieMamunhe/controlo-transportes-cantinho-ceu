@@ -19,12 +19,6 @@ public class UserPrincipalDetailService implements UserDetailsService {
 	@Autowired
 	private ContaFuncionarioDao contaFuncionarioDao;
 	
-<<<<<<< HEAD
-	
-	
-	
-=======
->>>>>>> 426f362875632b04420ee5ede9ae0b1dfacc49c4
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		ContaFuncionario conta = contaFuncionarioDao.findByFuncionarioId(funcionarioDao.findByCellOrEmail(username).getId());
