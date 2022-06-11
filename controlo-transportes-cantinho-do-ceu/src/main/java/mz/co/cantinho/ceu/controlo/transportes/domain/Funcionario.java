@@ -51,7 +51,7 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	
 	@NotNull
 	@NotBlank
-	@Column(name = "nr_documento", nullable = false)
+	@Column(name = "nr_documento", nullable = false, unique = true)
 	private String nrDocumento;
 	
 	@NotNull
@@ -66,7 +66,7 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@Column()
 	private String email;
 	
-	@OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "funcionario", cascade = CascadeType.REMOVE)
 	private ContaFuncionario conta;
 	
 	@Valid
@@ -80,14 +80,6 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	@Digits(fraction = 0, integer = 2)
 	@Transient
 	private int residenciaQuarteirao;
-	
-	/*
-	 * @Valid
-	 * 
-	 * @NotNull
-	 * 
-	 * @Transient private String papel;
-	 */
 
 	public String getNome() {
 		return nome;
@@ -184,13 +176,6 @@ public class Funcionario extends EntidadeAbstrata<Long>{
 	public void setConta(ContaFuncionario conta) {
 		this.conta = conta;
 	}
-	
-
-	/*
-	 * public String getPapel() { return papel; }
-	 * 
-	 * public void setPapel(String papel) { this.papel = papel; }
-	 */
 	
 	
 	

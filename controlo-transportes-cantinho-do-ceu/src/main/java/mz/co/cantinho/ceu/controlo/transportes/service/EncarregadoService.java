@@ -12,5 +12,7 @@ public interface EncarregadoService {
 	Encarregado buscarPorId(Long id);
 	List<Encarregado> buscarTodos();
 	List<Encarregado> buscarPorNome(String nome);
+	boolean celularExiste(String celular, Long id);
+	boolean emailExiste(String email, Long id);
 	
 }

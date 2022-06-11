@@ -12,5 +12,7 @@ public interface EncarregadoDao {
 	List<Encarregado> findAll();
 	Encarregado findById(Long id);
 	List<Encarregado> findByNome(String nome);
+	boolean telefoneExiste(String telefone, Long id);
+	boolean emailExiste(String email, Long id);
 	
 }

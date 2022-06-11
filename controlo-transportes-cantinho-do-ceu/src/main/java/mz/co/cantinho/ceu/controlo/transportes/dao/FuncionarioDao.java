@@ -11,10 +11,10 @@ public interface FuncionarioDao {
 	void delete(Long id);
 	List<Funcionario> findAll();
 	Funcionario findById(Long id);
-	boolean nrDocumentoExiste(String nrDocumento);
-	boolean celularExiste(String celular);
-	boolean emailExiste(String email);
+	boolean celularExiste(String celular, Long id);
+	boolean emailExiste(String email, Long id);
 	Funcionario findByCellOrEmail(String cellOrEmail);
 	List<Funcionario> findByName(String nome);
+	boolean nrDocumentoExiste(String nrDocumento, Long id);
 	
 }

@@ -10,7 +10,10 @@ import mz.co.cantinho.ceu.controlo.transportes.domain.Carrinha;
 public class CarrinhaDaoImpl extends AbstractDao<Carrinha, Long> implements CarrinhaDao{
 
 	@Override
-	public boolean matriculaExiste(String matricula) {
+	public boolean matriculaExiste(String matricula, Long id) {
+		if(id!=null) {
+			return !createQuery("select c from Carrinha c where c.id != ?1 and c.matricula = ?2", id, matricula).isEmpty();
+		}
 		return !createQuery("select c from Carrinha c where c.matricula = ?1", matricula).isEmpty();
 	}
 

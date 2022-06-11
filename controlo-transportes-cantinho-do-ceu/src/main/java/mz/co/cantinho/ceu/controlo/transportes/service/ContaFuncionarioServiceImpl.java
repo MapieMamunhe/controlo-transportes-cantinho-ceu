@@ -47,8 +47,8 @@ public class ContaFuncionarioServiceImpl implements ContaFuncionarioService{
 	}
 
 	@Override
-	public List<ContaFuncionario> buscarPorNomeFuncionario(String nome) {
-		return dao.findFuncionarioName(nome);
+	public ContaFuncionario buscarPorFuncionario(Long idFuncionario) {
+		return dao.findByFuncionarioId(idFuncionario);
 	}
 
 }

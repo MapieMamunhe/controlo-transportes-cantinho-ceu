@@ -18,7 +18,7 @@
                         </div>
                         <div class="float-right"></div>
                     </div>
-                    <form th:action="@{/carrinhas/salvar}" th:object="${carrinha}" method="post">
+                    <form th:action="${carrinha.id} == null ? @{/carrinhas/salvar} : @{/carrinhas/editar}" th:object="${carrinha}" method="post">
                         <div class="card-body">
                         <div class = "px-3"><!--Mensagem de confirmacao-->
                         	<div th:replace="fragments/alert">
@@ -40,7 +40,7 @@
                         </div>
                         
                         </div>
-
+							<input type="hidden" id="id" name="id" th:field="*{id}">
                         <div class="card-footer py-0 bg-white">
                             <div class="float-right">
                                 <div class="form-group">

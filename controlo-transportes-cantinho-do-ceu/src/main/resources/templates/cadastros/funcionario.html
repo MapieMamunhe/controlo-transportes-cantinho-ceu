@@ -17,7 +17,7 @@
 						</div>
 						<div class="float-right"></div>
 					</div>
-					<form th:action="@{/funcionarios/salvar}"
+					<form th:action="${funcionario.id} == null ? @{/funcionarios/salvar} : @{/funcionarios/editar}"
 						th:object="${funcionario}" method="post">
 						<div class="card-body">
 						<div class = "px-3"><!--Mensagem de confirmacao-->
@@ -157,8 +157,8 @@
 												<select name="" class="form-control"
 													th:field="*{residencia}"
 													th:classappend="${#fields.hasErrors('residencia')} ? 'is-invalid'">
-													<option selected value="0 ">Selecione o Bairro...
-													</option>
+													<option selected value="0 ">Selecione o Bairro...</option>
+													<option th:if="*{residencia} != null" th:text="*{residencia}" th:value="*{residencia}"></option>
 													<option th:each="b : ${bairro}" th:value="${b.nome}"
 														th:text="${b.nome} + ', ' + ${b.cidade}"></option>
 												</select>
@@ -181,6 +181,7 @@
 								</div>
 							</div>
 						</div>
+						<input type="hidden" id="id" name="id" th:field="*{id}">
 						<div class="card-footer py-0 bg-white p-3">
 							<div class="float-right">
 								<div class="form-group">

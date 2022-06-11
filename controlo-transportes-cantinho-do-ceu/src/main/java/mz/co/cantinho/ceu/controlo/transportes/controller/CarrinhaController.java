@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,6 +56,22 @@ public class CarrinhaController {
 		}
 		service.gravar(carrinha);
 		attr.addFlashAttribute("success", "Carinha gravada");
+		return "redirect:/carrinhas/nova";
+	}
+	
+	@GetMapping("/editar/{id}")
+	public String editar(@PathVariable("id")Long id, ModelMap model) {
+		model.addAttribute("carrinha", service.buscarPorId(id));
+		return "/cadastros/carrinha";
+	}
+	
+	@PostMapping("/editar")
+	public String actualizar(@Valid Carrinha carrinha, RedirectAttributes attr, BindingResult result) {
+		if(result.hasErrors()) {
+			return "/cadastros/carrinha";
+		}
+		service.actualizar(carrinha);
+		attr.addFlashAttribute("success", "Carrinha actualizada com sucesso.");
 		return "redirect:/carrinhas/nova";
 	}
 	

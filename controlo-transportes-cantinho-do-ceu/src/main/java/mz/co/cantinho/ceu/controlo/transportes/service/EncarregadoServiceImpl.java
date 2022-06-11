@@ -1,5 +1,6 @@
 package mz.co.cantinho.ceu.controlo.transportes.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +44,28 @@ public class EncarregadoServiceImpl implements EncarregadoService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Encarregado> buscarTodos() {
-		return dao.findAll();
+		return sort(dao.findAll());
 	}
 
 	@Override
 	public List<Encarregado> buscarPorNome(String nome) {
-		return dao.findByNome(nome);
+		return sort(dao.findByNome(nome));
+	}
+
+	@Override
+	public boolean celularExiste(String celular, Long id) {
+		return dao.telefoneExiste(celular, id);
+	}
+
+	@Override
+	public boolean emailExiste(String email, Long id) {
+		return dao.emailExiste(email, id);
+	}
+	
+	//=====================================AUXILIAR=================================================
+	private List<Encarregado> sort(List<Encarregado> encarregados) {
+		encarregados.sort(Comparator.comparing(Encarregado::getNome).thenComparing(Encarregado::getApelido).thenComparing(Encarregado::getEmail));
+		return encarregados;
 	}
 
 }

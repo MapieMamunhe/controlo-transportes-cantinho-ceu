@@ -36,7 +36,6 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	public void gravar(Funcionario funcionario) {
 		dao.save(funcionario);
 		registarResidencia(funcionario);
-		//criarConta(funcionario);
 		registarPorPapel(funcionario);
 	}
 
@@ -61,33 +60,30 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Funcionario> buscarTodos() {
-		List<Funcionario> funcionarios = dao.findAll();
-		funcionarios.sort(Comparator.comparing(Funcionario::getNome).thenComparing(Funcionario::getApelido));
-		funcionarioResidencia(funcionarios);
-		return funcionarios;
+		return sort(dao.findAll());
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public boolean nrDocumentoExiste(String nrDocumento) {
-		return dao.nrDocumentoExiste(nrDocumento);
+	public boolean celularExiste(String telefone, Long id) {
+		return dao.celularExiste(telefone, id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public boolean celularExiste(String telefone) {
-		return dao.celularExiste(telefone);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public boolean emailExiste(String email) {
-		return dao.emailExiste(email);
+	public boolean emailExiste(String email, Long id) {
+		return dao.emailExiste(email, id);
 	}
 	
 	@Override
 	public List<Funcionario> buscarPorNome(String nome) {
-		return dao.findByName(nome);
+		return sort(dao.findByName(nome));
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public boolean nrDocumentoExiste(String nrDocumento, Long id) {
+		return dao.nrDocumentoExiste(nrDocumento, id);
 	}
 	
 	//========================================AUXILIARES===========================================
@@ -111,15 +107,6 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 					break;
 			}
 		}
-
-		// Cria conta de funcionário.
-		/*
-		 * private void criarConta(Funcionario funcionario) { ContaFuncionario contaF =
-		 * new ContaFuncionario(); contaF.setFuncionario(funcionario);
-		 * //contaF.setPerfil(perfilService.buscarPorNome(funcionario.getPapel()));
-		 * contaF.setPalavraPasse(passwordEncoder.encode("0000"));
-		 * contaFuncionarioService.gravar(contaF); }
-		 */
 		
 		//Armazenar residência de funcionário
 		private void registarResidencia(Funcionario funcionario) {
@@ -145,6 +132,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 		//Encontrar residência de cada funcionário
 		private Residencia residenciaDe(Funcionario funcionario) {
 			return residenciaService.buscarPorFuncionario(funcionario);
+		}
+		
+		private List<Funcionario> sort(List<Funcionario> funcionarios) {
+			funcionarios.sort(Comparator.comparing(Funcionario::getNome).thenComparing(Funcionario::getApelido));
+			funcionarioResidencia(funcionarios);
+			return funcionarios;
 		}
 
 }

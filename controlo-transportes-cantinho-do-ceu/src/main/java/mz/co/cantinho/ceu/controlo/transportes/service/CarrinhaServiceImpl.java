@@ -1,5 +1,6 @@
 package mz.co.cantinho.ceu.controlo.transportes.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,17 +44,24 @@ public class CarrinhaServiceImpl implements CarrinhaService{
 	@Override
 	@Transactional(readOnly = true)
 	public List<Carrinha> buscarTodos() {
-		return dao.findAll();
+		return sort(dao.findAll());
 	}
 
 	@Override
-	public boolean matriculaExiste(String matricula) {
-		return dao.matriculaExiste(matricula);
+	@Transactional(readOnly = true)
+	public boolean matriculaExiste(String matricula, Long id) {
+		return dao.matriculaExiste(matricula, id);
 	}
 
 	@Override
 	public List<Carrinha> buscarPorMatricula(String matricula) {
-		return dao.findByRegistration(matricula);
+		return sort(dao.findByRegistration(matricula));
+	}
+	
+	//========================================AUXILIARES========================================================
+	private List<Carrinha> sort(List<Carrinha> carrinhas) {
+		carrinhas.sort(Comparator.comparing(Carrinha::getMatricula).thenComparing(Carrinha::getCapacidade).thenComparing(Carrinha::getLugaresOcupados));
+		return carrinhas;
 	}
 
 }

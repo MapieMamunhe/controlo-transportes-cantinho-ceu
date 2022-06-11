@@ -20,10 +20,10 @@ public class FuncionarioValidator implements Validator {
 	private FuncionarioService service;
 	
 	@Autowired
-	ZonaService zonaService;
+	private ZonaService zonaService;
 	
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -33,15 +33,11 @@ public class FuncionarioValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Funcionario funcionario = (Funcionario) target;
-
-		// Validar escolha de perfil
-		/*
-		 * if (perfilService.buscarPorNome(funcionario.getPapel()) == null) {
-		 * errors.rejectValue("papel", "PapelValido.Funcionario"); }
-		 */
 		
-		funcionario.getConta().setFuncionario(funcionario);
-		funcionario.getConta().setPalavraPasse(passwordEncoder.encode("0000"));
+		if(funcionario.getId() == null) {
+			funcionario.getConta().setFuncionario(funcionario);
+			funcionario.getConta().setPalavraPasse(passwordEncoder.encode("0000"));
+		}
 
 		// validar nome
 		if (!nomeValido(funcionario.getNome())) {
@@ -62,8 +58,10 @@ public class FuncionarioValidator implements Validator {
 			if (!documentoValido(funcionario.getTipoDocumento(), funcionario.getNrDocumento())) {
 				errors.rejectValue("nrDocumento", "DocumentoValido.Funcionario");
 			}
-			else {// verifica se existe um documento com o mesmo número registado
-				if (service.nrDocumentoExiste(funcionario.getNrDocumento())) {
+			//id não nulo significa que se trata de uma edição, devemos verificar se o documento existe no registo de outros funcionarios
+			else{
+				// verifica se existe um documento com o mesmo número registado
+				if (service.nrDocumentoExiste(funcionario.getNrDocumento(), funcionario.getId())) {
 					errors.rejectValue("nrDocumento", "Duplicado.Funcionario.nrDocumento");
 				}
 			}
@@ -79,7 +77,7 @@ public class FuncionarioValidator implements Validator {
 				errors.rejectValue("telefone", "TelefoneValido.Utilizador");
 			} 
 			else {// verifica se celular já foi registado
-				if (service.celularExiste(funcionario.getTelefone())) {
+				if (service.celularExiste(funcionario.getTelefone(), funcionario.getId())) {
 					errors.rejectValue("telefone", "Duplicado.Funcionario.telefone");
 				}
 			}
@@ -94,22 +92,36 @@ public class FuncionarioValidator implements Validator {
 				if (funcionario.getTelefone().trim().equals(funcionario.getTelefoneAlternativo().trim())) {
 					errors.rejectValue("telefoneAlternativo", "Iguais.Funcionario.telefone");
 				}
-				else if (service.celularExiste(funcionario.getTelefoneAlternativo())) {
+				else if (service.celularExiste(funcionario.getTelefoneAlternativo(), funcionario.getId())) {
 					errors.rejectValue("telefoneAlternativo", "Duplicado.Funcionario.telefone");
 				}
 			}
 		}
+		else {
+			// Telefone alternativo é opcional. Ao clicar em submit é enviada uma string
+			// vazia, no
+			// entanto a coluna tem a constraint 'UNIQUE', logo há necessidade de passar um
+			// nulo.
+			funcionario.setTelefoneAlternativo(null);
+		}
 
 		// Verificar se já existe o email, caso seja introduzido
-		if (!funcionario.getEmail().replace(" ", "").isEmpty())
-
-		{
-			if (service.emailExiste(funcionario.getEmail())) {
+		if (!funcionario.getEmail().replace(" ", "").isEmpty()){
+			if (service.emailExiste(funcionario.getEmail(), funcionario.getId())) {
 				errors.rejectValue("email", "Duplicado.Funcionario.email");
 			}
 		}
+		else {
+			//Email, também é opcional, aplicamos a mesma lógica que do telefone alternativo.
+			funcionario.setEmail(null);
+		}
 		
 		//validar residencia
+		//Em caso de edição, remover a parte da cidade da String de residência
+		String residenciaForm = funcionario.getResidencia().replace(", Maputo", "");
+		funcionario.setResidencia(residenciaForm);
+		residenciaForm = funcionario.getResidencia().replace(", Matola", "");
+		funcionario.setResidencia(residenciaForm);
 		if(zonaService.bairroExiste(funcionario.getResidencia())) {
 			if(funcionario.getResidenciaQuarteirao() <= 0) {
 				errors.rejectValue("residenciaQuarteirao", "Residencia.QuarteiraoValido.Funcionario");

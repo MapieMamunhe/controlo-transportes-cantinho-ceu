@@ -26,7 +26,7 @@ public class CarrinhaValidator implements Validator{
 		//Elimina espaços em branco na matrícula
 		carrinha.setMatricula(carrinha.getMatricula().replace(" ", ""));
 		
-		if(service.matriculaExiste(carrinha.getMatricula())) {//verifica se matrícula já existe
+		if(service.matriculaExiste(carrinha.getMatricula(), carrinha.getId())) {//verifica se matrícula já existe
 			errors.rejectValue("matricula", "Duplicado.Carrinha.matricula");
 		}
 	}

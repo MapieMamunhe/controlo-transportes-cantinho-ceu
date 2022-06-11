@@ -10,17 +10,26 @@ import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implements FuncionarioDao{
 
 	@Override
-	public boolean nrDocumentoExiste(String nrDocumento) {
+	public boolean nrDocumentoExiste(String nrDocumento, Long id) {
+		if(id != null) {
+			return !createQuery("select f from Funcionario f where f.id != ?1 and f.nrDocumento = ?2", id, nrDocumento).isEmpty();
+		}
 		return !createQuery("select f from Funcionario f where f.nrDocumento = ?1", nrDocumento).isEmpty();
 	}
 
 	@Override
-	public boolean celularExiste(String celular) {
+	public boolean celularExiste(String celular, Long id) {
+		if(id != null) {
+			return !createQuery("select f from Funcionario f where f.id != ?1 and (f.telefone = ?2 or f.telefoneAlternativo = ?2)", id, celular).isEmpty();
+		}
 		return !createQuery("select f from Funcionario f where f.telefone = ?1 or f.telefoneAlternativo = ?1", celular).isEmpty();
 	}
 
 	@Override
-	public boolean emailExiste(String email) {
+	public boolean emailExiste(String email, Long id) {
+		if(id != null) {
+			return !createQuery("select f from Funcionario f where f.id != ?1 and f.email = ?2", id, email).isEmpty();
+		}
 		return !createQuery("select f from Funcionario f where f.email = ?1", email).isEmpty();
 	}
 

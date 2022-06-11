@@ -39,6 +39,7 @@
                                         <th scope="col">Matrícula</th>
                                         <th scope="col">Capacidade</th>
                                         <th scope="col">Lugares ocupados</th>
+                                        <th>Acção</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +48,10 @@
                                         <td th:text = "${c.matricula}"></td>
                                         <td th:text = "${c.capacidade}"></td>
                                         <td th:text = "${c.lugaresOcupados}"></td>
+                                        <td>
+                                        	<a th:href="@{/carrinhas/editar/{id} (id = ${c.id})}" role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 ">
+													<i class="fa-solid fa-pen-to-square mx-1"></i></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

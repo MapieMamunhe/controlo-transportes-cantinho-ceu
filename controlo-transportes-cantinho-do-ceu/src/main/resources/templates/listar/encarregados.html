@@ -46,7 +46,7 @@
 										<th>Celular</th>
 										<th>Celular alternativo</th>
 										<th>Email</th>
-										<!-- <th class="text-right px-3">Acção</th> -->
+										<th class="text-right px-3">Acção</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -55,17 +55,15 @@
 										<td th:text="${e.telefone} "></td>
 										<td th:text="${e.telefoneAlternativo} "></td>
 										<td th:text="${e.email} "></td>
-										<!-- <td class="text-right ">
+										<td class="text-right ">
 											<div class="d-flex justify-content-end ">
-												<a href=" " role="button"
-													class="btn btn-sm bg-btn-info p-0 f "
-													data-bs-toggle="modal" data-bs-target="#info-funcionario"><i
-													class="fa-solid fa-circle-info mx-1 "></i></a> <a href=" "
+													<a th:href="@{/encarregados/editar/{id} (id = ${e.id})}"
 													role="button" class="btn btn-sm bg-btn-edit p-0 f mx-2 "><i
-													class="fa-solid fa-pen-to-square mx-1"></i></a> <a href=" "
+													class="fa-solid fa-pen-to-square mx-1"></i></a>
+													<a href=" "
 													role="button" class="btn btn-sm bg-btn-danger p-0 f "><i
 													class="fa-solid fa-circle-info mx-1 "></i></a>
-											</div> -->
+											</div>
 										</td>
 									</tr>
 

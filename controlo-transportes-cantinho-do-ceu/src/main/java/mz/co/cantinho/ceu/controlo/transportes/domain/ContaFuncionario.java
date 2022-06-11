@@ -14,17 +14,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "contafuncionario")
 public class ContaFuncionario extends EntidadeAbstrata<Long>{
-
-	/*
-	 * @NotNull
-	 * 
-	 * @NotBlank
-	 * 
-	 * @Size(min = 3, max = 30)
-	 * 
-	 * @Column(name = "nome_utilizador", nullable = false, length = 30) private
-	 * String nomeUtilizador;
-	 */
 	
 	@NotBlank
 	@NotNull
@@ -34,20 +23,13 @@ public class ContaFuncionario extends EntidadeAbstrata<Long>{
 	
 	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "funcionario_id")
+	@JoinColumn(name = "funcionario_id", unique = true)
 	private Funcionario funcionario;
 	
 	@NotNull
 	@OneToOne
 	@JoinColumn(name = "perfil_id")
 	private Perfil perfil;
-	
-	/*
-	 * public String getNomeUtilizador() { return nomeUtilizador; }
-	 * 
-	 * public void setNomeUtilizador(String nomeUtilizador) { this.nomeUtilizador =
-	 * nomeUtilizador; }
-	 */
 
 	public String getPalavraPasse() {
 		return palavraPasse;

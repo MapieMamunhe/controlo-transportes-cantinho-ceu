@@ -11,6 +11,6 @@ public interface ContaFuncionarioService {
 	void remover(Long id);
 	ContaFuncionario buscarPorId(Long id);
 	List<ContaFuncionario> buscarTodos();
-	List<ContaFuncionario> buscarPorNomeFuncionario(String nome);
+	ContaFuncionario buscarPorFuncionario(Long idFuncionario);
 	
 }
