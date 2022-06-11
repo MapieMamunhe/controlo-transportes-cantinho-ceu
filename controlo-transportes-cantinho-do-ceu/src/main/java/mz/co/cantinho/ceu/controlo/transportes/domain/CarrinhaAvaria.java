@@ -22,9 +22,8 @@ public class CarrinhaAvaria extends EntidadeAbstrata<Long>{
 	@PastOrPresent
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(name = "data_avaria", nullable = false)
-	private LocalDate dataAvaria;
+	private LocalDate dataAvaria = LocalDate.now();
 	
-	@NotNull
 	@PastOrPresent
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@Column(name = "data_resolucao")

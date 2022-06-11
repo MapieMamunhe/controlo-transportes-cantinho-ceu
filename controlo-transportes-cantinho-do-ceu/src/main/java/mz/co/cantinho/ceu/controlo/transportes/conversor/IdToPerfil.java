@@ -4,24 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import mz.co.cantinho.ceu.controlo.transportes.domain.Avaria;
-import mz.co.cantinho.ceu.controlo.transportes.service.AvariaService;
+import mz.co.cantinho.ceu.controlo.transportes.domain.Perfil;
+import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
 
 @Component
-public class IdToAvaria implements Converter<String, Avaria>{
+public class IdToPerfil implements Converter<String, Perfil>{
 
 	@Autowired
-	private AvariaService service;
+	PerfilService service;
 	
 	@Override
-	public Avaria convert(String id) {
+	public Perfil convert(String id) {
 		long longId = 0;
-		System.out.println("ID recebido pela a: " + id);
 		try {
 			longId = Long.parseLong(id.replace(" ", ""));
 		}
-		catch(NumberFormatException ex) {
-			System.out.println("Impossível converter " + id + " para ID:\n" + ex.getMessage());
+		catch(NumberFormatException nfex) {
+			System.out.println("Impossível converter '" + id + "' para um ID de perfil." );
 			return null;
 		}
 		if(longId <= 0) {

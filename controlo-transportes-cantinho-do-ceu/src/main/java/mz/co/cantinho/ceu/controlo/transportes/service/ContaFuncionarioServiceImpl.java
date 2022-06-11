@@ -14,7 +14,7 @@ import mz.co.cantinho.ceu.controlo.transportes.domain.ContaFuncionario;
 public class ContaFuncionarioServiceImpl implements ContaFuncionarioService{
 
 	@Autowired
-	private ContaFuncionarioDao dao;
+	private ContaFuncionarioDao dao;;
 	
 	@Override
 	public void gravar(ContaFuncionario contaFuncionario) {

@@ -27,12 +27,12 @@
 								<div class="form-group col-md-3 col-sm-12">
 									<label for="tipoFuncionario" class="form-label obrigatorio">Perfil</label>
 									<select name="tipoFuncionario" class="form-control"
-										th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? 'is-invalid'">
-										<option value="0">Selecione...</option>
-										<option th:each="p : ${perfis}" th:value="${p.nome}"
+										th:field="*{conta.perfil}" th:classappend="${#fields.hasErrors('conta.perfil')} ? 'is-invalid'">
+										<option value="-1">Selecione...</option>
+										<option th:each="p : ${perfis}" th:value="${p.id}"
 											th:text="${p.nome}"></option>
 									</select>
-									<div class="erros" th:errors="*{papel}"></div>
+									<div class="erros" th:errors="*{conta.perfil}"></div>
 								</div>
 								<div class="form-group col-md-5 col-sm-12">
 									<label for="nome" class="form-label obrigatorio">Nome</label>
@@ -171,7 +171,7 @@
 												<div class="input-group-prepend">
 													<div class="input-group-text">Quarteirão</div>
 												</div>
-												<input type="number" class="form-control" th:value="*{residenciaQuarteirao}"
+												<input type="number" class="form-control" th:field="*{residenciaQuarteirao}"
 													placeholder="Quarteirão"
 													th:classappend="${#fields.hasErrors('residenciaQuarteirao')} ? 'is-invalid'"/>
 													<span class="erros d-block" th:errors="*{residenciaQuarteirao}"></span>

@@ -35,4 +35,9 @@ public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implement
 		return lista.get(0);
 	}
 
+	@Override
+	public List<Funcionario> findByName(String nome) {
+		return createQuery("select f from Funcionario f where f.nome like concat('%', ?1, '%') or f.apelido like concat('%', ?1, '%')", nome);
+	}
+
 }

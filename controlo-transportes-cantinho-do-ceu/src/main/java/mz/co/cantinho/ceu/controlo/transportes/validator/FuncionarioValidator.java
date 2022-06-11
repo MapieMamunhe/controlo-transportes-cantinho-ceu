@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.time.Period;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.service.FuncionarioService;
-import mz.co.cantinho.ceu.controlo.transportes.service.PerfilService;
 import mz.co.cantinho.ceu.controlo.transportes.service.ZonaService;
 
 @Component
@@ -20,10 +20,10 @@ public class FuncionarioValidator implements Validator {
 	private FuncionarioService service;
 	
 	@Autowired
-	private PerfilService perfilService;
+	ZonaService zonaService;
 	
 	@Autowired
-	ZonaService zonaService;
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -35,9 +35,13 @@ public class FuncionarioValidator implements Validator {
 		Funcionario funcionario = (Funcionario) target;
 
 		// Validar escolha de perfil
-		if (perfilService.buscarPorNome(funcionario.getPapel()) == null) {
-			errors.rejectValue("papel", "PapelValido.Funcionario");
-		}
+		/*
+		 * if (perfilService.buscarPorNome(funcionario.getPapel()) == null) {
+		 * errors.rejectValue("papel", "PapelValido.Funcionario"); }
+		 */
+		
+		funcionario.getConta().setFuncionario(funcionario);
+		funcionario.getConta().setPalavraPasse(passwordEncoder.encode("0000"));
 
 		// validar nome
 		if (!nomeValido(funcionario.getNome())) {
@@ -107,7 +111,6 @@ public class FuncionarioValidator implements Validator {
 		
 		//validar residencia
 		if(zonaService.bairroExiste(funcionario.getResidencia())) {
-			funcionario.setResidenciaQuarteirao(4);
 			if(funcionario.getResidenciaQuarteirao() <= 0) {
 				errors.rejectValue("residenciaQuarteirao", "Residencia.QuarteiraoValido.Funcionario");
 			}
@@ -118,8 +121,8 @@ public class FuncionarioValidator implements Validator {
 
 		// verificar idade
 		if(funcionario.getDataNascimento() != null) {
-			if (!idadeValida(funcionario.getDataNascimento(), funcionario.getPapel())) {
-				if (funcionario.getPapel().equalsIgnoreCase("Motorista")) {
+			if (!idadeValida(funcionario.getDataNascimento(), funcionario.getConta().getPerfil().getNome())) {
+				if (funcionario.getConta().getPerfil().getNome().equalsIgnoreCase("Motorista")) {
 					errors.rejectValue("dataNascimento", "DataDeNascimentoValida.Funcionario.Motorista");
 				}
 				else {

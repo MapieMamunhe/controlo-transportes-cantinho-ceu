@@ -2,6 +2,7 @@ package mz.co.cantinho.ceu.controlo.transportes.dao;
 
 import java.util.List;
 
+import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Residencia;
 
 public interface ResidenciaDao {
@@ -11,5 +12,6 @@ public interface ResidenciaDao {
 	void delete(Long id);
 	List<Residencia> findAll();
 	Residencia findById(Long id);
+	Residencia findByFuncionario(Funcionario funcionario);
 	
 }

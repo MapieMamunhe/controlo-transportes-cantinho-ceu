@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import mz.co.cantinho.ceu.controlo.transportes.dao.ResidenciaDao;
+import mz.co.cantinho.ceu.controlo.transportes.domain.Funcionario;
 import mz.co.cantinho.ceu.controlo.transportes.domain.Residencia;
 
 @Service
@@ -45,6 +46,11 @@ public class ResidenciaServiceImpl implements ResidenciaService{
 	@Override
 	public List<Residencia> buscarTodos() {
 		return dao.findAll();
+	}
+
+	@Override
+	public Residencia buscarPorFuncionario(Funcionario funcionario) {
+		return dao.findByFuncionario(funcionario);
 	}
 
 }
