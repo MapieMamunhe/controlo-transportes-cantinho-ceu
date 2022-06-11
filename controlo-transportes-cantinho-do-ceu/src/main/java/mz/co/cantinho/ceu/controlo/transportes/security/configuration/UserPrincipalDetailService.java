@@ -21,16 +21,13 @@ public class UserPrincipalDetailService implements UserDetailsService {
 	@Autowired
 	private ContaFuncionarioDao contaFuncionarioDao;
 	
-	//elimnar
-	public PasswordEncoder pass() {
-		return new BCryptPasswordEncoder();
-	}
+	
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		ContaFuncionario conta = contaFuncionarioDao.findByFuncionarioId(funcionarioDao.findByCellOrEmail(username).getId());
-		//eliminar pass.encode
-		conta.setPalavraPasse(pass().encode(conta.getPalavraPasse()));
+		conta.setPalavraPasse(conta.getPalavraPasse());
 		conta.getPerfil().setNome("ROLE_"+conta.getPerfil().getNome());
 		UserPrincipal userPrincipal = new UserPrincipal(conta);
 		
