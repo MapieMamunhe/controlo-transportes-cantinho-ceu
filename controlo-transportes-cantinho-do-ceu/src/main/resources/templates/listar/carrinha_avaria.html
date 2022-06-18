@@ -1,0 +1,74 @@
+<html layout:decorate="~{layout}">
+
+<head>
+<meta charset="UTF-8" />
+<title>Funcionários</title>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+
+	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+	<div class="content-wrapper bg-white z-index-1" layout:fragment="body">
+		<section class="content p-0">
+			<div class="container-fluid px-5">
+				<div class="card mt-3 bd-1">
+					<div class="card-header bg-cicc py-2">
+						<div class="float-left">
+							<i class="fa-solid fa-database"></i> Lista de Encarregados
+						</div>
+						<div class="float-right"></div>
+					</div>
+					<div class="card-body">
+
+						<form th:action="@{/encarregados/pesquisar}" class="form-row" method = "GET">
+
+							<div class="input-group mb-3">
+								<input type="text" class="form-control"
+									placeholder="Digite o nome do encarregado" th:name = "nome">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary"
+										id="button-addon2">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+
+						</form>
+
+						<div
+							class="table-responsive table-responsive-md table-responsive-sm">
+							<table class="table table-striped border table-sm">
+								<thead class="bg-cicc">
+									<tr>
+
+										<th class="px-3">Carrinha</th>
+										<th>Tipo de avaria</th>
+										<th>Data de ocorrência</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-row" th:each="a : ${car_avarias} ">
+										<td th:text="${a.carrinha.matricula}"></td>
+										<td th:text="${a.avaria.tipo}"></td>
+										<td th:text="${a.dataAvaria}"></td>
+									</tr>
+
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+	</div>
+	<!--Fim do content-wrapper-->
+	<!---wrapper-->
+
+
+</body>
+
+</html>

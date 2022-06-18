@@ -1,5 +1,6 @@
 package mz.co.cantinho.ceu.controlo.transportes.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,13 @@ public class CarrinhaAvariaServiceImpl implements CarrinhaAvariaService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<CarrinhaAvaria> buscarTodos() {
-		return dao.findAll();
+		return sort(dao.findAll());
+	}
+	
+	//====================================================AUXILIARES=========================================================================
+	private List<CarrinhaAvaria>sort(List<CarrinhaAvaria> carAvaria){
+		carAvaria.sort(Comparator.comparing(CarrinhaAvaria::getDataAvaria));
+		return carAvaria;
 	}
 
 }

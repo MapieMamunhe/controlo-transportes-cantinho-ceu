@@ -1,5 +1,6 @@
 package mz.co.cantinho.ceu.controlo.transportes.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class ZonaServiceImpl implements ZonaService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Zona> buscarTodos() {
-		return dao.findAll();
+		return sort(dao.findAll());
 	}
 
 	@Override
@@ -54,6 +55,13 @@ public class ZonaServiceImpl implements ZonaService {
 	@Override
 	public boolean bairroExiste(String bairro) {
 		return dao.bairroExiste(bairro);
+	}
+	
+	//========================================AUXILIARES======================================================
+	
+	private List<Zona> sort(List<Zona> zonas) {
+		zonas.sort(Comparator.comparing(Zona::getNome).thenComparing(Zona::getCidade));
+		return zonas;
 	}
 
 }

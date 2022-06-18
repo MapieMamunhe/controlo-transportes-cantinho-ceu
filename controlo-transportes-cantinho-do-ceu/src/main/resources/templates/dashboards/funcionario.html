@@ -1,90 +1,38 @@
-<!DOCTYPE html>
-<html layout:decorate = "~{layout}">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Dashboard</title>
-  </head>
-  <body>
-    <main>
-      <header>Titulo</header>
-   
-          <!--Area do dashboard-->
-        <section class="dashboard" layout:fragment = "body">
-          <div class="area-dashboard">
-            <section class="cabecalho">
-              <figure>
-                <img src="" alt="Tintas" />
-                <figcaption>Dashboard</figcaption>
-              </figure>
-              <figure>
-                <img src="" alt="calendario" />
-                <figcaption>DATA ACTUAL</figcaption>
-              </figure>
-            </section>
-            <section class="links-butoes">
-              <a href="" class="btn btn-primary">
-                <h2 class="nome-butao">Funcionarios</h2>
-                <figure>
-                  <img src="" alt="Imagem de um doutor" />
-                  <figcaption>
-                    <h2 id="dado">Numero</h2>
-                    <h3 id="dado">Cadastrados!</h3>
-                  </figcaption>
-                </figure>
-              </a>
-              <a href="" class="btn btn-primary">
-                <h2 class="nome-butao">Rotas</h2>
-                <figure>
-                  <img src="" alt="imagem de seta dupla para direita" />
-                  <figcaption>
-                    <h2 id="dado">Numero</h2>
-                    <h3 id="dado">Cadastrados!</h3>
-                  </figcaption>
-                </figure>
-              </a>
-              <a href="" class="btn btn-primary">
-                <h2 class="nome-butao">Utilizadores</h2>
-                <figure>
-                  <img src="" alt="Utilizadores" />
-                  <figcaption>
-                    <h2 id="dado">Numero</h2>
-                    <h3 id="dado">Cadastradas!</h3>
-                  </figcaption>
-                </figure>
-              </a>
-              <a href="" class="btn btn-primary">
-                <h2 class="nome-butao">Carinhas</h2>
-                <figure>
-                  <img src="" alt="Imagem de um autocarro" />
-                  <figcaption>
-                    <h2 id="dado">Numero</h2>
-                    <h3 id="dado">Cadastradas!</h3>
-                  </figcaption>
-                </figure>
-              </a>
-              <a href="" class="btn btn-primary">
-                <h2 class="nome-butao">Carinhas</h2>
-                <figure>
-                  <img src="" alt="Imagem de um autocarro" />
-                  <figcaption>
-                    <h2 id="dado">Numero</h2>
-                    <h3 id="dado">Avariadas!</h3>
-                  </figcaption>
-                </figure>
-              </a>
-              <a href="" class="btn btn-primary">
-                <h2 class="nome-butao">Alunos</h2>
-                <figure>
-                  <img src="" alt="Um grupo de alunos" />
-                  <figcaption>
-                    <h2 id="dado">Numero</h2>
-                    <h3 id="dado">Matriculadas!</h3>
-                  </figcaption>
-                </figure>
-              </a>
-            </section>
-          </div>
-        </section>
-      
-  </body>
+<html layout:decorate="~{layout}">
+
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+	<!--Inicio da arrea de conteudo (inicio de content-wrapper)-->
+	<div class="content-wrapper  bg-white z-index-1" layout:fragment="body">
+		<section class="content p-0">
+			<div class="container-fluid  px-5">
+				<div class="card mt-3 bd-1">
+					<div class="card-header bg-cicc">
+						<div class="float-left">
+							<i class="nav-icon fas fa-tachometer-alt"></i> HOME
+
+						</div>
+						<div class="float-right"></div>
+					</div>
+					<div class="card-body  px-5">
+						<div class="homeImgDiv">
+							<img class="homeImg" th:src=" @{/plugins/img/homepage.png}" alt="">
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+	</div>
+	</section>
+
+	</div>
+	<!--Fim do content-wrapper-->
+</body>
+
 </html>

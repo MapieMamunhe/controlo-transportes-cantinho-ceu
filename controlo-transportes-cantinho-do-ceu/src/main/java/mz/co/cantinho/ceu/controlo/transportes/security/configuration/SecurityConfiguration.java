@@ -12,12 +12,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserPrincipalDetailService uPrincipalDetailService;
+	
+	@Autowired
+	private CustomAuthenticationSuccessHandler successHand;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
@@ -29,17 +33,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/funcionario/**").authenticated()
+			.antMatchers("/funcionario/**").hasRole("Administrador")
 			.antMatchers("/funcionarios/**").hasRole("Administrador")
 			.antMatchers("/carrinhas/**").hasAnyRole("Gestor de transportes", "Administrador")
 			.antMatchers("/encarregados/**").hasAnyRole("Secretária", "Administrador")
 			.antMatchers("/rota/**").hasAnyRole("Administrador", "Gestor de transportes")
 			.antMatchers("/carrinha-avaria").hasAnyRole("Administrador", "Gestor de transportes", "Motorista")
+			.antMatchers("/home").hasAnyRole("Gestor de transportes", "Motorista", "Educadora", "Secretária")
 			.and()
 			.formLogin()
-			.loginPage("/").permitAll()
-			.defaultSuccessUrl("/funcionario", true)
+			.loginPage("/").permitAll().successHandler(successHand)
 			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
+		
 	}
 	
 	@Bean

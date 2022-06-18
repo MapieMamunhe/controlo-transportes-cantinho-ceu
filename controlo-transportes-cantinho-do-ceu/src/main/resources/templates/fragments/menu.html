@@ -37,11 +37,21 @@ xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview" sec:authorize="hasAnyRole('Administrador')">
                         <a th:href="@{/funcionario}" class="nav-link">
                             <i class="nav-icon fas fa-house "></i>
                             <p>
                                 Dashboard
+
+                            </p>
+                        </a>
+
+                    </li>
+                    <li class="nav-item has-treeview" sec:authorize="hasAnyRole('Gestor de transportes', 'Secretária', 'Motorista', 'Educadora')">
+                        <a th:href="@{/home}" class="nav-link">
+                            <i class="nav-icon fas fa-house "></i>
+                            <p>
+                                Home
 
                             </p>
                         </a>

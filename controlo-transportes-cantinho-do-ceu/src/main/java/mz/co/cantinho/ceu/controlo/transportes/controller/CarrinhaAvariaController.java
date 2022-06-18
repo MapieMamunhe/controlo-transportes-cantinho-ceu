@@ -49,6 +49,11 @@ public class CarrinhaAvariaController {
 		return "redirect:/carrinha-avaria/comunicar";
 	}
 	
+	@GetMapping("/listar")
+	public String listar() {
+		return "listar/carrinha_avaria";
+	}
+	
 	@ModelAttribute("carrinhas")
 	public List<Carrinha> carrinhas(){
 		return carrinhaService.buscarTodos();
@@ -57,6 +62,11 @@ public class CarrinhaAvariaController {
 	@ModelAttribute("avarias")
 	public List<Avaria> avarias(){
 		return avariaService.buscarTodos();
+	}
+	
+	@ModelAttribute("car_avarias")
+	public List<CarrinhaAvaria> carAvarias(){
+		return carrinhaAvariaService.buscarTodos();
 	}
 	
 }
